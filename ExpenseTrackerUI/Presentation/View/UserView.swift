@@ -18,6 +18,7 @@ class AddNewUserView: NSView {
         self.presenter = presenter
         self.user = user
         super.init(frame: NSZeroRect)
+        print("aa")
     }
     
     required init?(coder: NSCoder) {
