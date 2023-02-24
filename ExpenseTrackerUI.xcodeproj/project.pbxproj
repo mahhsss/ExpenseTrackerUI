@@ -1,0 +1,495 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02BF3FB7A46291778A7A74BA /* Pods_ExpenseTrackerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */; };
+		2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */; };
+		2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453129A8A2DB007BBE2D /* Assets.xcassets */; };
+		2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453329A8A2DB007BBE2D /* MainMenu.xib */; };
+		2AA2455129A8A3B1007BBE2D /* ExpenseTrackerBackend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */; };
+		2AA2455229A8A3B1007BBE2D /* ExpenseTrackerBackend.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2AA2455A29A8A49C007BBE2D /* UserContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455929A8A49C007BBE2D /* UserContract.swift */; };
+		2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455B29A8A4B8007BBE2D /* Router.swift */; };
+		2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455D29A8A4C6007BBE2D /* Assembler.swift */; };
+		2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */; };
+		2AA2456329A8A550007BBE2D /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2456229A8A550007BBE2D /* UserView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2AA2455329A8A3B1007BBE2D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2AA2455229A8A3B1007BBE2D /* ExpenseTrackerBackend.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		201BA1BEF5A874BD96695921 /* Pods-ExpenseTrackerUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.release.xcconfig"; sourceTree = "<group>"; };
+		2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2AA2453129A8A2DB007BBE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2AA2453429A8A2DB007BBE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2AA2453629A8A2DB007BBE2D /* ExpenseTrackerUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseTrackerUI.entitlements; sourceTree = "<group>"; };
+		2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExpenseTrackerBackend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AA2455929A8A49C007BBE2D /* UserContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContract.swift; sourceTree = "<group>"; };
+		2AA2455B29A8A4B8007BBE2D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		2AA2455D29A8A4C6007BBE2D /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPresenter.swift; sourceTree = "<group>"; };
+		2AA2456229A8A550007BBE2D /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.debug.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.debug.xcconfig"; sourceTree = "<group>"; };
+		80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTrackerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2AA2452929A8A2DA007BBE2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02BF3FB7A46291778A7A74BA /* Pods_ExpenseTrackerUI.framework in Frameworks */,
+				2AA2455129A8A3B1007BBE2D /* ExpenseTrackerBackend.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		274DBD875A2D84FDBBD0B2AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */,
+				80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2AA2452329A8A2DA007BBE2D = {
+			isa = PBXGroup;
+			children = (
+				2AA2452E29A8A2DA007BBE2D /* ExpenseTrackerUI */,
+				2AA2452D29A8A2DA007BBE2D /* Products */,
+				E1C5F242DDAA4EC72B6B8CCB /* Pods */,
+				274DBD875A2D84FDBBD0B2AC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2AA2452D29A8A2DA007BBE2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2AA2452E29A8A2DA007BBE2D /* ExpenseTrackerUI */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2455429A8A3DA007BBE2D /* Presentation */,
+				2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */,
+				2AA2455B29A8A4B8007BBE2D /* Router.swift */,
+				2AA2455D29A8A4C6007BBE2D /* Assembler.swift */,
+				2AA2453129A8A2DB007BBE2D /* Assets.xcassets */,
+				2AA2453329A8A2DB007BBE2D /* MainMenu.xib */,
+				2AA2453629A8A2DB007BBE2D /* ExpenseTrackerUI.entitlements */,
+			);
+			path = ExpenseTrackerUI;
+			sourceTree = "<group>";
+		};
+		2AA2455429A8A3DA007BBE2D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2455729A8A479007BBE2D /* View */,
+				2AA2455629A8A473007BBE2D /* Presenter */,
+				2AA2455529A8A46C007BBE2D /* Contract */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		2AA2455529A8A46C007BBE2D /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2455829A8A488007BBE2D /* UserContract */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		2AA2455629A8A473007BBE2D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2456129A8A534007BBE2D /* UserPresenter */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		2AA2455729A8A479007BBE2D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2456229A8A550007BBE2D /* UserView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2AA2455829A8A488007BBE2D /* UserContract */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2455929A8A49C007BBE2D /* UserContract.swift */,
+			);
+			path = UserContract;
+			sourceTree = "<group>";
+		};
+		2AA2456129A8A534007BBE2D /* UserPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */,
+			);
+			path = UserPresenter;
+			sourceTree = "<group>";
+		};
+		E1C5F242DDAA4EC72B6B8CCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */,
+				201BA1BEF5A874BD96695921 /* Pods-ExpenseTrackerUI.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2AA2452B29A8A2DA007BBE2D /* ExpenseTrackerUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AA2453929A8A2DB007BBE2D /* Build configuration list for PBXNativeTarget "ExpenseTrackerUI" */;
+			buildPhases = (
+				0D449474508DC78E00CE8A51 /* [CP] Check Pods Manifest.lock */,
+				2AA2452829A8A2DA007BBE2D /* Sources */,
+				2AA2452929A8A2DA007BBE2D /* Frameworks */,
+				2AA2452A29A8A2DA007BBE2D /* Resources */,
+				3CF2DCAE8E9836C65EECA7A0 /* [CP] Embed Pods Frameworks */,
+				2AA2455329A8A3B1007BBE2D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExpenseTrackerUI;
+			productName = ExpenseTrackerUI;
+			productReference = 2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2AA2452429A8A2DA007BBE2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					2AA2452B29A8A2DA007BBE2D = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 2AA2452729A8A2DA007BBE2D /* Build configuration list for PBXProject "ExpenseTrackerUI" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2AA2452329A8A2DA007BBE2D;
+			productRefGroup = 2AA2452D29A8A2DA007BBE2D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2AA2452B29A8A2DA007BBE2D /* ExpenseTrackerUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2AA2452A29A8A2DA007BBE2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */,
+				2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D449474508DC78E00CE8A51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExpenseTrackerUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CF2DCAE8E9836C65EECA7A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2AA2452829A8A2DA007BBE2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
+				2AA2456329A8A550007BBE2D /* UserView.swift in Sources */,
+				2AA2455A29A8A49C007BBE2D /* UserContract.swift in Sources */,
+				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
+				2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */,
+				2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2AA2453329A8A2DB007BBE2D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AA2453429A8A2DB007BBE2D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2AA2453729A8A2DB007BBE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2AA2453829A8A2DB007BBE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2AA2453A29A8A2DB007BBE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerUI/ExpenseTrackerUI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Demo.ExpenseTrackerUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2AA2453B29A8A2DB007BBE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 201BA1BEF5A874BD96695921 /* Pods-ExpenseTrackerUI.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerUI/ExpenseTrackerUI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Demo.ExpenseTrackerUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2AA2452729A8A2DA007BBE2D /* Build configuration list for PBXProject "ExpenseTrackerUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AA2453729A8A2DB007BBE2D /* Debug */,
+				2AA2453829A8A2DB007BBE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AA2453929A8A2DB007BBE2D /* Build configuration list for PBXNativeTarget "ExpenseTrackerUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AA2453A29A8A2DB007BBE2D /* Debug */,
+				2AA2453B29A8A2DB007BBE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2AA2452429A8A2DA007BBE2D /* Project object */;
+}
