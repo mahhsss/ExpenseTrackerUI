@@ -54,8 +54,10 @@ class Router: AddUserRouterContract {
             switch choice {
             case 1:
                 self.userSignUp()
+                break
             case 2:
                 self.userLogIn()
+                break
             default:
                 print("Enter valid input")
             }

@@ -22,8 +22,9 @@ class AddNewUserPresenter {
 
 extension AddNewUserPresenter: AddNewUserPresenterContract {
     
-    func viewLoaded(user: ExpenseTrackerBackend.User) {
+    func viewLoaded(user: User) {
         
+        print("\nIn adduserPresenter\n\n")
         let request = AddNewUserRequest(user: user)
         addNewUser.execute(request: request, onSuccess: { [weak self] (response) in
             self?.result()
