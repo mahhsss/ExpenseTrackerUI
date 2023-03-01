@@ -11,42 +11,25 @@ import ExpenseTrackerBackend
 class AddNewUserPresenter {
     
     weak var view: AddNewUserViewContract?
+    weak var router: Router?
     var addNewUser: AddNewUser
-    weak var router: AddUserRouterContract?
     
     init(addNewUser: AddNewUser) {
-        
         self.addNewUser = addNewUser
     }
+    
 }
 
-extension AddNewUserPresenter: AddNewUserPresenterContract {
+extension AddNewUserPresenter: UserSignUpPagePresenterContract {
     
-    func viewLoaded(user: User) {
-        
-        print("\nIn adduserPresenter\n\n")
+    func viewLoad(user: User) {
         let request = AddNewUserRequest(user: user)
-        addNewUser.execute(request: request, onSuccess: { [weak self] (response) in
-            self?.result()
-        }, onFailure: { [weak self] (error) in
-            self?.failed()
-        })
-        
-        if addNewUser.response != nil {
-            view?.load()
+        addNewUser.execute(request: request) { [weak self] response in
+            self?.view?.load(sucess: response)
+            self?.router?.launch()
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
+            self?.router?.launch()
         }
-        else {
-            view?.failure()
-        }
-        
     }
-    
-    func result() {
-        view?.load()
-    }
-    
-    func failed() {
-        view?.failure()
-    }
-    
 }

@@ -21,24 +21,8 @@ class Router: AddUserRouterContract {
     }
     
     func userSignUp() {
-        print("Choose your option")
-        print("1. SignUp \n0. Go Back")
-        let choice = Int(readLine()!)
-        if choice == 1 {
-           
-            print("Enter Name")
-            let name = readLine()!
-            print("Enter Email Id")
-            let emailId = readLine()!
-            print("Enter Password")
-            let password = readLine()!
-            let user = User(userId: 0, name: name, emailId: emailId, password: password)
-            self.window.contentView = Assembler.addUserView(user: user, router: self)
-        }
-        else {
-            return
-        }
         
+        self.window.contentView = Assembler.addUserView(router: self)
     }
     
     func userLogIn() {
@@ -47,20 +31,8 @@ class Router: AddUserRouterContract {
     
     
     func launch() {
-        while true {
-            print("Choose your option:")
-            print("1. SignUp \n2. SignIn")
-            var choice = Int(readLine()!)
-            switch choice {
-            case 1:
-                self.userSignUp()
-                break
-            case 2:
-                self.userLogIn()
-                break
-            default:
-                print("Enter valid input")
-            }
-        }
+        
+        let userView = UserView(router: self)
+        userView.AuthenticationView()
     }
 }

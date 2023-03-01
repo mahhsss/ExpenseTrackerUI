@@ -10,16 +10,16 @@ import ExpenseTrackerBackend
 
 class Assembler {
     
-    static func addUserView(user: User, router: AddUserRouterContract?) -> AddNewUserView {
-        
+    static func addUserView(router: Router) -> UserSignUpPageView {
+            
         let database = AddUserDataDatabaseService()
         let dataManager = AddUserDatamanager(database: database)
         let useCase = AddNewUser(dataManager: dataManager)
         let presenter = AddNewUserPresenter(addNewUser: useCase)
-        let view = AddNewUserView(presenter: presenter, user: user)
-        view.presenter = presenter
+        let view = UserSignUpPageView(presenter: presenter)
         presenter.view = view
-       
+        presenter.router = router
         return view
     }
 }
+

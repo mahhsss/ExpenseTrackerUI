@@ -20,6 +20,10 @@ protocol AddNewUserPresenterContract: AnyObject {
 
 protocol AddNewUserViewContract: AnyObject {
     
-    func load()
-    func failure()
+    func load(sucess: AddnewUserResponse)
+    func failure(error: AddNewUserError)
+}
+
+protocol UserSignUpPagePresenterContract: AnyObject {
+    func viewLoad(user: User)
 }
