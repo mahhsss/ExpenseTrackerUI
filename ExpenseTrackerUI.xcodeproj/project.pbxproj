@@ -19,6 +19,7 @@
 		2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455D29A8A4C6007BBE2D /* Assembler.swift */; };
 		2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */; };
 		2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */; };
+		2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 		2AA2455D29A8A4C6007BBE2D /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPresenter.swift; sourceTree = "<group>"; };
 		2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationView.swift; sourceTree = "<group>"; };
+		2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 		7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.debug.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.debug.xcconfig"; sourceTree = "<group>"; };
 		80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTrackerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 			children = (
 				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
 				2A030E5229ACDE560096587B /* UserSignUpView.swift */,
+				2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
+				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
 				2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */,
 				2AA2455A29A8A49C007BBE2D /* UserContract.swift in Sources */,
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
