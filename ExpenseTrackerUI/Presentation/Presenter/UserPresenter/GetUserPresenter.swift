@@ -28,7 +28,7 @@ extension GetUserPresenter: UserLoginPresenterContract {
             self.view?.load(success: self.user!)
         } failure: { error in
             self.view?.failure(error: error)
-            self.router?.userLogIn()
+            self.router?.launch()
         }
 
     }

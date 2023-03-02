@@ -23,6 +23,12 @@ class UserView: NSView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidMoveToSuperview() {
+        if superview != nil {
+            AuthenticationView()
+        }
+    }
+    
     func AuthenticationView() {
         
         point: while true {

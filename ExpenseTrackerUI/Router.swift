@@ -20,6 +20,7 @@ class Router: AddUserRouterContract {
         self.window = window
     }
     
+//--------------------------------- Authentication ------------------------------------------
     func userSignUp() {
         
         self.window.contentView = Assembler.addUserView(router: self)
@@ -29,11 +30,13 @@ class Router: AddUserRouterContract {
         
         self.window.contentView = Assembler.userLoginView(router: self)
     }
+//-------------------------------------------------------------------------------------------
+    
+//-------------------------------------- Home -----------------------------------------------
+    
     
     
     func launch() {
-        
-        let userView = UserView(router: self)
-        userView.AuthenticationView()
+        self.window.contentView = Assembler.AuthenticationView(router: self)
     }
 }

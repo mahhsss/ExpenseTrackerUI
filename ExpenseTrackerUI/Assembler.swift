@@ -9,6 +9,12 @@ import Foundation
 import ExpenseTrackerBackend
 
 class Assembler {
+    static func AuthenticationView(router: Router) -> UserView {
+        return UserView(router: router)
+    }
+}
+
+extension Assembler {
     
     static func addUserView(router: Router) -> UserSignUpPageView {
             
