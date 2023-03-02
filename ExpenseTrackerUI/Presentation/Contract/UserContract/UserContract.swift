@@ -24,6 +24,16 @@ protocol AddNewUserViewContract: AnyObject {
     func failure(error: AddNewUserError)
 }
 
+protocol GetUserViewontract: AnyObject {
+    func load(success: User)
+    func failure(error: UserLoginError)
+}
+
+protocol UserLoginPresenterContract: AnyObject {
+    func viewDidLoad(emailId: String, password: String)
+}
+
 protocol UserSignUpPagePresenterContract: AnyObject {
     func viewLoad(user: User)
 }
+

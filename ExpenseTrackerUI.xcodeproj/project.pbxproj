@@ -20,6 +20,7 @@
 		2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */; };
 		2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */; };
 		2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */; };
+		2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,7 @@
 		2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPresenter.swift; sourceTree = "<group>"; };
 		2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationView.swift; sourceTree = "<group>"; };
 		2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
+		2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserPresenter.swift; sourceTree = "<group>"; };
 		7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.debug.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.debug.xcconfig"; sourceTree = "<group>"; };
 		80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTrackerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -138,9 +140,7 @@
 		2AA2455729A8A479007BBE2D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
-				2A030E5229ACDE560096587B /* UserSignUpView.swift */,
-				2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */,
+				2AADAFE729B06EDC00F7962D /* AuthenticationView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,8 +157,19 @@
 			isa = PBXGroup;
 			children = (
 				2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */,
+				2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */,
 			);
 			path = UserPresenter;
+			sourceTree = "<group>";
+		};
+		2AADAFE729B06EDC00F7962D /* AuthenticationView */ = {
+			isa = PBXGroup;
+			children = (
+				2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */,
+				2A030E5229ACDE560096587B /* UserSignUpView.swift */,
+				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
+			);
+			path = AuthenticationView;
 			sourceTree = "<group>";
 		};
 		E1C5F242DDAA4EC72B6B8CCB /* Pods */ = {
@@ -293,6 +304,7 @@
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
 				2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */,
 				2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */,
+				2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */,
 				2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

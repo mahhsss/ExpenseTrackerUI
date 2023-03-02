@@ -21,7 +21,18 @@ class Assembler {
         presenter.router = router
         return view
     }
-    
-    
 }
 
+//        UserLogin Assembler
+extension Assembler {
+    static func userLoginView(router: Router) -> UserLoginPageView {
+        let database = GetUserDatabase()
+        let dataManager = UserLoginDataManagerServise(database: database)
+        let useCase = UserLogin(dataManager: dataManager)
+        let presenter = GetUserPresenter(userLogin: useCase)
+        let view = UserLoginPageView(presenter: presenter)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}

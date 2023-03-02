@@ -27,7 +27,7 @@ class Router: AddUserRouterContract {
     
     func userLogIn() {
         
-//        self.window.contentView 
+        self.window.contentView = Assembler.userLoginView(router: self)
     }
     
     

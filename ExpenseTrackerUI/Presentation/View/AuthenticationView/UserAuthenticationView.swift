@@ -34,6 +34,7 @@ class UserView: NSView {
                 router.userSignUp()
                 break point
             case 2:
+                router.userLogIn()
                 break point
             default:
                 print("Enter valid input")
