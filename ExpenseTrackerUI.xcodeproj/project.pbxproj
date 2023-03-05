@@ -22,6 +22,8 @@
 		2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */; };
 		2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */; };
 		2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE929B07BAF00F7962D /* HomePageView.swift */; };
+		2AADAFEC29B0996500F7962D /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFEB29B0996500F7962D /* AddExpenseView.swift */; };
+		2AADAFF929B2136E00F7962D /* AddExpensePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFF829B2136E00F7962D /* AddExpensePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +57,8 @@
 		2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 		2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserPresenter.swift; sourceTree = "<group>"; };
 		2AADAFE929B07BAF00F7962D /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		2AADAFEB29B0996500F7962D /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		2AADAFF829B2136E00F7962D /* AddExpensePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensePresenter.swift; sourceTree = "<group>"; };
 		7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.debug.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.debug.xcconfig"; sourceTree = "<group>"; };
 		80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTrackerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,6 +138,7 @@
 		2AA2455629A8A473007BBE2D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				2AADAFF729B2132300F7962D /* TransactionPresenter */,
 				2AA2456129A8A534007BBE2D /* UserPresenter */,
 			);
 			path = Presenter;
@@ -168,9 +173,9 @@
 		2AADAFE729B06EDC00F7962D /* AuthenticationView */ = {
 			isa = PBXGroup;
 			children = (
+				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
 				2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */,
 				2A030E5229ACDE560096587B /* UserSignUpView.swift */,
-				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
 			);
 			path = AuthenticationView;
 			sourceTree = "<group>";
@@ -179,8 +184,17 @@
 			isa = PBXGroup;
 			children = (
 				2AADAFE929B07BAF00F7962D /* HomePageView.swift */,
+				2AADAFEB29B0996500F7962D /* AddExpenseView.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		2AADAFF729B2132300F7962D /* TransactionPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				2AADAFF829B2136E00F7962D /* AddExpensePresenter.swift */,
+			);
+			path = TransactionPresenter;
 			sourceTree = "<group>";
 		};
 		E1C5F242DDAA4EC72B6B8CCB /* Pods */ = {
@@ -309,9 +323,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
+				2AADAFEC29B0996500F7962D /* AddExpenseView.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
 				2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */,
 				2AA2455A29A8A49C007BBE2D /* UserContract.swift in Sources */,
+				2AADAFF929B2136E00F7962D /* AddExpensePresenter.swift in Sources */,
 				2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */,
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
 				2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */,

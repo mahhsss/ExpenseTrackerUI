@@ -14,6 +14,7 @@ class Assembler {
     }
 }
 
+//------------------------- Authentication Assembler ---------------------------
 extension Assembler {
     
     static func addUserView(router: Router) -> UserSignUpPageView {
@@ -27,10 +28,7 @@ extension Assembler {
         presenter.router = router
         return view
     }
-}
-
-//        UserLogin Assembler
-extension Assembler {
+    
     static func userLoginView(router: Router) -> UserLoginPageView {
         let database = GetUserDatabase()
         let dataManager = UserLoginDataManagerServise(database: database)
@@ -40,5 +38,29 @@ extension Assembler {
         presenter.view = view
         presenter.router = router
         return view
+    }
+}
+
+
+extension Assembler {
+    
+    static func homePageView(router: Router, user: User) -> HomePageView {
+        return HomePageView(router: router, user: user)
+    }
+}
+
+//------------------------- AddTransaction Assembler --------------------------
+extension Assembler {
+    
+    static func addExpenseView(user: User, router: Router) -> AddExpensePageView {
+        let database = AddTransactionDataDatabaseService()
+        let dataManager = AddNewTransactionDataManager(database: database)
+        let usecase = AddNewTransaction(dataManager: dataManager)
+        let presenter = AddExpensePresenter(AddNewTransaction: usecase)
+        let view = AddExpensePageView(user: user, presenter: presenter)
+        presenter.view = view
+        presenter.router = router
+        return view
+        
     }
 }

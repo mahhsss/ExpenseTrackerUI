@@ -45,12 +45,12 @@ extension UserSignUpPageView: AddNewUserViewContract {
     }
     
     func load(sucess: AddnewUserResponse) {
-        print("\(sucess.message) \n")
+        print("\n\(sucess.message)\n")
         
     }
     
     func failure(error: AddNewUserError) {
-        print("\(error.error) \n")
+        print("\n\(error.error)\n")
     }
 }
 

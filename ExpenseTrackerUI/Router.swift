@@ -9,16 +9,17 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class Router: AddUserRouterContract {
-    func selected() {
-        print("Process Completed")
-    }
-    
+class Router {
     
     var window: NSWindow
     init(window: NSWindow) {
         self.window = window
     }
+    
+    func launch() {
+        self.window.contentView = Assembler.AuthenticationView(router: self)
+    }
+    
     
 //--------------------------------- Authentication ------------------------------------------
     func userSignUp() {
@@ -33,10 +34,15 @@ class Router: AddUserRouterContract {
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Home -----------------------------------------------
-    
-    
-    
-    func launch() {
-        self.window.contentView = Assembler.AuthenticationView(router: self)
+    func addTransaction(user: User) {
+        
+        self.window.contentView = Assembler.homePageView(router: self, user: user)
     }
+    
+    func addExpenseTracker(user: User) {
+        
+        self.window.contentView = Assembler.addExpenseView(user: user, router: self)
+    }
+    
+    
 }

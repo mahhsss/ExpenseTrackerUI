@@ -26,6 +26,7 @@ extension GetUserPresenter: UserLoginPresenterContract {
         userLogin.run(request: UserLoginRequest(emailId: emailId, password: password)) { response in
             self.user = response.user
             self.view?.load(success: self.user!)
+            self.router?.addTransaction(user: self.user!)
         } failure: { error in
             self.view?.failure(error: error)
             self.router?.launch()

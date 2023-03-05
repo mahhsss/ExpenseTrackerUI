@@ -8,10 +8,8 @@
 import Foundation
 import ExpenseTrackerBackend
 
-protocol AddUserRouterContract: AnyObject {
-    
-    func selected()
-}
+
+//------------------------ Authentication Contracts -----------------------
 
 protocol AddNewUserPresenterContract: AnyObject {
     
@@ -35,5 +33,17 @@ protocol UserLoginPresenterContract: AnyObject {
 
 protocol UserSignUpPagePresenterContract: AnyObject {
     func viewLoad(user: User)
+}
+//--------------------------------------------------------------------------
+
+
+//------------------------ AddExpense Contracts ----------------------------
+protocol AddExpensePageContract: AnyObject {
+    func viewDidLoad(user: User, transaction: Transaction)
+}
+
+protocol AddNewExpenseContract: AnyObject {
+    func load(success: AddNewTransactionResponse)
+    func failure(error: AddNewTransactionError)
 }
 
