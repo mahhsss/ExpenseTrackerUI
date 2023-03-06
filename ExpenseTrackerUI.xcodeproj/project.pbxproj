@@ -147,6 +147,7 @@
 		2AA2455729A8A479007BBE2D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2AADAFFE29B5CF7F00F7962D /* AnalysisView */,
 				2AADAFE829B07B8B00F7962D /* HomeView */,
 				2AADAFE729B06EDC00F7962D /* AuthenticationView */,
 			);
@@ -195,6 +196,13 @@
 				2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */,
 			);
 			path = TransactionPresenter;
+			sourceTree = "<group>";
+		};
+		2AADAFFE29B5CF7F00F7962D /* AnalysisView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AnalysisView;
 			sourceTree = "<group>";
 		};
 		E1C5F242DDAA4EC72B6B8CCB /* Pods */ = {

@@ -50,7 +50,7 @@ extension UserSignUpPageView: AddNewUserViewContract {
     }
     
     func failure(error: AddNewUserError) {
-        print("\n\(error.error)\n")
+        print("\n\(error.error)\nEmailId already there\n")
     }
 }
 

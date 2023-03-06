@@ -13,9 +13,11 @@ class AddTransactionPageView: NSView {
     
     var user: User
     var presenter: AddTransactionPageContract
-    init(user: User, presenter: AddTransactionPageContract) {
+    var transationType: TransactionType
+    init(user: User, presenter: AddTransactionPageContract, transactionType: TransactionType) {
         self.user = user
         self.presenter = presenter
+        self.transationType = transactionType
         super.init(frame: NSRect())
     }
     
@@ -35,6 +37,7 @@ extension AddTransactionPageView {
     
     func addTransactionView() {
         
+        
         let categorys: [String] = ["Food", "Travel", "shoping"]
         print("\nEnter the Amount spent")
         let amount = Int(readLine()!)
@@ -44,25 +47,33 @@ extension AddTransactionPageView {
             print("\(i). \(category)")
             i += 1
         }
-        var category: String = "Foodie"
-        let categorychosen = Int(readLine()!)
-        point: while true {
-            switch categorychosen {
-            case 1:
-                category = categorys[0]
-                break point
-            case 2:
-                category = categorys[1]
-                break point
-            case 3:
-                category = categorys[2]
-                break point
-            default:
-                print("Select valid option")
+        let transaction: Transaction?
+        if transationType != .income {
+            var category: String?
+            let categorychosen = Int(readLine()!)
+            point: while true {
+                switch categorychosen {
+                case 1:
+                    category = categorys[0]
+                    break point
+                case 2:
+                    category = categorys[1]
+                    break point
+                case 3:
+                    category = categorys[2]
+                    break point
+                default:
+                    print("Select valid option")
+                }
             }
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "22/07/2023", category: category!, note: "Summa")
         }
-        let transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: .spending, currencyType: .cash, date: "22/07/2023", category: category, note: "Summa")
-        presenter.viewDidLoadExpense(user: user, transaction: transaction)
+        else {
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "22/07/2023", note: "Summa")
+        }
+        
+        
+        presenter.viewDidLoadExpense(user: user, transaction: transaction!)
         
     }
 }

@@ -46,7 +46,7 @@ extension UserLoginPageView: GetUserViewontract {
     }
     
     func failure(error: ExpenseTrackerBackend.UserLoginError) {
-        print("\n\(error.error)")
+        print("\n\(error.error)\nEnter valid Credentials\n")
     }
     
     

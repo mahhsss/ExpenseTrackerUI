@@ -39,9 +39,10 @@ extension HomePageView {
             let choice = Int(readLine()!)
             switch choice {
             case 1:
-                router.addExpenseTracker(user: user)
+                router.addExpense(user: user)
                 break point
             case 2:
+                router.addIncome(user: user)
                 break point
             case 3:
                 break point
