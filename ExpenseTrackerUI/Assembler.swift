@@ -52,12 +52,12 @@ extension Assembler {
 //------------------------- AddTransaction Assembler --------------------------
 extension Assembler {
     
-    static func addExpenseView(user: User, router: Router) -> AddExpensePageView {
+    static func addExpenseView(user: User, router: Router) -> AddTransactionPageView {
         let database = AddTransactionDataDatabaseService()
         let dataManager = AddNewTransactionDataManager(database: database)
         let usecase = AddNewTransaction(dataManager: dataManager)
-        let presenter = AddExpensePresenter(AddNewTransaction: usecase)
-        let view = AddExpensePageView(user: user, presenter: presenter)
+        let presenter = AddTransactionPresenter(AddNewTransaction: usecase)
+        let view = AddTransactionPageView(user: user, presenter: presenter)
         presenter.view = view
         presenter.router = router
         return view

@@ -8,9 +8,9 @@
 import Foundation
 import ExpenseTrackerBackend
 
-class AddExpensePresenter {
+class AddTransactionPresenter {
    
-    weak var view: AddNewExpenseContract?
+    weak var view: AddNewTransactionContract?
     weak var router: Router?
     var newTransaction: AddNewTransaction
     
@@ -19,15 +19,17 @@ class AddExpensePresenter {
     }
 }
 
-extension AddExpensePresenter: AddExpensePageContract {
+extension AddTransactionPresenter: AddTransactionPageContract {
     
-    func viewDidLoad(user: User, transaction: Transaction) {
+    func viewDidLoadExpense(user: User, transaction: Transaction) {
         let request =  AddNewTransactionRequest(user: user, transaction: transaction)
         newTransaction.execute(request: request) { [weak self] response in
             self?.view?.load(success: response)
-//            self?.router.
+            self?.router?.addTransaction(user: user)
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error)
+            self?.router?.addTransaction(user: user)
+            
         }
     }
 }

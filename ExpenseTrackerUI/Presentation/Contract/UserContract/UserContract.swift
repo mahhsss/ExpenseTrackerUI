@@ -37,13 +37,13 @@ protocol UserSignUpPagePresenterContract: AnyObject {
 //--------------------------------------------------------------------------
 
 
-//------------------------ AddExpense Contracts ----------------------------
-protocol AddExpensePageContract: AnyObject {
-    func viewDidLoad(user: User, transaction: Transaction)
+//------------------------ AddTransaction Contracts ----------------------------
+protocol AddTransactionPageContract: AnyObject {
+    func viewDidLoadExpense(user: User, transaction: Transaction)
 }
 
-protocol AddNewExpenseContract: AnyObject {
+protocol AddNewTransactionContract: AnyObject {
     func load(success: AddNewTransactionResponse)
     func failure(error: AddNewTransactionError)
 }
-
+//--------------------------------------------------------------------------

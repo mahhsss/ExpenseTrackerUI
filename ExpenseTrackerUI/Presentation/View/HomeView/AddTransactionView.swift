@@ -9,11 +9,11 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class AddExpensePageView: NSView {
+class AddTransactionPageView: NSView {
     
     var user: User
-    var presenter: AddExpensePageContract
-    init(user: User, presenter: AddExpensePageContract) {
+    var presenter: AddTransactionPageContract
+    init(user: User, presenter: AddTransactionPageContract) {
         self.user = user
         self.presenter = presenter
         super.init(frame: NSRect())
@@ -25,15 +25,15 @@ class AddExpensePageView: NSView {
     
     override func viewDidMoveToSuperview() {
         if superview != nil {
-            addExpenseView()
+            addTransactionView()
         }
     }
     
 }
 
-extension AddExpensePageView {
+extension AddTransactionPageView {
     
-    func addExpenseView() {
+    func addTransactionView() {
         
         let categorys: [String] = ["Food", "Travel", "shoping"]
         print("\nEnter the Amount spent")
@@ -62,12 +62,12 @@ extension AddExpensePageView {
             }
         }
         let transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: .spending, currencyType: .cash, date: "22/07/2023", category: category, note: "Summa")
-        presenter.viewDidLoad(user: user, transaction: transaction)
+        presenter.viewDidLoadExpense(user: user, transaction: transaction)
         
     }
 }
 
-extension AddExpensePageView: AddNewExpenseContract {
+extension AddTransactionPageView: AddNewTransactionContract {
     func load(success: AddNewTransactionResponse) {
         print("\n\(success.message)")
     }
