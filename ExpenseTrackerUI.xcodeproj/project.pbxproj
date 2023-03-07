@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		02BF3FB7A46291778A7A74BA /* Pods_ExpenseTrackerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */; };
 		2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A030E5229ACDE560096587B /* UserSignUpView.swift */; };
+		2A16147929B71305005E999E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16147829B71305005E999E /* CategoryView.swift */; };
+		2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16147B29B75468005E999E /* AddCategoryView.swift */; };
 		2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */; };
 		2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453129A8A2DB007BBE2D /* Assets.xcassets */; };
 		2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453329A8A2DB007BBE2D /* MainMenu.xib */; };
@@ -24,6 +26,7 @@
 		2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE929B07BAF00F7962D /* HomePageView.swift */; };
 		2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFEB29B0996500F7962D /* AddTransactionView.swift */; };
 		2AADAFF929B2136E00F7962D /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */; };
+		2AADB00129B5FC4400F7962D /* GetCategorysPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADB00029B5FC4400F7962D /* GetCategorysPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +46,8 @@
 /* Begin PBXFileReference section */
 		201BA1BEF5A874BD96695921 /* Pods-ExpenseTrackerUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.release.xcconfig"; sourceTree = "<group>"; };
 		2A030E5229ACDE560096587B /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
+		2A16147829B71305005E999E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		2A16147B29B75468005E999E /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AA2453129A8A2DB007BBE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +64,7 @@
 		2AADAFE929B07BAF00F7962D /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		2AADAFEB29B0996500F7962D /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
+		2AADB00029B5FC4400F7962D /* GetCategorysPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategorysPresenter.swift; sourceTree = "<group>"; };
 		7D6C6702CF334EE5D4F019BE /* Pods-ExpenseTrackerUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.debug.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.debug.xcconfig"; sourceTree = "<group>"; };
 		80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTrackerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,6 +89,15 @@
 				80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2A16147A29B714C4005E999E /* CategoryVIew */ = {
+			isa = PBXGroup;
+			children = (
+				2A16147829B71305005E999E /* CategoryView.swift */,
+				2A16147B29B75468005E999E /* AddCategoryView.swift */,
+			);
+			path = CategoryVIew;
 			sourceTree = "<group>";
 		};
 		2AA2452329A8A2DA007BBE2D = {
@@ -138,6 +153,7 @@
 		2AA2455629A8A473007BBE2D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				2AADAFFF29B5FBE800F7962D /* CategoryPresenter */,
 				2AADAFF729B2132300F7962D /* TransactionPresenter */,
 				2AA2456129A8A534007BBE2D /* UserPresenter */,
 			);
@@ -148,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				2AADAFFE29B5CF7F00F7962D /* AnalysisView */,
+				2A16147A29B714C4005E999E /* CategoryVIew */,
 				2AADAFE829B07B8B00F7962D /* HomeView */,
 				2AADAFE729B06EDC00F7962D /* AuthenticationView */,
 			);
@@ -203,6 +220,14 @@
 			children = (
 			);
 			path = AnalysisView;
+			sourceTree = "<group>";
+		};
+		2AADAFFF29B5FBE800F7962D /* CategoryPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				2AADB00029B5FC4400F7962D /* GetCategorysPresenter.swift */,
+			);
+			path = CategoryPresenter;
 			sourceTree = "<group>";
 		};
 		E1C5F242DDAA4EC72B6B8CCB /* Pods */ = {
@@ -330,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */,
 				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
 				2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
@@ -342,6 +368,8 @@
 				2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */,
 				2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */,
 				2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */,
+				2AADB00129B5FC4400F7962D /* GetCategorysPresenter.swift in Sources */,
+				2A16147929B71305005E999E /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

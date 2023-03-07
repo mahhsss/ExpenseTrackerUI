@@ -14,6 +14,7 @@ class AddTransactionPageView: NSView {
     var user: User
     var presenter: AddTransactionPageContract
     var transationType: TransactionType
+    var router: Router?
     init(user: User, presenter: AddTransactionPageContract, transactionType: TransactionType) {
         self.user = user
         self.presenter = presenter
@@ -37,36 +38,29 @@ extension AddTransactionPageView {
     
     func addTransactionView() {
         
-        
-        let categorys: [String] = ["Food", "Travel", "shoping"]
+        var categorys: [ExpendatureCategory] = []
+        if categorys.isEmpty {
+            router?.getCategory(user: self.user)
+            let getCategory = GetCategoryView(router: router!, user: user)
+            categorys = getCategory.showCategory()
+            if categorys.isEmpty {
+                print("category is empty")
+            }
+        }
         print("\nEnter the Amount spent")
         let amount = Int(readLine()!)
         print("\nSelect the Category")
         var i = 1
-        for category in categorys {
-            print("\(i). \(category)")
+        for item in categorys {
+            print("\(i). \(item)")
             i += 1
         }
         let transaction: Transaction?
         if transationType != .income {
-            var category: String?
+            var categorychoice: String?
             let categorychosen = Int(readLine()!)
-            point: while true {
-                switch categorychosen {
-                case 1:
-                    category = categorys[0]
-                    break point
-                case 2:
-                    category = categorys[1]
-                    break point
-                case 3:
-                    category = categorys[2]
-                    break point
-                default:
-                    print("Select valid option")
-                }
-            }
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "22/07/2023", category: category!, note: "Summa")
+            categorychoice = categorys[categorychosen!].categoryname
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "22/07/2023", category: categorychoice!, note: "Summa")
         }
         else {
             transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "22/07/2023", note: "Summa")
@@ -76,6 +70,8 @@ extension AddTransactionPageView {
         presenter.viewDidLoadExpense(user: user, transaction: transaction!)
         
     }
+    
+    
 }
 
 extension AddTransactionPageView: AddNewTransactionContract {

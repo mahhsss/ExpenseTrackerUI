@@ -47,3 +47,13 @@ protocol AddNewTransactionContract: AnyObject {
     func failure(error: AddNewTransactionError)
 }
 //--------------------------------------------------------------------------
+
+//------------------------ GetCategory Contracts ----------------------------
+protocol GetCategoryPresenterContract: AnyObject {
+    func viewLoad(user: User)
+}
+
+protocol GetCategoryViewContract: AnyObject {
+    func load(success: GetCategoryResponse)
+    func failure(error: GetCategoryError)
+}

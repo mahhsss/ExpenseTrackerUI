@@ -12,7 +12,6 @@ class GetUserPresenter {
     
     var view: GetUserViewontract?
     weak var router: Router?
-    var user: User?
     var userLogin: UserLogin
     
     init(userLogin: UserLogin) {
@@ -23,15 +22,14 @@ class GetUserPresenter {
 extension GetUserPresenter: UserLoginPresenterContract {
   
     func viewDidLoad(emailId: String, password: String) {
-        userLogin.run(request: UserLoginRequest(emailId: emailId, password: password)) { response in
-            self.user = response.user
-            self.view?.load(success: self.user!)
-            self.router?.addTransaction(user: self.user!)
-        } failure: { error in
+        let request = UserLoginRequest(emailId: emailId, password: password)
+        userLogin.execute(request: request) { response in
+            self.view?.load(success: response.user)
+            self.router?.addTransaction(user: response.user)
+        } onFailure: { error in
             self.view?.failure(error: error)
             self.router?.launch()
         }
-
     }
   
 }

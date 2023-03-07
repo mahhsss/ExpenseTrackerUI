@@ -31,7 +31,7 @@ extension Assembler {
     
     static func userLoginView(router: Router) -> UserLoginPageView {
         let database = GetUserDatabase()
-        let dataManager = UserLoginDataManagerServise(database: database)
+        let dataManager = UserLoginDataManagerService(database: database)
         let useCase = UserLogin(dataManager: dataManager)
         let presenter = GetUserPresenter(userLogin: useCase)
         let view = UserLoginPageView(presenter: presenter)
@@ -60,7 +60,24 @@ extension Assembler {
         let view = AddTransactionPageView(user: user, presenter: presenter, transactionType: transactionType)
         presenter.view = view
         presenter.router = router
+        view.router = router
         return view
         
+    }
+}
+
+
+//------------------------- Category Assembler --------------------------
+extension Assembler {
+    
+    static func getCategory(user: User, router: Router) -> GetCategoryView {
+        let database = GetCategoryDatabaseServise()
+        let dataManager = GetCategoryDataManagerServise(database: database)
+        let usecase = GetCategory(dataManager: dataManager)
+        let presenter = GetCategoryPresenter(getCategory: usecase)
+        let view = GetCategoryView(router: router, user: user, presenter: presenter)
+        presenter.view = view
+        view.presenter = presenter
+        return view
     }
 }

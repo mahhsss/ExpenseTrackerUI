@@ -40,12 +40,12 @@ extension UserLoginPageView {
 }
 
 extension UserLoginPageView: GetUserViewontract {
-    func load(success: ExpenseTrackerBackend.User) {
+    func load(success: User) {
         print("\n        login Sucessfully")
         print("        Welcome \(success.name)\n")
     }
     
-    func failure(error: ExpenseTrackerBackend.UserLoginError) {
+    func failure(error: UserLoginError) {
         print("\n\(error.error)\nEnter valid Credentials\n")
     }
     
