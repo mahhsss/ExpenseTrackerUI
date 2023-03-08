@@ -6,7 +6,43 @@
 //
 
 import Foundation
+import ExpenseTrackerBackend
+import AppKit
 
-class AddCategoryView {
+class AddCategoryView: NSView {
     
+    var user: User
+    var presenter: AddCategoryPageContract
+    public init(user: User, presenter: AddCategoryPageContract) {
+        self.user = user
+        self.presenter = presenter
+        super.init(frame: NSRect())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidMoveToSuperview() {
+        if superview != nil {
+            addCategory()
+        }
+    }
+    
+    func addCategory() {
+        let category = ExpendatureCategory(categoryId: 0, userId: 1, categoryname: "Food")
+        presenter.viewDidLoadExpense(user: user, category: category)
+    }
+}
+
+extension AddCategoryView: AddCategoryViewContract {
+   
+    func load(sucess: AddCategoryResponse) {
+        print("\n\(sucess.message)\n")
+    }
+    
+    func failure(error: AddCategoryError) {
+        print("\n\(error.error)")
+    }
+ 
 }

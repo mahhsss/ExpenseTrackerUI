@@ -51,9 +51,13 @@ class Router {
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Category -----------------------------------------------
-    func getCategory(user: User) {
-        
-        self.window.contentView = Assembler.getCategory(user: user, router: self)
+    
+    func categoryView(user: User) {
+        self.window.contentView = Assembler.categoryView(user: user, router: self)
+    }
+    
+    func addCategory(user: User) {
+        self.window.contentView = Assembler.addCategory(user: user, router: self)
     }
     
     

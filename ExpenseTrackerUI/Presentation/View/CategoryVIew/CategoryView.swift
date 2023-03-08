@@ -12,56 +12,71 @@ import AppKit
 public class GetCategoryView: NSView {
     
     var router: Router
-    var category: [ExpendatureCategory]?
     var user: User
-    var presenter: GetCategoryPresenterContract?
     
-    init(router: Router, user: User, presenter: GetCategoryPresenterContract? = nil) {
+    init(router: Router, user: User) {
         self.router = router
         self.user = user
-        self.presenter = presenter
-        super.init(frame: NSZeroRect)
+        super.init(frame: NSRect())
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     public override func viewDidMoveToSuperview() {
         if superview != nil {
-            getCategory(user: user)
+            action()
         }
     }
     
-    func showCategory() -> [ExpendatureCategory] {
-        getCategory(user: user)
-        guard let category = category else {
-            return []
+    func action() {
+        point: while true {
+            print("\nChoose your option:")
+            print("\n1. getCategory \n2.addCategory")
+            let choice = Int(readLine()!)
+            switch choice {
+            case 1:
+                break point
+            case 2:
+                router.addCategory(user: user)
+                break point
+            default:
+                print("Enter valid key")
+            }
         }
-        return category
     }
     
    
     
     
 }
-
-extension GetCategoryView: GetCategoryViewContract {
-   
-    func getCategory(user: User) {
-        
-        presenter?.viewLoad(user: user)
-    }
-    
-    func load(success: GetCategoryResponse) {
-        
-        var categories: [ExpendatureCategory] = success.category
-        for item in categories {
-            self.category?.append(item)
-        }
-        print("\n Categories Added in GetCategory class\n")
-    }
-    
-    func failure(error: GetCategoryError) {
-        print("\n\(error.error)\n")
-    }
-}
+//
+//extension GetCategoryView: GetCategoryViewContract {
+//   
+//    func showCategory() -> [ExpendatureCategory] {
+//        getCategory(user: user)
+//        guard let category = category else {
+//            return []
+//        }
+//        return category
+//    }
+//    
+//    func getCategory(user: User) {
+//        
+//        presenter?.viewLoad(user: user)
+//    }
+//    
+//    func load(success: GetCategoryResponse) {
+//        
+//        var categories: [ExpendatureCategory] = success.category
+//        for item in categories {
+//            self.category?.append(item)
+//        }
+//        print("\n Categories Added in GetCategory class\n")
+//    }
+//    
+//    func failure(error: GetCategoryError) {
+//        print("\n\(error.error)\n")
+//    }
+//}

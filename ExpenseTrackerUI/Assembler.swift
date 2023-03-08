@@ -60,7 +60,6 @@ extension Assembler {
         let view = AddTransactionPageView(user: user, presenter: presenter, transactionType: transactionType)
         presenter.view = view
         presenter.router = router
-        view.router = router
         return view
         
     }
@@ -70,14 +69,34 @@ extension Assembler {
 //------------------------- Category Assembler --------------------------
 extension Assembler {
     
-    static func getCategory(user: User, router: Router) -> GetCategoryView {
-        let database = GetCategoryDatabaseServise()
-        let dataManager = GetCategoryDataManagerServise(database: database)
-        let usecase = GetCategory(dataManager: dataManager)
-        let presenter = GetCategoryPresenter(getCategory: usecase)
-        let view = GetCategoryView(router: router, user: user, presenter: presenter)
+    static func categoryView(user: User, router: Router) -> GetCategoryView {
+        return GetCategoryView(router: router, user: user)
+    }
+}
+
+//extension Assembler {
+//    
+//    static func getCategory(user: User, router: Router) -> GetCategoryView {
+//        let database = GetCategoryDatabaseServise()
+//        let dataManager = GetCategoryDataManagerServise(database: database)
+//        let usecase = GetCategory(dataManager: dataManager)
+//        let presenter = GetCategoryPresenter(getCategory: usecase)
+//        let view = GetCategoryView(router: router, user: user, presenter: presenter)
+//        presenter.view = view
+//        view.presenter = presenter
+//        return view
+//    }
+//}
+
+extension Assembler {
+    
+    static func addCategory(user: User, router: Router) -> AddCategoryView {
+        let database = AddCategoryDatabaseService()
+        let dataManager  = AddCategoryDatamanager(database: database)
+        let usecase = AddCategory(dataManager: dataManager)
+        let presenter = AddCategoryPresenter(addCategory: usecase)
+        let view = AddCategoryView(user: user, presenter: presenter)
         presenter.view = view
-        view.presenter = presenter
         return view
     }
 }

@@ -25,7 +25,8 @@ extension AddTransactionPresenter: AddTransactionPageContract {
         let request =  AddNewTransactionRequest(user: user, transaction: transaction)
         newTransaction.execute(request: request) { [weak self] response in
             self?.view?.load(success: response)
-            self?.router?.addTransaction(user: user)
+//            self?.router?.addTransaction(user: user)
+            self?.router?.categoryView(user: user)
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error)
             self?.router?.addTransaction(user: user)

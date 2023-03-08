@@ -57,3 +57,14 @@ protocol GetCategoryViewContract: AnyObject {
     func load(success: GetCategoryResponse)
     func failure(error: GetCategoryError)
 }
+
+//------------------------ AddCategory Contracts ----------------------------
+protocol AddCategoryPageContract: AnyObject {
+    func viewDidLoadExpense(user: User, category: ExpendatureCategory)
+}
+
+protocol AddCategoryViewContract: AnyObject {
+    func load(sucess: AddCategoryResponse)
+    func failure(error: AddCategoryError)
+}
+
