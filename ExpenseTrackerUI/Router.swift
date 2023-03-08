@@ -48,12 +48,21 @@ class Router {
         
         self.window.contentView = Assembler.addTransactionView(user: user, router: self, transactionType: TransactionType.income)
     }
+    
+    func getAllTransaction(user: User) {
+        
+        self.window.contentView = Assembler.getAllTransactionView(user: user, router: self)
+    }
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Category -----------------------------------------------
     
     func categoryView(user: User) {
         self.window.contentView = Assembler.categoryView(user: user, router: self)
+    }
+    
+    func getCategoryView(user: User) {
+        self.window.contentView = Assembler.getCategory(user: user, router: self)
     }
     
     func addCategory(user: User) {

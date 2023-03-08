@@ -49,7 +49,7 @@ extension Assembler {
     }
 }
 
-//------------------------- AddTransaction Assembler --------------------------
+//------------------------- Transaction Assembler --------------------------
 extension Assembler {
     
     static func addTransactionView(user: User, router: Router, transactionType: TransactionType) -> AddTransactionPageView {
@@ -63,30 +63,41 @@ extension Assembler {
         return view
         
     }
+    
+    static func getAllTransactionView(user: User, router: Router) -> GetAllTransactionView {
+        let database = GetAllTransactionDatabase()
+        let dataManager = GetAllTransactionDataManager(database: database)
+        let usecase = GetAllTransaction(dataManager: dataManager)
+        let presenter = GetAllTransactionPresenter(getAllTransaction: usecase)
+        let view = GetAllTransactionView(user: user, presenter: presenter)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
 }
 
 
 //------------------------- Category Assembler --------------------------
 extension Assembler {
     
-    static func categoryView(user: User, router: Router) -> GetCategoryView {
-        return GetCategoryView(router: router, user: user)
+    static func categoryView(user: User, router: Router) -> CategoryView {
+        return CategoryView(router: router, user: user)
     }
 }
 
-//extension Assembler {
-//    
-//    static func getCategory(user: User, router: Router) -> GetCategoryView {
-//        let database = GetCategoryDatabaseServise()
-//        let dataManager = GetCategoryDataManagerServise(database: database)
-//        let usecase = GetCategory(dataManager: dataManager)
-//        let presenter = GetCategoryPresenter(getCategory: usecase)
-//        let view = GetCategoryView(router: router, user: user, presenter: presenter)
-//        presenter.view = view
-//        view.presenter = presenter
-//        return view
-//    }
-//}
+extension Assembler {
+    
+    static func getCategory(user: User, router: Router) -> GetCategoryView {
+        let database = GetCategoryDatabaseService()
+        let dataManager = GetCategoryDataManagerServise(database: database)
+        let usecase = GetCategory(dataManager: dataManager)
+        let presenter = GetCategoryPresenter(getCategory: usecase)
+        let view = GetCategoryView(presenter: presenter, user: user)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}
 
 extension Assembler {
     

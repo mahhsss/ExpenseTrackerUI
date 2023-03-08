@@ -34,7 +34,7 @@ protocol UserLoginPresenterContract: AnyObject {
 protocol UserSignUpPagePresenterContract: AnyObject {
     func viewLoad(user: User)
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 
 //------------------------ AddTransaction Contracts ----------------------------
@@ -46,9 +46,20 @@ protocol AddNewTransactionContract: AnyObject {
     func load(success: AddNewTransactionResponse)
     func failure(error: AddNewTransactionError)
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
-//------------------------ GetCategory Contracts ----------------------------
+//------------------------ GetTransaction Contracts ----------------------------
+protocol GetAllTranasctionPresenterContract: AnyObject {
+    func viewLoadTransaction(user: User)
+}
+
+protocol GetAllTransactionViewContract: AnyObject {
+    func load(success: GetAllTransactionResponse)
+    func failure(error: GetAllTransactionError)
+}
+//------------------------------------------------------------------------------
+
+//------------------------ GetCategory Contracts -------------------------------
 protocol GetCategoryPresenterContract: AnyObject {
     func viewLoad(user: User)
 }

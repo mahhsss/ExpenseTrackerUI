@@ -30,7 +30,8 @@ class AddCategoryView: NSView {
     }
     
     func addCategory() {
-        let category = ExpendatureCategory(categoryId: 0, userId: 1, categoryname: "Food")
+        let category = ExpendatureCategory(categoryId: 0, userId: 1, categoryname: "csGo")
+        print("\n\n\(category.categoryname) \(category.userId) \(category.categoryId)\n\n")
         presenter.viewDidLoadExpense(user: user, category: category)
     }
 }

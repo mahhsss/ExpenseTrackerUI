@@ -45,6 +45,7 @@ extension HomePageView {
                 router.addIncome(user: user)
                 break point
             case 3:
+                router.getAllTransaction(user: user)
                 break point
             case 4:
                 break point

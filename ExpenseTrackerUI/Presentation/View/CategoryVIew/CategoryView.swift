@@ -9,7 +9,7 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-public class GetCategoryView: NSView {
+public class CategoryView: NSView {
     
     var router: Router
     var user: User
@@ -33,10 +33,11 @@ public class GetCategoryView: NSView {
     func action() {
         point: while true {
             print("\nChoose your option:")
-            print("\n1. getCategory \n2.addCategory")
+            print("\n1. getCategory \n2. addCategory")
             let choice = Int(readLine()!)
             switch choice {
             case 1:
+                router.getCategoryView(user: user)
                 break point
             case 2:
                 router.addCategory(user: user)
@@ -51,32 +52,3 @@ public class GetCategoryView: NSView {
     
     
 }
-//
-//extension GetCategoryView: GetCategoryViewContract {
-//   
-//    func showCategory() -> [ExpendatureCategory] {
-//        getCategory(user: user)
-//        guard let category = category else {
-//            return []
-//        }
-//        return category
-//    }
-//    
-//    func getCategory(user: User) {
-//        
-//        presenter?.viewLoad(user: user)
-//    }
-//    
-//    func load(success: GetCategoryResponse) {
-//        
-//        var categories: [ExpendatureCategory] = success.category
-//        for item in categories {
-//            self.category?.append(item)
-//        }
-//        print("\n Categories Added in GetCategory class\n")
-//    }
-//    
-//    func failure(error: GetCategoryError) {
-//        print("\n\(error.error)\n")
-//    }
-//}

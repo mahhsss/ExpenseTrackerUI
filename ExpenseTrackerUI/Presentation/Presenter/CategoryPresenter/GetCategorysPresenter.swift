@@ -12,7 +12,6 @@ class GetCategoryPresenter {
     
     weak var view: GetCategoryViewContract?
     weak var router: Router?
-    var user: User?
     var getCategory: GetCategory
     
     init(getCategory: GetCategory) {
@@ -26,7 +25,7 @@ extension GetCategoryPresenter: GetCategoryPresenterContract {
         let request = GetCategoryRequest(user: user)
         getCategory.execute(request: request) { response in
             self.view?.load(success: response)
-            self.router?.addTransaction(user: user)
+            self.router?.categoryView(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
             self.router?.addTransaction(user: user)
