@@ -1,15 +1,15 @@
 //
-//  GetCategoryView.swift
+//  GetAnalysisView.swift
 //  ExpenseTrackerUI
 //
-//  Created by mahesh-pt6305 on 07/03/23.
+//  Created by mahesh-pt6305 on 10/03/23.
 //
 
 import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class CategoryView: NSView {
+class GetAnalysisView: NSView {
     
     var router: Router
     var user: User
@@ -31,24 +31,22 @@ class CategoryView: NSView {
     }
     
     func action() {
+        
         point: while true {
-            print("\nChoose your option:")
-            print("\n1. getCategory \n2. addCategory")
+            print("choose the analysis you need")
+            print("\n1. Weekly Analysis \n2. Monthly Analysis \n3. Yearly Analysis")
             let choice = Int(readLine()!)
             switch choice {
             case 1:
-                router.getCategoryView(user: user)
                 break point
             case 2:
-                router.addCategory(user: user)
+                router.getMonthlyAnalysis(user: user)
+                break point
+            case 3:
                 break point
             default:
                 print("Enter valid key")
             }
         }
     }
-    
-   
-    
-    
 }

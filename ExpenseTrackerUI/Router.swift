@@ -69,5 +69,12 @@ class Router {
         self.window.contentView = Assembler.addCategory(user: user, router: self)
     }
     
+    //-------------------------------------- Monthly Analysis -----------------------------------------------
+    func getAnalysis(user: User) {
+        self.window.contentView = Assembler.getAnalysisView(user: user, router: self)
+    }
     
+    func getMonthlyAnalysis(user: User) {
+        self.window.contentView = Assembler.getMonthlyTransactionAnalysis(user: user, router: self)
+    }
 }

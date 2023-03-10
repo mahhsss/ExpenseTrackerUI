@@ -48,6 +48,7 @@ extension HomePageView {
                 router.getAllTransaction(user: user)
                 break point
             case 4:
+                router.getAnalysis(user: user)
                 break point
             default:
                 print("Enter valid key")

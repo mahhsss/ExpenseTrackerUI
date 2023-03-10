@@ -25,10 +25,10 @@ extension GetCategoryPresenter: GetCategoryPresenterContract {
         let request = GetCategoryRequest(user: user)
         getCategory.execute(request: request) { response in
             self.view?.load(success: response)
-            self.router?.categoryView(user: user)
+            self.router?.getAnalysis(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
-            self.router?.addTransaction(user: user)
+            self.router?.getAnalysis(user: user)
         }
     }
 }

@@ -68,6 +68,7 @@ protocol GetCategoryViewContract: AnyObject {
     func load(success: GetCategoryResponse)
     func failure(error: GetCategoryError)
 }
+//------------------------------------------------------------------------------
 
 //------------------------ AddCategory Contracts ----------------------------
 protocol AddCategoryPageContract: AnyObject {
@@ -78,4 +79,14 @@ protocol AddCategoryViewContract: AnyObject {
     func load(sucess: AddCategoryResponse)
     func failure(error: AddCategoryError)
 }
+//------------------------------------------------------------------------------
 
+//------------------------ GetMonthlyTransactionAnalysis Contracts ----------------------------
+protocol GetMonthlyTranasctionAnalysisPresenterContract: AnyObject {
+    func viewLoadMonthyTransaction(user: User, startDate: String)
+}
+
+protocol GetMonthlyTransactionAnalysisViewContract: AnyObject {
+    func load(success: GetTransactionAnalysisResponse)
+    func failure(error: GetTransactionAnalysisError)
+}
