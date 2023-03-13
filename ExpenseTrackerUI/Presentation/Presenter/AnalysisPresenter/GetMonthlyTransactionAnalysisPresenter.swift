@@ -8,7 +8,7 @@
 import Foundation
 import ExpenseTrackerBackend
 
-public class GetMonthlyTransactionAnalysisPresenter {
+class GetMonthlyTransactionAnalysisPresenter {
     
     weak var view: GetMonthlyTransactionAnalysisViewContract?
     weak var router: Router?
@@ -22,8 +22,8 @@ public class GetMonthlyTransactionAnalysisPresenter {
 
 extension GetMonthlyTransactionAnalysisPresenter: GetMonthlyTranasctionAnalysisPresenterContract {
     
-    func viewLoadMonthyTransaction(user: User, startDate: String) {
-        var request = GetTransactionAnalysisRequest(user: user, month: startDate)
+    func viewLoadMonthyTransaction(user: User, startDate: String, endDate: String) {
+        var request = GetTransactionAnalysisRequest(user: user, startDate: startDate, endDate: endDate)
         self.getMonthlyTransactionAnalysis.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.addTransaction(user: user)

@@ -135,3 +135,31 @@ extension Assembler {
         return view
     }
 }
+
+extension Assembler {
+    
+    static func getYearlyTransactionAnalysis(user: User, router: Router) -> GetYearlyTransactionAnalysisView {
+        let database = GetTransactionAnalysisDatabase()
+        let dataManager = GetTransactionAnalysisDataManager(database: database)
+        let usecase = GetTransactionAnalysis(dataManager: dataManager)
+        let presenter = GetYearlyTransactionAnalysisPresenter(getYearlyTransactionAnalysis: usecase)
+        let view = GetYearlyTransactionAnalysisView(presenter: presenter, user: user)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}
+
+extension Assembler {
+    
+    static func getWeeklyTransactionAnalysis(user: User, router: Router) -> GetWeeklyTransactionAnalysisView {
+        let database = GetTransactionAnalysisDatabase()
+        let dataManager = GetTransactionAnalysisDataManager(database: database)
+        let usecase = GetTransactionAnalysis(dataManager: dataManager)
+        let presenter = GetWeeklyTransactionAnalysisPresenter(getWeeklyTransactionAnalysis: usecase)
+        let view = GetWeeklyTransactionAnalysisView(presenter: presenter, user: user)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}

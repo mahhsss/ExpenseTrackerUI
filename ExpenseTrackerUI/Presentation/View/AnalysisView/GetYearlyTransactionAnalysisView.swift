@@ -1,20 +1,20 @@
 //
-//  GetTransactionAnalysisView.swift
+//  GetYearlyAnalysisView.swift
 //  ExpenseTrackerUI
 //
-//  Created by mahesh-pt6305 on 10/03/23.
+//  Created by mahesh-pt6305 on 13/03/23.
 //
 
 import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-public class GetMonthlyTransactionAnalysisView: NSView {
-     
-    var presenter: GetMonthlyTranasctionAnalysisPresenterContract
+class GetYearlyTransactionAnalysisView: NSView {
+    
+    var presenter: GetYearlyTransactionAnalysisPresenterContract
     var user: User
     
-    init(presenter: GetMonthlyTranasctionAnalysisPresenterContract, user: User) {
+    init(presenter: GetYearlyTransactionAnalysisPresenterContract, user: User) {
         self.presenter = presenter
         self.user = user
         super.init(frame: NSRect())
@@ -26,11 +26,12 @@ public class GetMonthlyTransactionAnalysisView: NSView {
     
     public override func viewDidMoveToSuperview() {
         if superview != nil {
-            getMonthlyTransactionAnalysis()
+            getYearlyTransactionAnalysis()
         }
     }
     
-    func getMonthlyTransactionAnalysis() {
+    func getYearlyTransactionAnalysis() {
+        
         print("Enter the date in yyyy-mm-dd formate")
         let startDate = String(readLine()!)
         let dateFormatter = DateFormatter()
@@ -38,23 +39,22 @@ public class GetMonthlyTransactionAnalysisView: NSView {
         let inputDate = dateFormatter.date(from: startDate)!
         let calendar = Calendar.current
         var dateComponents = DateComponents()
-        dateComponents.month = 1
+        dateComponents.year = 1
         let resultDate = calendar.date(byAdding: dateComponents, to: inputDate)!
-        let nextMonth = dateFormatter.string(from: resultDate)
-        
-        presenter.viewLoadMonthyTransaction(user: user, startDate: startDate, endDate: nextMonth)
+        let nextYear = dateFormatter.string(from: resultDate)
+        presenter.viewLoadYearlyTransaction(user: user, startDate: startDate, endDate: nextYear)
     }
 }
 
-extension GetMonthlyTransactionAnalysisView: GetMonthlyTransactionAnalysisViewContract {
+extension GetYearlyTransactionAnalysisView: GetYearlyTransactionAnalysisViewContract {
     
     func load(success: GetTransactionAnalysisResponse) {
-        print("\n\(success.transaction)\n")
+        print("\n\(success.transaction)")
         print("\n\(success.analysis)\n")
         print("\n\(success.totalExpense)\n")
     }
     
     func failure(error: GetTransactionAnalysisError) {
-        print("\n\(error)\n")
+        print("\n\(error.error)")
     }
 }

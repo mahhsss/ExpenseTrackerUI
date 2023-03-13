@@ -83,10 +83,32 @@ protocol AddCategoryViewContract: AnyObject {
 
 //------------------------ GetMonthlyTransactionAnalysis Contracts ----------------------------
 protocol GetMonthlyTranasctionAnalysisPresenterContract: AnyObject {
-    func viewLoadMonthyTransaction(user: User, startDate: String)
+    func viewLoadMonthyTransaction(user: User, startDate: String, endDate: String)
 }
 
 protocol GetMonthlyTransactionAnalysisViewContract: AnyObject {
+    func load(success: GetTransactionAnalysisResponse)
+    func failure(error: GetTransactionAnalysisError)
+}
+//------------------------------------------------------------------------------
+
+//------------------------ GetyearlyTransactionAnalysis Contracts ----------------------------
+protocol GetYearlyTransactionAnalysisPresenterContract: AnyObject {
+    func viewLoadYearlyTransaction(user: User, startDate: String, endDate: String)
+}
+
+protocol GetYearlyTransactionAnalysisViewContract: AnyObject {
+    func load(success: GetTransactionAnalysisResponse)
+    func failure(error: GetTransactionAnalysisError)
+}
+//------------------------------------------------------------------------------
+
+//------------------------ GetyearlyTransactionAnalysis Contracts ----------------------------
+protocol GetWeeklyTransactionAnalysisPresenterContract: AnyObject {
+    func viewLoadWeeklyTransaction(user: User, startDate: String, endDate: String)
+}
+
+protocol GetWeeklyTransactionAnalysisViewContract: AnyObject {
     func load(success: GetTransactionAnalysisResponse)
     func failure(error: GetTransactionAnalysisError)
 }

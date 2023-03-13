@@ -38,11 +38,13 @@ class GetAnalysisView: NSView {
             let choice = Int(readLine()!)
             switch choice {
             case 1:
+                router.getWeeklyAnalysis(user: user)
                 break point
             case 2:
                 router.getMonthlyAnalysis(user: user)
                 break point
             case 3:
+                router.getYearlyAnalysis(user: user)
                 break point
             default:
                 print("Enter valid key")

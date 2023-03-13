@@ -66,10 +66,10 @@ extension AddTransactionPageView {
                     print("Select valid option")
                 }
             }
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2023-08-06", category: categorychoice!, note: "Summa")
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06", note: "Summa")
         }
         else {
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2023-08-06", note: "Summa")
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06", note: "Summa")
         }
         
         
