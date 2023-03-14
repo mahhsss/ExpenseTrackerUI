@@ -22,6 +22,10 @@
 		2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */; };
 		2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */; };
 		2A7B9F4929BF12FE00A9BFAE /* GetWeeklyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4829BF12FE00A9BFAE /* GetWeeklyTransactionAnalysisPresenter.swift */; };
+		2A7B9F4F29C0561500A9BFAE /* UpdateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4E29C0561500A9BFAE /* UpdateTransactionView.swift */; };
+		2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */; };
+		2A7B9F5329C0678200A9BFAE /* UpdateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F5229C0678200A9BFAE /* UpdateUserView.swift */; };
+		2A7B9F5B29C083F300A9BFAE /* UpdateUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F5A29C083F300A9BFAE /* UpdateUserPresenter.swift */; };
 		2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */; };
 		2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453129A8A2DB007BBE2D /* Assets.xcassets */; };
 		2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453329A8A2DB007BBE2D /* MainMenu.xib */; };
@@ -70,6 +74,10 @@
 		2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeeklyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A7B9F4829BF12FE00A9BFAE /* GetWeeklyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeeklyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
+		2A7B9F4E29C0561500A9BFAE /* UpdateTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransactionView.swift; sourceTree = "<group>"; };
+		2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransactionPresenter.swift; sourceTree = "<group>"; };
+		2A7B9F5229C0678200A9BFAE /* UpdateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserView.swift; sourceTree = "<group>"; };
+		2A7B9F5A29C083F300A9BFAE /* UpdateUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserPresenter.swift; sourceTree = "<group>"; };
 		2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AA2453129A8A2DB007BBE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -218,6 +226,7 @@
 			children = (
 				2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */,
 				2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */,
+				2A7B9F5A29C083F300A9BFAE /* UpdateUserPresenter.swift */,
 			);
 			path = UserPresenter;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
 				2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */,
 				2A030E5229ACDE560096587B /* UserSignUpView.swift */,
+				2A7B9F5229C0678200A9BFAE /* UpdateUserView.swift */,
 			);
 			path = AuthenticationView;
 			sourceTree = "<group>";
@@ -238,6 +248,7 @@
 				2AADAFE929B07BAF00F7962D /* HomePageView.swift */,
 				2AADAFEB29B0996500F7962D /* AddTransactionView.swift */,
 				2A16148529B89F64005E999E /* GetTransactionView.swift */,
+				2A7B9F4E29C0561500A9BFAE /* UpdateTransactionView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 			children = (
 				2A16148729B8A559005E999E /* GetTransactionPresenter.swift */,
 				2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */,
+				2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */,
 			);
 			path = TransactionPresenter;
 			sourceTree = "<group>";
@@ -400,6 +412,7 @@
 				2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */,
 				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
 				2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */,
+				2A7B9F5B29C083F300A9BFAE /* UpdateUserPresenter.swift in Sources */,
 				2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */,
 				2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
@@ -412,14 +425,17 @@
 				2A16148829B8A559005E999E /* GetTransactionPresenter.swift in Sources */,
 				2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */,
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
+				2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */,
 				2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */,
 				2A7B9F4929BF12FE00A9BFAE /* GetWeeklyTransactionAnalysisPresenter.swift in Sources */,
 				2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */,
 				2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */,
+				2A7B9F4F29C0561500A9BFAE /* UpdateTransactionView.swift in Sources */,
 				2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */,
 				2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */,
 				2AADB00129B5FC4400F7962D /* GetCategorysPresenter.swift in Sources */,
 				2A16147929B71305005E999E /* CategoryView.swift in Sources */,
+				2A7B9F5329C0678200A9BFAE /* UpdateUserView.swift in Sources */,
 				2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */,
 				2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */,
 			);
@@ -472,6 +488,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -532,6 +549,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -559,9 +577,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerUI/ExpenseTrackerUI.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
@@ -585,9 +605,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerUI/ExpenseTrackerUI.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;

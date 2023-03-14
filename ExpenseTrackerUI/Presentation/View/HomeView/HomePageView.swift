@@ -35,7 +35,7 @@ extension HomePageView {
     func userAction() {
         point: while true {
             print("\nChoose your option:")
-            print("\n1. AddExpense \n2. AddIncome \n3. ViewTransactions \n4. ViewAnalysis")
+            print("\n1. AddExpense \n2. AddIncome \n3. ViewTransactions \n4. ViewAnalysis \n5. UpdateUser")
             let choice = Int(readLine()!)
             switch choice {
             case 1:
@@ -49,6 +49,9 @@ extension HomePageView {
                 break point
             case 4:
                 router.getAnalysis(user: user)
+                break point
+            case 5:
+                router.updateUser(user: user)
                 break point
             default:
                 print("Enter valid key")

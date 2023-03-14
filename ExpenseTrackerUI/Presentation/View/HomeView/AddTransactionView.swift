@@ -38,7 +38,7 @@ extension AddTransactionPageView {
     func addTransactionView() {
         
         
-        var categorys: [String] = ["Food", "Travel", "shoping"]
+        let categorys: [String] = ["Food", "Travel", "shoping"]
         print("\nEnter the Amount spent")
         let amount = Int(readLine()!)
         print("\nSelect the Category")
@@ -50,8 +50,8 @@ extension AddTransactionPageView {
         let transaction: Transaction?
         if transationType != .income {
             var categorychoice: String?
-            let categorychosen = Int(readLine()!)
             point: while true {
+                let categorychosen = Int(readLine()!)
                 switch categorychosen {
                 case 1:
                     categorychoice = categorys[0]
@@ -66,7 +66,7 @@ extension AddTransactionPageView {
                     print("Select valid option")
                 }
             }
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06", note: "Summa")
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06",category: categorychoice, note: "Summa")
         }
         else {
             transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06", note: "Summa")

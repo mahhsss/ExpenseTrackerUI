@@ -23,10 +23,10 @@ class GetAllTransactionPresenter {
 extension GetAllTransactionPresenter: GetAllTranasctionPresenterContract {
     
     func viewLoadTransaction(user: User) {
-        var request = GetAllTransactionRequest(user: user)
+        let request = GetAllTransactionRequest(user: user)
         getAllTransaction.execute(request: request) { response in
             self.view?.load(success: response)
-            self.router?.categoryView(user: user)
+            self.router?.updateTransaction(user: user, transaction: response.transactions[0])
         } onFailure: { error in
             self.view?.failure(error: error)
             self.router?.categoryView(user: user)

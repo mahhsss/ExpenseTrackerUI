@@ -23,35 +23,38 @@ class Router {
     
 //--------------------------------- Authentication ------------------------------------------
     func userSignUp() {
-        
         self.window.contentView = Assembler.addUserView(router: self)
     }
     
     func userLogIn() {
-        
         self.window.contentView = Assembler.userLoginView(router: self)
     }
+    
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Home -----------------------------------------------
     func addTransaction(user: User) {
-        
         self.window.contentView = Assembler.homePageView(router: self, user: user)
     }
     
     func addExpense(user: User) {
-        
         self.window.contentView = Assembler.addTransactionView(user: user, router: self, transactionType: TransactionType.spending)
     }
     
     func addIncome(user: User) {
-        
         self.window.contentView = Assembler.addTransactionView(user: user, router: self, transactionType: TransactionType.income)
     }
     
     func getAllTransaction(user: User) {
-        
         self.window.contentView = Assembler.getAllTransactionView(user: user, router: self)
+    }
+    func updateTransaction(user: User, transaction: Transaction) {
+        
+        self.window.contentView = Assembler.updateTransactionView(user: user, transaction: transaction, router: self)
+    }
+    
+    func updateUser(user: User) {
+        self.window.contentView = Assembler.updateUserView(user: user, router: self)
     }
 //-------------------------------------------------------------------------------------------
     

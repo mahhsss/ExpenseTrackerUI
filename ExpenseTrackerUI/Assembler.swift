@@ -41,6 +41,19 @@ extension Assembler {
     }
 }
 
+extension Assembler {
+    
+    static func updateUserView(user: User, router: Router) -> UpdateUserView {
+        let database = UpdateUserDatabase()
+        let dataManager = UpdateUserDataManager(database: database)
+        let usecase = UpdateUser(dataManager: dataManager)
+        let presenter = UpdateUserPresenter(updateUser: usecase)
+        let view = UpdateUserView(user: user, presenter: presenter)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}
 
 extension Assembler {
     
@@ -74,7 +87,19 @@ extension Assembler {
         presenter.router = router
         return view
     }
+    
+    static func updateTransactionView(user: User, transaction: Transaction, router: Router) -> UpdateTransactionView {
+        let database = UpdateTranastionDatabaseServise()
+        let dataManager = UpdateTransactionDataManager(database: database)
+        let usecase = UpdateTransaction(dataManager: dataManager)
+        let presenter = UpdateTransactionPresenter(updateTransaction: usecase)
+        let view = UpdateTransactionView(user: user, presenter: presenter, transaction: transaction)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
 }
+    
 
 
 //------------------------- Category Assembler --------------------------

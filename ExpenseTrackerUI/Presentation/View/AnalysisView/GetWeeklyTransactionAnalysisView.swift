@@ -35,7 +35,7 @@ class GetWeeklyTransactionAnalysisView: NSView {
         let startDate = String(readLine()!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
-        var date = dateFormatter.date(from: startDate)
+        let date = dateFormatter.date(from: startDate)
         let addTimeInterval = (7 * 24 * 60 * 60)
         let currentDate = date!.addingTimeInterval(TimeInterval(addTimeInterval))
         let nextWeek = dateFormatter.string(from: currentDate)
