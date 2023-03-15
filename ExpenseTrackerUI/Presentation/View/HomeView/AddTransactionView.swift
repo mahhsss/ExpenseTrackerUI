@@ -9,12 +9,12 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class AddTransactionPageView: NSView {
+class AddTransactionView: NSView {
     
     var user: User
-    var presenter: AddTransactionPageContract
+    var presenter: AddTransactionContract
     var transationType: TransactionType
-    init(user: User, presenter: AddTransactionPageContract, transactionType: TransactionType) {
+    init(user: User, presenter: AddTransactionContract, transactionType: TransactionType) {
         self.user = user
         self.presenter = presenter
         self.transationType = transactionType
@@ -33,7 +33,7 @@ class AddTransactionPageView: NSView {
     
 }
 
-extension AddTransactionPageView {
+extension AddTransactionView {
     
     func addTransactionView() {
         
@@ -66,10 +66,10 @@ extension AddTransactionPageView {
                     print("Select valid option")
                 }
             }
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06",category: categorychoice, note: "Summa")
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2023-02-06",category: categorychoice, note: "Summa")
         }
         else {
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2024-01-06", note: "Summa")
+            transaction = Transaction(transactionId: 0, userId: user.userId, amount: amount!, transactionType: transationType, currencyType: .cash, date: "2023-02-06", note: "Summa")
         }
         
         
@@ -79,7 +79,7 @@ extension AddTransactionPageView {
     
 }
 
-extension AddTransactionPageView: AddNewTransactionContract {
+extension AddTransactionView: AddNewTransactionContract {
     func load(success: AddNewTransactionResponse) {
         print("\n\(success.message)")
     }

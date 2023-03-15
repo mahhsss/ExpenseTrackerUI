@@ -23,7 +23,6 @@ class UpdateUserPresenter {
 extension UpdateUserPresenter: UpdateUserPresenterContract {
     
     func viewLoad(user: User, column: String, update: Any) {
-        print("in presenter")
         let request = UpdateUserRequest(user: user, column: column, update: update)
         self.updateUser.execute(request: request) { response in
             self.view?.load(success: response)

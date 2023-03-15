@@ -30,7 +30,6 @@ class UpdateUserView: NSView {
     }
     
     func updateUserView() {
-        print("in view")
         presenter.viewLoad(user: user, column: "name", update: "mahi")
     }
 }

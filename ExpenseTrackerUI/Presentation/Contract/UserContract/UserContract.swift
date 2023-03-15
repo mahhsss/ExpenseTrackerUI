@@ -47,13 +47,34 @@ protocol UpdateUserViewContract: AnyObject {
 
 
 //------------------------ AddTransaction Contracts ----------------------------
-protocol AddTransactionPageContract: AnyObject {
+protocol AddTransactionContract: AnyObject {
     func viewDidLoadExpense(user: User, transaction: Transaction)
 }
 
 protocol AddNewTransactionContract: AnyObject {
     func load(success: AddNewTransactionResponse)
     func failure(error: AddNewTransactionError)
+}
+//------------------------------------------------------------------------------
+
+//------------------------ AddBudget Contracts ---------------------------------
+protocol AddBudgetPresenterContract: AnyObject {
+    func viewLoadBudget(user: User, budget: Budget)
+}
+protocol AddBudgetViewContract: AnyObject {
+    func load(success: AddBudgetResponse)
+    func failure(error: AddBudgetError)
+}
+//------------------------------------------------------------------------------
+
+//---------------------- AddMonthlyAnalysis Contracts --------------------------
+protocol AddMonthlyAnalysisPresenterContract: AnyObject {
+    func viewLoadTransaction(user: User, transaction: Transaction)
+}
+
+protocol AddMonthlyAnalysisViewContract: AnyObject {
+    func load(success: AddMonthlyAnalysisTransactionResponse)
+    func failure(error: AddMonthlyAnalysisTransactionError)
 }
 //------------------------------------------------------------------------------
 
@@ -65,6 +86,17 @@ protocol GetAllTranasctionPresenterContract: AnyObject {
 protocol GetAllTransactionViewContract: AnyObject {
     func load(success: GetAllTransactionResponse)
     func failure(error: GetAllTransactionError)
+}
+//------------------------------------------------------------------------------
+
+//------------------------ DeleteTransaction Contracts -------------------------
+protocol DeleteTransactionPresenterContract: AnyObject {
+    func viewLoad(user: User, transaction: Transaction, columnName: String, columnValue: Any)
+}
+
+protocol DeleteTransactionViewContract: AnyObject {
+    func load(success: DeleteTransactionResponse)
+    func failure(error: DeleteTransactionError)
 }
 //------------------------------------------------------------------------------
 

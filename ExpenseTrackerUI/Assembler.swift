@@ -57,6 +57,20 @@ extension Assembler {
 
 extension Assembler {
     
+    static func deleteTransaction(user: User, transaction: Transaction, router: Router) -> DeleteTransactionView {
+        let database = DeleteTransactionDatabaseService()
+        let dataManager = DeleteTransactionDataManager(database: database)
+        let usecase = DeleteTransaction(dataManager: dataManager)
+        let presenter = DeleteTransactionPresenter(deleteTransaction: usecase)
+        let view = DeleteTransactionView(user: user, presenter: presenter, transaction: transaction)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}
+
+extension Assembler {
+    
     static func homePageView(router: Router, user: User) -> HomePageView {
         return HomePageView(router: router, user: user)
     }
@@ -65,12 +79,12 @@ extension Assembler {
 //------------------------- Transaction Assembler --------------------------
 extension Assembler {
     
-    static func addTransactionView(user: User, router: Router, transactionType: TransactionType) -> AddTransactionPageView {
+    static func addTransactionView(user: User, router: Router, transactionType: TransactionType) -> AddTransactionView {
         let database = AddTransactionDataDatabaseService()
         let dataManager = AddNewTransactionDataManager(database: database)
         let usecase = AddNewTransaction(dataManager: dataManager)
         let presenter = AddTransactionPresenter(AddNewTransaction: usecase)
-        let view = AddTransactionPageView(user: user, presenter: presenter, transactionType: transactionType)
+        let view = AddTransactionView(user: user, presenter: presenter, transactionType: transactionType)
         presenter.view = view
         presenter.router = router
         return view
@@ -98,8 +112,34 @@ extension Assembler {
         presenter.router = router
         return view
     }
-}
     
+    static func addMonthlyAnalysisTransaction(user: User, transaction: Transaction, router: Router) -> AddMonthlyAnalysisView {
+        let database = AddMonthlyAnalysisTransactionDatabase()
+        let dataManager = AddMonthlyAnalysisTransactionDataManager(database: database)
+        let usecase = AddMonthlyAnalysisTransaction(dataManager: dataManager)
+        let presenter = AddMonthlyAnalysisTransactionPresenter(AddMonthlyAnalysisTransaction: usecase)
+        let view = AddMonthlyAnalysisView(user: user, presenter: presenter, transaction: transaction)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}
+
+
+//------------------------- Budget Assembler --------------------------
+extension Assembler {
+    
+    static func addBudget(user: User, router: Router) -> AddBudgetView {
+        let database = AddBudgetDatabaseService()
+        let dataManager = AddBudgetDataManager(database: database)
+        let usecase = AddBudget(dataManager: dataManager)
+        let presenter = AddBudgetPresenter(addBudget: usecase)
+        let view = AddBudgetView(user: user, presenter: presenter)
+        presenter.view = view
+        presenter.router = router
+        return view
+    }
+}
 
 
 //------------------------- Category Assembler --------------------------

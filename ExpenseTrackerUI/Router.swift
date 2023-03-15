@@ -56,6 +56,18 @@ class Router {
     func updateUser(user: User) {
         self.window.contentView = Assembler.updateUserView(user: user, router: self)
     }
+    
+    func deleteTransaction(user: User, transaction: Transaction) {
+        self.window.contentView = Assembler.deleteTransaction(user: user, transaction: transaction, router: self)
+    }
+    
+    func addBudget(user: User) {
+        self.window.contentView = Assembler.addBudget(user: user, router: self)
+    }
+    
+    func addMonthlyAnalysisTransaction(user: User, transaction: Transaction) {
+        self.window.contentView = Assembler.addMonthlyAnalysisTransaction(user: user, transaction: transaction, router: self)
+    }
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Category -----------------------------------------------

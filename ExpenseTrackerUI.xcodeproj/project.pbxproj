@@ -26,6 +26,12 @@
 		2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */; };
 		2A7B9F5329C0678200A9BFAE /* UpdateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F5229C0678200A9BFAE /* UpdateUserView.swift */; };
 		2A7B9F5B29C083F300A9BFAE /* UpdateUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F5A29C083F300A9BFAE /* UpdateUserPresenter.swift */; };
+		2A7B9F6329C0A41500A9BFAE /* DeleteTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F6229C0A41500A9BFAE /* DeleteTransactionView.swift */; };
+		2A7B9F6529C0A51E00A9BFAE /* DeleteTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F6429C0A51E00A9BFAE /* DeleteTransactionPresenter.swift */; };
+		2A7B9F6729C18A7400A9BFAE /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F6629C18A7400A9BFAE /* AddBudget.swift */; };
+		2A7B9F7C29C1A8A500A9BFAE /* AddBudgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F7B29C1A8A500A9BFAE /* AddBudgetPresenter.swift */; };
+		2A7B9F7E29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F7D29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift */; };
+		2A7B9F8829C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F8729C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift */; };
 		2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */; };
 		2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453129A8A2DB007BBE2D /* Assets.xcassets */; };
 		2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453329A8A2DB007BBE2D /* MainMenu.xib */; };
@@ -78,6 +84,12 @@
 		2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransactionPresenter.swift; sourceTree = "<group>"; };
 		2A7B9F5229C0678200A9BFAE /* UpdateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserView.swift; sourceTree = "<group>"; };
 		2A7B9F5A29C083F300A9BFAE /* UpdateUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserPresenter.swift; sourceTree = "<group>"; };
+		2A7B9F6229C0A41500A9BFAE /* DeleteTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransactionView.swift; sourceTree = "<group>"; };
+		2A7B9F6429C0A51E00A9BFAE /* DeleteTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransactionPresenter.swift; sourceTree = "<group>"; };
+		2A7B9F6629C18A7400A9BFAE /* AddBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudget.swift; sourceTree = "<group>"; };
+		2A7B9F7B29C1A8A500A9BFAE /* AddBudgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetPresenter.swift; sourceTree = "<group>"; };
+		2A7B9F7D29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMonthlyAnalysisView.swift; sourceTree = "<group>"; };
+		2A7B9F8729C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMonthlyAnalysisTransactionPresenter.swift; sourceTree = "<group>"; };
 		2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AA2453129A8A2DB007BBE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,6 +153,14 @@
 			path = AnalysisPresenter;
 			sourceTree = "<group>";
 		};
+		2A7B9F7A29C1A89200A9BFAE /* BudgetPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				2A7B9F7B29C1A8A500A9BFAE /* AddBudgetPresenter.swift */,
+			);
+			path = BudgetPresenter;
+			sourceTree = "<group>";
+		};
 		2AA2452329A8A2DA007BBE2D = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +214,7 @@
 		2AA2455629A8A473007BBE2D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				2A7B9F7A29C1A89200A9BFAE /* BudgetPresenter */,
 				2A16149A29BB23C3005E999E /* AnalysisPresenter */,
 				2AADAFFF29B5FBE800F7962D /* CategoryPresenter */,
 				2AADAFF729B2132300F7962D /* TransactionPresenter */,
@@ -249,6 +270,9 @@
 				2AADAFEB29B0996500F7962D /* AddTransactionView.swift */,
 				2A16148529B89F64005E999E /* GetTransactionView.swift */,
 				2A7B9F4E29C0561500A9BFAE /* UpdateTransactionView.swift */,
+				2A7B9F6229C0A41500A9BFAE /* DeleteTransactionView.swift */,
+				2A7B9F6629C18A7400A9BFAE /* AddBudget.swift */,
+				2A7B9F7D29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -259,6 +283,8 @@
 				2A16148729B8A559005E999E /* GetTransactionPresenter.swift */,
 				2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */,
 				2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */,
+				2A7B9F6429C0A51E00A9BFAE /* DeleteTransactionPresenter.swift */,
+				2A7B9F8729C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift */,
 			);
 			path = TransactionPresenter;
 			sourceTree = "<group>";
@@ -417,6 +443,8 @@
 				2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
 				2A16148229B7AC3C005E999E /* AddCategoryPresenter.swift in Sources */,
+				2A7B9F8829C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift in Sources */,
+				2A7B9F7C29C1A8A500A9BFAE /* AddBudgetPresenter.swift in Sources */,
 				2A16148629B89F64005E999E /* GetTransactionView.swift in Sources */,
 				2A16149C29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift in Sources */,
 				2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */,
@@ -426,18 +454,22 @@
 				2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */,
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
 				2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */,
+				2A7B9F6729C18A7400A9BFAE /* AddBudget.swift in Sources */,
 				2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */,
 				2A7B9F4929BF12FE00A9BFAE /* GetWeeklyTransactionAnalysisPresenter.swift in Sources */,
 				2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */,
 				2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */,
 				2A7B9F4F29C0561500A9BFAE /* UpdateTransactionView.swift in Sources */,
 				2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */,
+				2A7B9F6529C0A51E00A9BFAE /* DeleteTransactionPresenter.swift in Sources */,
 				2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */,
 				2AADB00129B5FC4400F7962D /* GetCategorysPresenter.swift in Sources */,
 				2A16147929B71305005E999E /* CategoryView.swift in Sources */,
+				2A7B9F7E29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift in Sources */,
 				2A7B9F5329C0678200A9BFAE /* UpdateUserView.swift in Sources */,
 				2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */,
 				2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */,
+				2A7B9F6329C0A41500A9BFAE /* DeleteTransactionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
