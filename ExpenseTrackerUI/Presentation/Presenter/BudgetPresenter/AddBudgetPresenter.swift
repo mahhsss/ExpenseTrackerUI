@@ -21,7 +21,7 @@ class AddBudgetPresenter {
 extension AddBudgetPresenter: AddBudgetPresenterContract {
     
     func viewLoadBudget(user: ExpenseTrackerBackend.User, budget: ExpenseTrackerBackend.Budget) {
-        let request = AddBudgetRequest(user: user, budget: budget)
+        let request = AddBudgetRequest(userId: user.userId, budget: budget)
         self.addBudget.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.addTransaction(user: user)

@@ -23,7 +23,7 @@ class GetAllTransactionPresenter {
 extension GetAllTransactionPresenter: GetAllTranasctionPresenterContract {
     
     func viewLoadTransaction(user: User) {
-        let request = GetAllTransactionRequest(user: user)
+        let request = GetAllTransactionRequest(userId: user.userId)
         getAllTransaction.execute(request: request) { response in
             self.view?.load(success: response)
 //            self.router?.updateTransaction(user: user, transaction: response.transactions[0])

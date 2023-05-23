@@ -22,7 +22,7 @@ class GetWeeklyTransactionAnalysisPresenter {
 extension GetWeeklyTransactionAnalysisPresenter: GetWeeklyTransactionAnalysisPresenterContract {
     
     func viewLoadWeeklyTransaction(user: ExpenseTrackerBackend.User, startDate: String, endDate: String) {
-        let request = GetTransactionAnalysisRequest(user: user, startDate: startDate, endDate: endDate)
+        let request = GetTransactionAnalysisRequest(userId: user.userId, startDate: startDate, endDate: endDate)
         self.getWeeklyTransactionAnalysis.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.addTransaction(user: user)

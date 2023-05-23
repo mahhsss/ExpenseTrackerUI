@@ -22,7 +22,7 @@ public class AddCategoryPresenter {
 
 extension AddCategoryPresenter: AddCategoryPageContract {
     func viewDidLoadExpense(user: User, category: ExpendatureCategory) {
-        let request = AddCategoryRequest(user: user, category: category)
+        let request = AddCategoryRequest(userId: user.userId, category: category)
         addCategory.execute(request: request) { response in
             self.view?.load(sucess: response)
             self.router?.addTransaction(user: user)

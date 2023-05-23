@@ -22,7 +22,7 @@ class DeleteTransactionPresenter {
 extension DeleteTransactionPresenter: DeleteTransactionPresenterContract {
    
     func viewLoad(user: ExpenseTrackerBackend.User, transaction: ExpenseTrackerBackend.Transaction, columnName: String, columnValue: Any) {
-        let request = DeleteTransactionRequest(user: user, transaction: transaction, columnName: columnName, columnValue: columnValue)
+        let request = DeleteTransactionRequest(userId: user.userId, transaction: transaction, columnName: columnName, columnValue: columnValue)
         self.deleteTransaction.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.addTransaction(user: user)

@@ -22,7 +22,7 @@ class GetCategoryPresenter {
 extension GetCategoryPresenter: GetCategoryPresenterContract {
     
     func viewLoad(user: User) {
-        let request = GetCategoryRequest(user: user)
+        let request = GetCategoryRequest(userId: user.userId)
         getCategory.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.getAnalysis(user: user)

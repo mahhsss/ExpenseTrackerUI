@@ -22,7 +22,7 @@ class UpdateTransactionPresenter {
 extension UpdateTransactionPresenter : UpdateTransactionPresenterContract {
     
     func viewLoadTransaction(user: User, transation: Transaction, column: String, update: Any) {
-        let request = UpdateTransactionRequest(user: user, column: column, update: update, transaction: transation)
+        let request = UpdateTransactionRequest(userId: user.userId, column: column, update: update, transaction: transation)
         self.updateTransaction.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.categoryView(user: user)

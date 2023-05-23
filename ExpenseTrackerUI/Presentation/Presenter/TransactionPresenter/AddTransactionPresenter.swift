@@ -22,10 +22,11 @@ class AddTransactionPresenter {
 extension AddTransactionPresenter: AddTransactionContract {
     
     func viewDidLoadExpense(user: User, transaction: Transaction) {
-        let request =  AddNewTransactionRequest(user: user, transaction: transaction)
+        let request =  AddNewTransactionRequest(userId: user.userId, transaction: transaction)
         newTransaction.execute(request: request) { [weak self] response in
             self?.view?.load(success: response)
 //            self?.router?.categoryView(user: user)
+            self?.router?.addTransaction(user: user)
             self?.router?.addMonthlyAnalysisTransaction(user: user, transaction: transaction)
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error)

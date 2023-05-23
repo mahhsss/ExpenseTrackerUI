@@ -23,7 +23,7 @@ class GetMonthlyTransactionAnalysisPresenter {
 extension GetMonthlyTransactionAnalysisPresenter: GetMonthlyTranasctionAnalysisPresenterContract {
     
     func viewLoadMonthyTransaction(user: User, startDate: String, endDate: String) {
-        let request = GetTransactionAnalysisRequest(user: user, startDate: startDate, endDate: endDate)
+        let request = GetTransactionAnalysisRequest(userId: user.userId, startDate: startDate, endDate: endDate)
         self.getMonthlyTransactionAnalysis.execute(request: request) { response in
             self.view?.load(success: response)
             self.router?.addTransaction(user: user)
