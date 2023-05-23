@@ -18,6 +18,8 @@
 		2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149829BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift */; };
 		2A16149C29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149B29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift */; };
 		2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149D29BB4560005E999E /* GetAnalysisView.swift */; };
+		2A5DCDDF2A1CE000007586CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDDE2A1CE000007586CF /* main.swift */; };
+		2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */; };
 		2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */; };
 		2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */; };
 		2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */; };
@@ -34,7 +36,6 @@
 		2A7B9F8829C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F8729C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift */; };
 		2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */; };
 		2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453129A8A2DB007BBE2D /* Assets.xcassets */; };
-		2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2453329A8A2DB007BBE2D /* MainMenu.xib */; };
 		2AA2455129A8A3B1007BBE2D /* ExpenseTrackerBackend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */; };
 		2AA2455229A8A3B1007BBE2D /* ExpenseTrackerBackend.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2AA2455A29A8A49C007BBE2D /* UserContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455929A8A49C007BBE2D /* UserContract.swift */; };
@@ -76,6 +77,8 @@
 		2A16149829BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A16149B29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A16149D29BB4560005E999E /* GetAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnalysisView.swift; sourceTree = "<group>"; };
+		2A5DCDDE2A1CE000007586CF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeeklyTransactionAnalysisView.swift; sourceTree = "<group>"; };
@@ -93,7 +96,6 @@
 		2AA2452C29A8A2DA007BBE2D /* ExpenseTrackerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA2452F29A8A2DA007BBE2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AA2453129A8A2DB007BBE2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2AA2453429A8A2DB007BBE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2AA2453629A8A2DB007BBE2D /* ExpenseTrackerUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseTrackerUI.entitlements; sourceTree = "<group>"; };
 		2AA2455029A8A3B1007BBE2D /* ExpenseTrackerBackend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExpenseTrackerBackend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA2455929A8A49C007BBE2D /* UserContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContract.swift; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 			path = AnalysisPresenter;
 			sourceTree = "<group>";
 		};
+		2A5DCDE42A1D3FC6007586CF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		2A7B9F7A29C1A89200A9BFAE /* BudgetPresenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,8 +197,8 @@
 				2AA2455B29A8A4B8007BBE2D /* Router.swift */,
 				2AA2455D29A8A4C6007BBE2D /* Assembler.swift */,
 				2AA2453129A8A2DB007BBE2D /* Assets.xcassets */,
-				2AA2453329A8A2DB007BBE2D /* MainMenu.xib */,
 				2AA2453629A8A2DB007BBE2D /* ExpenseTrackerUI.entitlements */,
+				2A5DCDDE2A1CE000007586CF /* main.swift */,
 			);
 			path = ExpenseTrackerUI;
 			sourceTree = "<group>";
@@ -196,6 +206,7 @@
 		2AA2455429A8A3DA007BBE2D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2A5DCDE42A1D3FC6007586CF /* ViewController */,
 				2AA2455729A8A479007BBE2D /* View */,
 				2AA2455629A8A473007BBE2D /* Presenter */,
 				2AA2455529A8A46C007BBE2D /* Contract */,
@@ -381,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AA2453229A8A2DB007BBE2D /* Assets.xcassets in Resources */,
-				2AA2453529A8A2DB007BBE2D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +450,7 @@
 				2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */,
 				2A7B9F5B29C083F300A9BFAE /* UpdateUserPresenter.swift in Sources */,
 				2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */,
+				2A5DCDDF2A1CE000007586CF /* main.swift in Sources */,
 				2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
 				2A16148229B7AC3C005E999E /* AddCategoryPresenter.swift in Sources */,
@@ -467,6 +478,7 @@
 				2A16147929B71305005E999E /* CategoryView.swift in Sources */,
 				2A7B9F7E29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift in Sources */,
 				2A7B9F5329C0678200A9BFAE /* UpdateUserView.swift in Sources */,
+				2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */,
 				2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */,
 				2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */,
 				2A7B9F6329C0A41500A9BFAE /* DeleteTransactionView.swift in Sources */,
@@ -474,17 +486,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		2AA2453329A8A2DB007BBE2D /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AA2453429A8A2DB007BBE2D /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2AA2453729A8A2DB007BBE2D /* Debug */ = {
@@ -616,7 +617,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSMainNibFile = "";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -644,7 +645,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSMainNibFile = "";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

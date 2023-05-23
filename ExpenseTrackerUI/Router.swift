@@ -17,7 +17,7 @@ class Router {
     }
     
     func launch() {
-        self.window.contentView = Assembler.AuthenticationView(router: self)
+        self.window.contentViewController = Assembler.AuthenticationView(router: self)
     }
     
     
