@@ -10,7 +10,7 @@ import ExpenseTrackerBackend
 
 class GetUserPresenter {
     
-    var view: GetUserViewontract?
+    weak var view: GetUserViewontract?
     weak var router: Router?
     var userLogin: UserLogin
     

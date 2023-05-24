@@ -173,7 +173,7 @@ extension UserSignUpPageView: AddNewUserViewContract {
         loginButton.target = self
         loginButton.action = #selector(authenticateUser(_:))
         loginButton.focusRingType = .none
-        loginButton.font = .systemFont(ofSize: 27)
+        loginButton.font = .systemFont(ofSize: 17)
         loginButton.layer?.borderWidth = 2
         loginButton.layer?.borderColor = .white
         
@@ -195,6 +195,7 @@ extension UserSignUpPageView: AddNewUserViewContract {
     
     func load(sucess: AddnewUserResponse) {
         print("\n\(sucess.message)\n")
+        
         
     }
     

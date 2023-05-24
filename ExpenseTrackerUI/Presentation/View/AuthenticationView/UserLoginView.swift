@@ -17,6 +17,7 @@ class UserLoginPageView: NSView {
     var signUpLabel = NSTextField()
     var loginStack = NSStackView()
     var presenter: UserLoginPresenterContract
+    var errorString: NSTextField!
     
     init(presenter: UserLoginPresenterContract) {
         
@@ -42,17 +43,18 @@ extension UserLoginPageView {
     
     func configureLoginForm() {
         
-        let loginLabel = customStringLabel(label: "Login", fontSize: 45)
-        let emailLabel = customStringLabel(label: "EmailId", fontSize: 20)
-        let passwordLabel = customStringLabel(label: "Password", fontSize: 20)
+        let loginLabel = customStringLabel(label: "Login", fontSize: 47)
+        let emailLabel = customStringLabel(label: "EmailId", fontSize: 16)
+        let passwordLabel = customStringLabel(label: "Password", fontSize: 16)
         let emailTextBox = customTextBox(textField: emailTextField, name: "EmailId")
         let passwordTextBox = customPasswordTextBox()
         let string = "Don't have an account?  SignUp"
         let attributedString = NSMutableAttributedString(string: string)
+        errorString = customStringLabel(label: "Invalid Credentials", fontSize: 15, fontColor: .red)
         
-        
+        errorString.isHidden = true
         loginButton = customLoginButton(loginButton: loginButton)
-        loginStack = NSStackView(views: [emailLabel, emailTextBox, passwordLabel, passwordTextBox])
+        loginStack = NSStackView(views: [emailLabel, emailTextBox, passwordLabel, passwordTextBox, errorString])
         loginStack.spacing = 20
         loginStack.orientation = .vertical
         loginStack.alignment = .left
@@ -80,7 +82,7 @@ extension UserLoginPageView {
             loginLabel.bottomAnchor.constraint(equalTo: loginStack.topAnchor, constant: -50),
             loginStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             loginStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loginButton.centerYAnchor.constraint(equalTo: loginStack.bottomAnchor, constant: 70),
+            loginButton.centerYAnchor.constraint(equalTo: loginStack.bottomAnchor, constant: 80),
             loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             signUpLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             signUpLabel.centerYAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 60)
@@ -177,7 +179,7 @@ extension UserLoginPageView {
         loginButton.target = self
         loginButton.action = #selector(authenticateUser(_:))
         loginButton.focusRingType = .none
-        loginButton.font = .systemFont(ofSize: 27)
+        loginButton.font = .systemFont(ofSize: 17)
         loginButton.layer?.borderWidth = 2
         loginButton.layer?.borderColor = .white
         
@@ -216,6 +218,8 @@ extension UserLoginPageView: GetUserViewontract {
     }
     
     func failure(error: UserLoginError) {
-        print("\n\(error.error)\nEnter valid Credentials\n")
+        
+        errorString.isHidden = false
+        
     }
 }

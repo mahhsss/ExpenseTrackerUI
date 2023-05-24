@@ -41,7 +41,6 @@ class AuthenticationViewController: NSViewController {
     
     func configureHeading() {
         
-        print("header is called")
         let appName = customStringLabel(label: "EXPENZO", fontSize: 60, fontStyle: "Beatrick")
         appName.translatesAutoresizingMaskIntoConstraints = false
         
@@ -56,11 +55,10 @@ class AuthenticationViewController: NSViewController {
     
     func configureLoginView() {
         
-        print("login view is called")
         loginView.translatesAutoresizingMaskIntoConstraints = false
         loginView.wantsLayer = true
         loginView.layer?.backgroundColor = .init(red: 0.3159786165, green: 0.5165252209, blue: 1, alpha: 0.2)
-        loginView.layer?.cornerRadius = 20
+        loginView.layer?.cornerRadius = 10
         
         NSLayoutConstraint.activate([
             loginView.heightAnchor.constraint(equalToConstant: (view.frame.maxY) - 350),
@@ -76,7 +74,6 @@ class AuthenticationViewController: NSViewController {
     
     func configureSignupView() {
         
-        print("signUp view is called")
         signupView.translatesAutoresizingMaskIntoConstraints = false
         signupView.wantsLayer = true
         signupView.layer?.backgroundColor = .init(red: 0.3159786165, green: 0.5165252209, blue: 1, alpha: 0.2)
