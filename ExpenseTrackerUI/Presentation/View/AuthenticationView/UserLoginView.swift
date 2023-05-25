@@ -43,14 +43,14 @@ extension UserLoginPageView {
     
     func configureLoginForm() {
         
-        let loginLabel = customStringLabel(label: "Login", fontSize: 47)
-        let emailLabel = customStringLabel(label: "EmailId", fontSize: 16)
-        let passwordLabel = customStringLabel(label: "Password", fontSize: 16)
+        let loginLabel = CustomText.customStringLabel(label: "Login", fontSize: 47)
+        let emailLabel = CustomText.customStringLabel(label: "EmailId", fontSize: 16)
+        let passwordLabel = CustomText.customStringLabel(label: "Password", fontSize: 16)
         let emailTextBox = customTextBox(textField: emailTextField, name: "EmailId")
         let passwordTextBox = customPasswordTextBox()
         let string = "Don't have an account?  SignUp"
         let attributedString = NSMutableAttributedString(string: string)
-        errorString = customStringLabel(label: "Invalid Credentials", fontSize: 15, fontColor: .red)
+        errorString = CustomText.customStringLabel(label: "Invalid Credentials", fontSize: 15, fontColor: .red)
         
         errorString.isHidden = true
         loginButton = customLoginButton(loginButton: loginButton)
@@ -59,7 +59,7 @@ extension UserLoginPageView {
         loginStack.orientation = .vertical
         loginStack.alignment = .left
         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 24, length: 6))
-        signUpLabel = customStringLabel(label: string, fontSize: 15)
+        signUpLabel = CustomText.customStringLabel(label: string, fontSize: 15)
         signUpLabel.attributedStringValue = attributedString
         
         
@@ -88,21 +88,6 @@ extension UserLoginPageView {
             signUpLabel.centerYAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 60)
         ])
         
-    }
-    
-    func customStringLabel(label: String, fontSize: Int, fontColor: NSColor? = nil, fontStyle: String? = nil) -> NSTextField {
-        
-        let textFiled = NSTextField(labelWithString: label)
-        textFiled.font = .systemFont(ofSize: CGFloat(fontSize))
-        if let fontColor = fontColor {
-            textFiled.textColor = fontColor
-        }
-        if let fontStyle = fontStyle {
-            textFiled.font = NSFont(name: fontStyle, size: CGFloat(fontSize))
-        }
-        textFiled.isEditable = false
-        textFiled.isSelectable = false
-        return textFiled
     }
     
     func customTextBox(textField: NSTextField, name: String) -> NSBox {

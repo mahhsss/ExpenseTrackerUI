@@ -37,11 +37,11 @@ extension UserSignUpPageView: AddNewUserViewContract {
     
     func configureSignUpForm() {
         
-        let signupLabel = customStringLabel(label: "SignUp", fontSize: 40)
-        let nameLable = customStringLabel(label: "Name", fontSize: 15)
-        let emailLable = customStringLabel(label: "EmailId", fontSize: 15)
-        let password1 = customStringLabel(label: "Password", fontSize: 15)
-        let password2 = customStringLabel(label: "Re-enter Password", fontSize: 15)
+        let signupLabel = CustomText.customStringLabel(label: "SignUp", fontSize: 40)
+        let nameLable = CustomText.customStringLabel(label: "Name", fontSize: 15)
+        let emailLable = CustomText.customStringLabel(label: "EmailId", fontSize: 15)
+        let password1 = CustomText.customStringLabel(label: "Password", fontSize: 15)
+        let password2 = CustomText.customStringLabel(label: "Re-enter Password", fontSize: 15)
         let nameTextBox = customTextBox(textField: nameTextField, name: "name")
         let emailIdTextBox = customTextBox(textField: emailIdTextField, name: "EmailId")
         let password1TextBox = customPasswordTextBox()
@@ -56,7 +56,7 @@ extension UserSignUpPageView: AddNewUserViewContract {
         signupStack.orientation = .vertical
         signupStack.alignment = .left
         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 26, length: 5))
-        loginLabel = customStringLabel(label: string, fontSize: 15)
+        loginLabel = CustomText.customStringLabel(label: string, fontSize: 15)
         loginLabel.attributedStringValue = attributedString
         
         signupLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -73,30 +73,15 @@ extension UserSignUpPageView: AddNewUserViewContract {
         
         NSLayoutConstraint.activate([
             signupLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            signupLabel.bottomAnchor.constraint(equalTo: signupStack.topAnchor, constant: -40),
-            signupStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+            signupLabel.bottomAnchor.constraint(equalTo: signupStack.topAnchor, constant: -30),
+            signupStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -20),
             signupStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             signupButton.centerYAnchor.constraint(equalTo: signupStack.bottomAnchor, constant: 50),
             signupButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             loginLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loginLabel.centerYAnchor.constraint(equalTo: signupButton.bottomAnchor, constant: 50)
+            loginLabel.centerYAnchor.constraint(equalTo: signupButton.bottomAnchor, constant: 40)
         ])
         
-    }
-    
-    func customStringLabel(label: String, fontSize: Int, fontColor: NSColor? = nil, fontStyle: String? = nil) -> NSTextField {
-        
-        let textFiled = NSTextField(labelWithString: label)
-        textFiled.font = .systemFont(ofSize: CGFloat(fontSize))
-        if let fontColor = fontColor {
-            textFiled.textColor = fontColor
-        }
-        if let fontStyle = fontStyle {
-            textFiled.font = NSFont(name: fontStyle, size: CGFloat(fontSize))
-        }
-        textFiled.isEditable = false
-        textFiled.isSelectable = false
-        return textFiled
     }
     
     func customTextBox(textField: NSTextField, name: String) -> NSBox {
