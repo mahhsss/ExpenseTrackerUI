@@ -68,6 +68,10 @@ class Router {
     func addMonthlyAnalysisTransaction(user: User, transaction: Transaction) {
         self.window.contentView = Assembler.addMonthlyAnalysisTransaction(user: user, transaction: transaction, router: self)
     }
+    
+    func getMonthlySpent(user: User) {
+//        self.window.contentView = Assembler
+    }
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Category -----------------------------------------------

@@ -21,6 +21,8 @@
 		2A5DCDDF2A1CE000007586CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDDE2A1CE000007586CF /* main.swift */; };
 		2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */; };
 		2A5DCDF72A1F26FC007586CF /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDF62A1F26FC007586CF /* CustomText.swift */; };
+		2A5DCE032A2088A3007586CF /* GetMonthlySpentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE022A2088A3007586CF /* GetMonthlySpentPresenter.swift */; };
+		2A5DCE052A209036007586CF /* GetMonthlySpentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE042A209036007586CF /* GetMonthlySpentView.swift */; };
 		2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */; };
 		2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */; };
 		2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */; };
@@ -81,6 +83,8 @@
 		2A5DCDDE2A1CE000007586CF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		2A5DCDF62A1F26FC007586CF /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
+		2A5DCE022A2088A3007586CF /* GetMonthlySpentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlySpentPresenter.swift; sourceTree = "<group>"; };
+		2A5DCE042A209036007586CF /* GetMonthlySpentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlySpentView.swift; sourceTree = "<group>"; };
 		2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeeklyTransactionAnalysisView.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 				2A7B9F6229C0A41500A9BFAE /* DeleteTransactionView.swift */,
 				2A7B9F6629C18A7400A9BFAE /* AddBudget.swift */,
 				2A7B9F7D29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift */,
+				2A5DCE042A209036007586CF /* GetMonthlySpentView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				2A7B9F5029C0593800A9BFAE /* UpdateTransactionPresenter.swift */,
 				2A7B9F6429C0A51E00A9BFAE /* DeleteTransactionPresenter.swift */,
 				2A7B9F8729C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift */,
+				2A5DCE022A2088A3007586CF /* GetMonthlySpentPresenter.swift */,
 			);
 			path = TransactionPresenter;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
 				2A16148229B7AC3C005E999E /* AddCategoryPresenter.swift in Sources */,
+				2A5DCE052A209036007586CF /* GetMonthlySpentView.swift in Sources */,
 				2A7B9F8829C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift in Sources */,
 				2A7B9F7C29C1A8A500A9BFAE /* AddBudgetPresenter.swift in Sources */,
 				2A16148629B89F64005E999E /* GetTransactionView.swift in Sources */,
@@ -477,6 +484,7 @@
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
 				2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */,
 				2A7B9F6729C18A7400A9BFAE /* AddBudget.swift in Sources */,
+				2A5DCE032A2088A3007586CF /* GetMonthlySpentPresenter.swift in Sources */,
 				2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */,
 				2A7B9F4929BF12FE00A9BFAE /* GetWeeklyTransactionAnalysisPresenter.swift in Sources */,
 				2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */,

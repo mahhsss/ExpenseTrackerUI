@@ -164,3 +164,12 @@ protocol GetWeeklyTransactionAnalysisViewContract: AnyObject {
     func load(success: GetTransactionAnalysisResponse)
     func failure(error: GetTransactionAnalysisError)
 }
+//------------------------ GetMonthlySpent Contracts ----------------------------
+protocol GetMonthlySpentPresenterContract: AnyObject {
+    func viewLoadMonthlySpent(user: User, month: String)
+}
+ 
+protocol GetMonthlySpentViewContract: AnyObject {
+    func load(success: GetMonthlySpentResponse)
+    func failure(error: GetMonthlySpentError)
+}

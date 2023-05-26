@@ -124,6 +124,17 @@ extension Assembler {
         presenter.router = router
         return view
     }
+    
+    static func getMonthlySpent(user: User, router: Router) -> GetMonthlySpentView {
+        let database = GetMonthlySpentDatabase()
+        let databaseManager = GetMonthlySpentDataManager(database: database)
+        let usecase = GetMonthlySpent(dataManager: databaseManager)
+        let presenter = GetMonthlySpentPresenter(getMonthlySpent: usecase)
+        let view = GetMonthlySpentView(presenter: presenter, user: user)
+        presenter.view = view
+        presenter.routher = router
+        return view
+    }
 }
 
 
