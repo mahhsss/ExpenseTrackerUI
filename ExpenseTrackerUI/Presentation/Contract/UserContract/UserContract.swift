@@ -173,3 +173,20 @@ protocol GetMonthlySpentViewContract: AnyObject {
     func load(success: GetMonthlySpentResponse)
     func failure(error: GetMonthlySpentError)
 }
+//------------------------ GetMonthlyIncome Contracts ----------------------------
+protocol GetMonthlyIncomePresenterContract: AnyObject {
+    func viewLoadMonthlySpent(user: User, month: String)
+}
+ 
+protocol GetMonthlyIncomeViewContract: AnyObject {
+    func load(success: GetMonthlyIncomeResponse)
+    func failure(error: GetMonthlyIncomeError)
+}
+//------------------------ GetMonthlyBalance Contracts ----------------------------
+protocol GetMonthlyBalancePresenterContract: AnyObject {
+    func viewLoadMonthlyBalance(user: User, month: String)
+}
+protocol GetMonthlyBalanceViewContract: AnyObject {
+    func load(success: GetMonthlyBalanceResponse)
+    func failure(error: GetMonthlyBalanceError)
+}

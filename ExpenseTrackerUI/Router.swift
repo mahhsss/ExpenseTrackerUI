@@ -20,6 +20,10 @@ class Router {
         self.window.contentViewController = Assembler.AuthenticationView(router: self)
     }
     
+    func home(user: User) {
+        self.window.contentViewController = Assembler.HomeView(user: user, router: self)
+    }
+    
     
 //--------------------------------- Authentication ------------------------------------------
     func userSignUp() {
@@ -70,7 +74,7 @@ class Router {
     }
     
     func getMonthlySpent(user: User) {
-//        self.window.contentView = Assembler
+        self.window.contentView = Assembler.getMonthlySpent(user: user, router: self)
     }
 //-------------------------------------------------------------------------------------------
     

@@ -13,6 +13,10 @@ class Assembler {
     static func AuthenticationView(router: Router) -> AuthenticationViewController {
         return AuthenticationViewController(router: router)
     }
+    
+    static func HomeView(user: User, router: Router) -> HomePageViewController {
+        return HomePageViewController(user: user, router: router)
+    }
 }
 
 //------------------------- Authentication Assembler ---------------------------
@@ -133,6 +137,28 @@ extension Assembler {
         let view = GetMonthlySpentView(presenter: presenter, user: user)
         presenter.view = view
         presenter.routher = router
+        return view
+    }
+    
+    static func getMonthlyIncome(user: User, router: Router) -> GetMonthlyIncomeView {
+        let database = GetMonthlyIncomeDatabase()
+        let dataManager = GetMonthlyIncomeDataManager(database: database)
+        let usecase = GetMonthlyIncome(dataManager: dataManager)
+        let presenter = GetMonthlyIncomePresenter(getMonthlyIncome: usecase)
+        let view = GetMonthlyIncomeView(presenter: presenter, user: user)
+        presenter.view = view
+        presenter.routher = router
+        return view
+    }
+    
+    static func getMonthlyBalance(user: User, router: Router) -> GetMonthlyBalanceView {
+        let database = GetMonthlyBalanceDatabase()
+        let dataManager = GetMonthlyBalanceDataManager(database: database)
+        let usecase = GetMonthlyBalance(dataManager: dataManager)
+        let presenter = GetMonthlyBalancePresenter(getMonthlyBalance: usecase)
+        let view = GetMonthlyBalanceView(presenter: presenter, user: user)
+        presenter.view = view
+        presenter.router = router
         return view
     }
 }

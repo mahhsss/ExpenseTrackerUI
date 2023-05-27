@@ -23,6 +23,12 @@
 		2A5DCDF72A1F26FC007586CF /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDF62A1F26FC007586CF /* CustomText.swift */; };
 		2A5DCE032A2088A3007586CF /* GetMonthlySpentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE022A2088A3007586CF /* GetMonthlySpentPresenter.swift */; };
 		2A5DCE052A209036007586CF /* GetMonthlySpentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE042A209036007586CF /* GetMonthlySpentView.swift */; };
+		2A5DCE072A209740007586CF /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE062A209740007586CF /* HomePageViewController.swift */; };
+		2A5DCE092A209796007586CF /* MainHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE082A209796007586CF /* MainHomePageView.swift */; };
+		2A5DCE112A20DA20007586CF /* GetMonthlyIncomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE102A20DA20007586CF /* GetMonthlyIncomePresenter.swift */; };
+		2A5DCE132A20DC26007586CF /* GetMonthlyIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE122A20DC26007586CF /* GetMonthlyIncomeView.swift */; };
+		2A5DCE1B2A22005F007586CF /* GetMonthlyBalancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE1A2A22005F007586CF /* GetMonthlyBalancePresenter.swift */; };
+		2A5DCE1D2A2202A2007586CF /* GetMonthlyBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE1C2A2202A2007586CF /* GetMonthlyBalanceView.swift */; };
 		2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */; };
 		2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */; };
 		2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */; };
@@ -85,6 +91,12 @@
 		2A5DCDF62A1F26FC007586CF /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		2A5DCE022A2088A3007586CF /* GetMonthlySpentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlySpentPresenter.swift; sourceTree = "<group>"; };
 		2A5DCE042A209036007586CF /* GetMonthlySpentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlySpentView.swift; sourceTree = "<group>"; };
+		2A5DCE062A209740007586CF /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		2A5DCE082A209796007586CF /* MainHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomePageView.swift; sourceTree = "<group>"; };
+		2A5DCE102A20DA20007586CF /* GetMonthlyIncomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyIncomePresenter.swift; sourceTree = "<group>"; };
+		2A5DCE122A20DC26007586CF /* GetMonthlyIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyIncomeView.swift; sourceTree = "<group>"; };
+		2A5DCE1A2A22005F007586CF /* GetMonthlyBalancePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyBalancePresenter.swift; sourceTree = "<group>"; };
+		2A5DCE1C2A2202A2007586CF /* GetMonthlyBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyBalanceView.swift; sourceTree = "<group>"; };
 		2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A7B9F4629BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWeeklyTransactionAnalysisView.swift; sourceTree = "<group>"; };
@@ -165,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */,
+				2A5DCE062A209740007586CF /* HomePageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -292,6 +305,7 @@
 		2AADAFE829B07B8B00F7962D /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				2A5DCE082A209796007586CF /* MainHomePageView.swift */,
 				2AADAFE929B07BAF00F7962D /* HomePageView.swift */,
 				2AADAFEB29B0996500F7962D /* AddTransactionView.swift */,
 				2A16148529B89F64005E999E /* GetTransactionView.swift */,
@@ -300,6 +314,8 @@
 				2A7B9F6629C18A7400A9BFAE /* AddBudget.swift */,
 				2A7B9F7D29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift */,
 				2A5DCE042A209036007586CF /* GetMonthlySpentView.swift */,
+				2A5DCE122A20DC26007586CF /* GetMonthlyIncomeView.swift */,
+				2A5DCE1C2A2202A2007586CF /* GetMonthlyBalanceView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -313,6 +329,8 @@
 				2A7B9F6429C0A51E00A9BFAE /* DeleteTransactionPresenter.swift */,
 				2A7B9F8729C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift */,
 				2A5DCE022A2088A3007586CF /* GetMonthlySpentPresenter.swift */,
+				2A5DCE102A20DA20007586CF /* GetMonthlyIncomePresenter.swift */,
+				2A5DCE1A2A22005F007586CF /* GetMonthlyBalancePresenter.swift */,
 			);
 			path = TransactionPresenter;
 			sourceTree = "<group>";
@@ -461,17 +479,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A5DCE112A20DA20007586CF /* GetMonthlyIncomePresenter.swift in Sources */,
+				2A5DCE1D2A2202A2007586CF /* GetMonthlyBalanceView.swift in Sources */,
 				2A16148429B852F2005E999E /* GetCategoryView.swift in Sources */,
 				2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */,
 				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
 				2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */,
 				2A7B9F5B29C083F300A9BFAE /* UpdateUserPresenter.swift in Sources */,
+				2A5DCE092A209796007586CF /* MainHomePageView.swift in Sources */,
 				2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */,
 				2A5DCDDF2A1CE000007586CF /* main.swift in Sources */,
 				2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */,
+				2A5DCE072A209740007586CF /* HomePageViewController.swift in Sources */,
 				2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */,
 				2A16148229B7AC3C005E999E /* AddCategoryPresenter.swift in Sources */,
 				2A5DCE052A209036007586CF /* GetMonthlySpentView.swift in Sources */,
+				2A5DCE132A20DC26007586CF /* GetMonthlyIncomeView.swift in Sources */,
 				2A7B9F8829C1CCA600A9BFAE /* AddMonthlyAnalysisTransactionPresenter.swift in Sources */,
 				2A7B9F7C29C1A8A500A9BFAE /* AddBudgetPresenter.swift in Sources */,
 				2A16148629B89F64005E999E /* GetTransactionView.swift in Sources */,
@@ -491,6 +514,7 @@
 				2AA2453029A8A2DA007BBE2D /* AppDelegate.swift in Sources */,
 				2A5DCDF72A1F26FC007586CF /* CustomText.swift in Sources */,
 				2A7B9F4F29C0561500A9BFAE /* UpdateTransactionView.swift in Sources */,
+				2A5DCE1B2A22005F007586CF /* GetMonthlyBalancePresenter.swift in Sources */,
 				2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */,
 				2A7B9F6529C0A51E00A9BFAE /* DeleteTransactionPresenter.swift in Sources */,
 				2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */,
