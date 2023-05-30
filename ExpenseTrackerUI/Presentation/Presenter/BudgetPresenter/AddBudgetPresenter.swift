@@ -11,7 +11,7 @@ import ExpenseTrackerBackend
 class AddBudgetPresenter {
     
     weak var view: AddBudgetViewContract?
-    weak var router : Router?
+    weak var router: Router?
     var addBudget: AddBudget
     
     init(addBudget: AddBudget) {

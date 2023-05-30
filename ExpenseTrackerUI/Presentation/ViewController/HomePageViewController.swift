@@ -19,10 +19,12 @@ class HomePageViewController: NSViewController {
         let spentView = Assembler.getMonthlySpent(user: user, router: router)
         let incomeView = Assembler.getMonthlyIncome(user: user, router: router)
         let balanceView = Assembler.getMonthlyBalance(user: user, router: router)
+        let budgetView = Assembler.getBudget(user: user, router: router)
         mainView = MainHomeView()
         mainView.spent = spentView
         mainView.income = incomeView
         mainView.balance = balanceView
+        mainView.budgetView = budgetView
         super.init(nibName: nil, bundle: nil)
     }
     

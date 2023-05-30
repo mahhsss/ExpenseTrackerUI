@@ -177,8 +177,18 @@ extension Assembler {
         presenter.router = router
         return view
     }
+    
+    static func getBudget(user: User, router: Router) -> GetBudgetView {
+        let database = GetBudgetDatabase()
+        let dataManager = GetBudgetDataManager(database: database)
+        let usecase = GetBudget(dataManager: dataManager)
+        let presenter = GetBudgetPresenter(getBudget: usecase)
+        let view = GetBudgetView(presenter: presenter, user: user)
+        presenter.router = router
+        presenter.view = view
+        return view
+    }
 }
-
 
 //------------------------- Category Assembler --------------------------
 extension Assembler {

@@ -12,7 +12,7 @@ class MainHomeView: NSView {
     
     var expenseView = NSView()
     var recentTransactionsView = NSView()
-    var budgetView = NSView()
+    var budgetView: GetBudgetView!
     var spent: GetMonthlySpentView!
     var income: GetMonthlyIncomeView!
     var balance: GetMonthlyBalanceView!

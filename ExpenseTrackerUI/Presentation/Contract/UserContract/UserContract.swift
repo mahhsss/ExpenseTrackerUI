@@ -65,6 +65,14 @@ protocol AddBudgetViewContract: AnyObject {
     func load(success: AddBudgetResponse)
     func failure(error: AddBudgetError)
 }
+//------------------------ GetBudget Contracts ---------------------------------
+protocol GetBudgetPresenterContract: AnyObject {
+    func viewLoadBudget(user: User, month: String)
+}
+protocol GetBudgetViewContract: AnyObject {
+    func load(success: GetBudgetResponse)
+    func failure(error: GetBudgetError)
+}
 //------------------------------------------------------------------------------
 
 //---------------------- AddMonthlyAnalysis Contracts --------------------------

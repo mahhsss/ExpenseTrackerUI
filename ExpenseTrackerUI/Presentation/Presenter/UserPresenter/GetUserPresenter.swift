@@ -26,6 +26,7 @@ extension GetUserPresenter: UserLoginPresenterContract {
         userLogin.execute(request: request) { response in
             self.view?.load(success: response.user)
             self.router?.home(user: response.user)
+//            self.router?.addTransaction(user: response.user)
         } onFailure: { error in
             self.view?.failure(error: error)
             self.router?.launch()

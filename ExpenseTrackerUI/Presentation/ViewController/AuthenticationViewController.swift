@@ -81,7 +81,7 @@ class AuthenticationViewController: NSViewController {
             signupView.heightAnchor.constraint(equalToConstant: 632),
             signupView.widthAnchor.constraint(equalToConstant: 812),
             signupView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signupView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50)
+            signupView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 70)
         ])
         
         let singleClickRecognizer = NSClickGestureRecognizer(target: self, action: #selector(moveToLogin(sender:)))

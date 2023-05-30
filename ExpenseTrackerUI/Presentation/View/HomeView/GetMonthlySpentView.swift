@@ -72,7 +72,6 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
             self.heightAnchor.constraint(equalToConstant: 120),
             self.widthAnchor.constraint(equalToConstant: 320)
         ])
-        print("got the monthly spent")
     }
     
     func failure(error: ExpenseTrackerBackend.GetMonthlySpentError) {
