@@ -15,6 +15,9 @@ class GetBudgetView: NSView {
     var addBudgetButton = NSButton()
     var presenter: GetBudgetPresenterContract
     var user: User
+    var outterBar = NSView()
+    var innerBar = NSView()
+    var progressBar = NSView()
     
     public init(presenter: GetBudgetPresenterContract, user: User) {
         self.presenter = presenter
@@ -40,6 +43,22 @@ class GetBudgetView: NSView {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
         let formattedStartDate = dateFormatter.string(from: startDate)
+        
+        outterBar.translatesAutoresizingMaskIntoConstraints = false
+        innerBar.translatesAutoresizingMaskIntoConstraints = false
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        progressBar.wantsLayer = true
+        outterBar.wantsLayer = true
+        innerBar.wantsLayer = true
+        outterBar.layer?.cornerRadius = 5
+        outterBar.layer?.borderColor = .white
+        outterBar.layer?.borderWidth = 2
+        outterBar.layer?.backgroundColor = .black
+        innerBar.layer?.cornerRadius = 5
+        innerBar.layer?.backgroundColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+        
+        progressBar.addSubview(outterBar)
+        progressBar.addSubview(innerBar)
         
         presenter.viewLoadBudget(user: user, month: formattedStartDate)
     }
@@ -81,23 +100,41 @@ extension GetBudgetView: GetBudgetViewContract {
         let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 25, fontColor: .white, fontStyle: "Trap-SemiBold")
         let thisMonthBudgetText = CustomText.customStringLabel(label: "This Month budget is \(success.budget)", fontSize: 20, fontColor: .systemBlue, fontStyle: "Trap-Medium")
         let balanceBudgetText =  CustomText.customStringLabel(label: "\(success.spent) spent already. \(success.budget - success.spent) is left to reach the budget", fontSize: 19, fontColor: .white, fontStyle: "Trap-Medium")
-        let budgetStack = NSStackView(views: [thisMonthBudgetText, balanceBudgetText])
+        let budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
+        var innerWidth = Float((success.spent)) / Float((success.budget))
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
         budgetStack.translatesAutoresizingMaskIntoConstraints = false
         budgetStack.wantsLayer = true
         budgetStack.orientation = .vertical
         budgetStack.alignment = .centerX
-        budgetStack.spacing = 20
+        budgetStack.spacing = 35
         
         addSubview(budgetLabel)
         addSubview(budgetStack)
         
+        if  Float((success.spent)) > (Float(success.budget) / 2) {
+            innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
+        }
+        else if Float((success.spent)) == (Float(success.budget)) {
+            innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
+            innerWidth = 1
+        }
+        
         NSLayoutConstraint.activate([
+            progressBar.heightAnchor.constraint(equalToConstant: 25),
+            outterBar.centerXAnchor.constraint(equalTo: progressBar.centerXAnchor),
+            outterBar.centerYAnchor.constraint(equalTo: progressBar.centerYAnchor),
+            outterBar.heightAnchor.constraint(equalToConstant: 25),
+            outterBar.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.80),
+            innerBar.topAnchor.constraint(equalTo: outterBar.topAnchor),
+            innerBar.leadingAnchor.constraint(equalTo: outterBar.leadingAnchor),
+            innerBar.heightAnchor.constraint(equalTo: outterBar.heightAnchor),
+            innerBar.widthAnchor.constraint(equalTo: outterBar.widthAnchor, multiplier: CGFloat(innerWidth)),
             budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             budgetStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            budgetStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50),
+            budgetStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
             budgetStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
             budgetStack.widthAnchor.constraint(equalTo: widthAnchor)
         ])
