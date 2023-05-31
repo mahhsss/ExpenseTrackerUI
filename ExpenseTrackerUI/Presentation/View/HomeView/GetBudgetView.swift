@@ -30,6 +30,10 @@ class GetBudgetView: NSView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var acceptsFirstResponder: Bool {
+        return true
+    }
+    
     func configureBudgetView() {
         
         let currentDate = Date()

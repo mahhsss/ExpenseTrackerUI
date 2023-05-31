@@ -36,6 +36,11 @@ class HomePageViewController: NSViewController {
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: NSScreen.main!.frame.width, height: NSScreen.main!.frame.height))
+        view.wantsLayer = true
+        mainView.wantsLayer = true
+        view.layer?.backgroundColor = .black
+        mainView.layer?.backgroundColor = #colorLiteral(red: 0.1794968843, green: 0.1844770312, blue: 0.1929811239, alpha: 1)
+        mainView.layer?.cornerRadius = 10
     }
     
     override func viewDidLoad() {
