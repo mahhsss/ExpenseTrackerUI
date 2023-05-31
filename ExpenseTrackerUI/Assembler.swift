@@ -96,6 +96,17 @@ extension Assembler {
         
     }
     
+    static func getRecentTranasctionsView(user: User, router: Router) -> RecentTransactionsView {
+        let database = GetRecentTransactionDatabase()
+        let dataManager = GetRecentTransactionDataManager(database: database)
+        let usecase = GetRecentTransaction(dataManager: dataManager)
+        let presenter = GetRecentTranasactionPresenter(getRecentTransaction: usecase)
+        let view = RecentTransactionsView(user: user, presenter: presenter)
+        presenter.router = router
+        presenter.view = view
+        return view
+    }
+    
     static func getAllTransactionView(user: User, router: Router) -> GetAllTransactionView {
         let database = GetAllTransactionDatabase()
         let dataManager = GetAllTransactionDataManager(database: database)

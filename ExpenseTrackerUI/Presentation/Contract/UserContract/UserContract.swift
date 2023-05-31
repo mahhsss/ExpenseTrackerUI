@@ -95,6 +95,14 @@ protocol GetAllTransactionViewContract: AnyObject {
     func load(success: GetAllTransactionResponse)
     func failure(error: GetAllTransactionError)
 }
+//------------------------ GetRecentTransaction Contracts ----------------------------
+protocol GetRecentTransactionPresenterContract: AnyObject {
+    func viewLoadTransaction(user: User, month: String)
+}
+protocol GetRecentTransactionViewContract: AnyObject {
+    func load(success: GetRecentTransactionResponse)
+    func failure(error: GetRecentTransactionError)
+}
 //------------------------------------------------------------------------------
 
 //------------------------ DeleteTransaction Contracts -------------------------

@@ -11,15 +11,13 @@ import AppKit
 class MainHomeView: NSView {
     
     var expenseView = NSView()
-    var recentTransactionsView = NSView()
+    var recentTransactionsView: RecentTransactionsView!
     var budgetView: GetBudgetView!
     var spent: GetMonthlySpentView!
     var income: GetMonthlyIncomeView!
     var balance: GetMonthlyBalanceView!
  
     override init(frame frameRect: NSRect) {
-        
-//        spent = GetMonthlySpentView()
         super.init(frame: frameRect)
     }
     
@@ -64,15 +62,14 @@ class MainHomeView: NSView {
             expenseStack.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor,constant: 8),
             expenseStack.widthAnchor.constraint(equalTo: expenseView.widthAnchor, multiplier: 0.90),
             thisMonthText.topAnchor.constraint(equalTo: expenseView.topAnchor, constant: 25),
-            thisMonthText.leftAnchor.constraint(equalTo: expenseView.leftAnchor, constant: 72)
+            thisMonthText.leftAnchor.constraint(equalTo: expenseView.leftAnchor, constant: 52)
         ])
     }
     
     func configureRecentTransactionsView() {
         
-        var transactionTable = NSTableView()
-        var scrollView = NSScrollView()
-//        var transactionLabel = CustomText.customStringLabel(label: "Recent transactions", fontSize: <#T##Int#>)
+        _ = NSTableView()
+        _ = NSScrollView()
         recentTransactionsView.translatesAutoresizingMaskIntoConstraints = false
         recentTransactionsView.wantsLayer = true
         recentTransactionsView.layer?.backgroundColor = .black
