@@ -95,7 +95,7 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
             spentStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
             spentStack.heightAnchor.constraint(equalToConstant:  150),
-            spentStack.widthAnchor.constraint(equalToConstant: 400),
+            spentStack.widthAnchor.constraint(equalToConstant: 410),
             self.heightAnchor.constraint(equalToConstant: 120),
             self.widthAnchor.constraint(equalToConstant: 320)
         ])

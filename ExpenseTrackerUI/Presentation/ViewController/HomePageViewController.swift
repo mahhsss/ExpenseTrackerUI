@@ -13,6 +13,7 @@ class HomePageViewController: NSViewController {
     
     var router: Router
     var mainView: MainHomeView
+    var leftMenuBar = LeftMenuBar()
     
     init(user: User, router: Router) {
         self.router = router
@@ -36,25 +37,49 @@ class HomePageViewController: NSViewController {
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: NSScreen.main!.frame.width, height: NSScreen.main!.frame.height))
-        view.wantsLayer = true
-        mainView.wantsLayer = true
-        view.layer?.backgroundColor = .black
-        mainView.layer?.backgroundColor = #colorLiteral(red: 0.1794968843, green: 0.1844770312, blue: 0.1929811239, alpha: 1)
-        mainView.layer?.cornerRadius = 10
+    }
+    
+    override func viewWillLayout() {
+        
+        view.window!.standardWindowButton(.closeButton)?.frame.origin.x = 8.0
+        view.window!.standardWindowButton(.closeButton)?.frame.origin.y = -2.0
+        view.window!.standardWindowButton(.miniaturizeButton)?.frame.origin.x = 30.0
+        view.window!.standardWindowButton(.miniaturizeButton)?.frame.origin.y = -2.0
+        view.window!.standardWindowButton(.zoomButton)?.frame.origin.x = 52.0
+        view.window!.standardWindowButton(.zoomButton)?.frame.origin.y = -2.0
     }
     
     override func viewDidLoad() {
         
         mainView.translatesAutoresizingMaskIntoConstraints = false
+        leftMenuBar.translatesAutoresizingMaskIntoConstraints = false
         mainView.wantsLayer = true
+        view.wantsLayer = true
+        mainView.wantsLayer = true
+        view.layer?.backgroundColor = .black
+        mainView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        mainView.layer?.cornerRadius = 20
+        leftMenuBar.wantsLayer = true
+        leftMenuBar.layer?.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        leftMenuBar.layer?.borderWidth = 1
+        leftMenuBar.layer?.cornerRadius = 30
+        leftMenuBar.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
         
         view.addSubview(mainView)
+        view.addSubview(leftMenuBar)
         
         NSLayoutConstraint.activate([
             mainView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 50),
-            mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 30),
-            mainView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90),
-            mainView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90)
+            mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 35),
+            mainView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.88),
+            mainView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.91)
+        ])
+        
+        NSLayoutConstraint.activate([
+            leftMenuBar.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 30),
+            leftMenuBar.rightAnchor.constraint(equalTo: mainView.leftAnchor, constant: -20),
+            leftMenuBar.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90),
+            leftMenuBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.05)
         ])
         
     }

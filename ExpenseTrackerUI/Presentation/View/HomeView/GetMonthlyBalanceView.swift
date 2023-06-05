@@ -56,7 +56,7 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
         balanceStack.translatesAutoresizingMaskIntoConstraints = false
         balanceStack.orientation = .vertical
         balanceStack.spacing = 15
-        self.layer?.backgroundColor = .white
+        self.layer?.backgroundColor = .init(red: 0.1, green: 2.5, blue: 5, alpha: 0.5)
         self.layer?.cornerRadius = 20
         
         addSubview(balanceStack)
@@ -66,7 +66,7 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
             balanceStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             balanceStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
             balanceStack.heightAnchor.constraint(equalToConstant:  150),
-            balanceStack.widthAnchor.constraint(equalToConstant: 400),
+            balanceStack.widthAnchor.constraint(equalToConstant: 410),
             self.heightAnchor.constraint(equalToConstant: 120),
             self.widthAnchor.constraint(equalToConstant: 320)
         ])
@@ -82,7 +82,7 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
         balanceStack.translatesAutoresizingMaskIntoConstraints = false
         balanceStack.orientation = .vertical
         balanceStack.spacing = 15
-        self.layer?.backgroundColor = .white
+        self.layer?.backgroundColor = .init(red: 0.1, green: 2.5, blue: 5, alpha: 0.5)
         self.layer?.cornerRadius = 20
         
         addSubview(balanceStack)

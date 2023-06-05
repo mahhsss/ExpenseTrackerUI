@@ -41,7 +41,7 @@ class MainHomeView: NSView {
         expenseStack.translatesAutoresizingMaskIntoConstraints = false
         expenseView.translatesAutoresizingMaskIntoConstraints = false
         expenseView.wantsLayer = true
-        expenseView.layer?.borderWidth = 2
+        expenseView.layer?.borderWidth = 1
         expenseView.layer?.borderColor = #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1)
         expenseView.layer?.cornerRadius = 10
         expenseStack.orientation = .horizontal
@@ -73,8 +73,6 @@ class MainHomeView: NSView {
         recentTransactionsView.translatesAutoresizingMaskIntoConstraints = false
         recentTransactionsView.wantsLayer = true
         recentTransactionsView.layer?.backgroundColor = .black
-        recentTransactionsView.layer?.borderColor = .white
-        recentTransactionsView.layer?.borderWidth = 2
         recentTransactionsView.layer?.cornerRadius = 10
         
         addSubview(recentTransactionsView)
@@ -92,8 +90,6 @@ class MainHomeView: NSView {
         budgetView.translatesAutoresizingMaskIntoConstraints = false
         budgetView.wantsLayer = true
         budgetView.layer?.backgroundColor = .black
-        budgetView.layer?.borderColor = .white
-        budgetView.layer?.borderWidth = 2
         budgetView.layer?.cornerRadius = 10
         
         addSubview(budgetView)

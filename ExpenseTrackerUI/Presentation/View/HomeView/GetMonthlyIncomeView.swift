@@ -68,7 +68,7 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
             incomeStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             incomeStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
             incomeStack.heightAnchor.constraint(equalToConstant:  150),
-            incomeStack.widthAnchor.constraint(equalToConstant: 400),
+            incomeStack.widthAnchor.constraint(equalToConstant: 410),
             self.heightAnchor.constraint(equalToConstant: 120),
             self.widthAnchor.constraint(equalToConstant: 320)
         ])

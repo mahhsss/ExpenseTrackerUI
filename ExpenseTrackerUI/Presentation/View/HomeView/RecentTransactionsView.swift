@@ -54,7 +54,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         transactions = success.transactions
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder
-        scrollView.scrollerKnobStyle = .dark
+        scrollView.scrollerKnobStyle = .light
 //        scrollView.horizontalScrollElasticity = .none
         transactionLable.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +66,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         tableView.rowHeight = 100
         tableView.allowsMultipleSelection = true
         tableView.headerView = nil
+        tableView.selectionHighlightStyle = .none
         scrollView.documentView = tableView
         
         let column1 = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "Transaction"))
@@ -124,7 +125,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         addTransactionButton.action = #selector(addTransaction(_:))
         addTransactionButton.focusRingType = .none
         addTransactionButton.font = .systemFont(ofSize: 15)
-        addTransactionButton.layer?.borderWidth = 2
+        addTransactionButton.layer?.borderWidth = 1
         addTransactionButton.layer?.borderColor = .white
         
         addTransactionButton.layer?.cornerRadius = 20
@@ -160,29 +161,31 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
         let inputDate = inputFormatter.date(from: inputDateString)
         let outputDateString = outputFormatter.string(from: inputDate!)
 
-        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencyCode = "INR"
+
+        let formattedAmount = numberFormatter.string(from: NSNumber(value: transactions[row].amount))
         guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: TransactionCellView.identifier) , owner: self) as? TransactionCellView else {
             let cell = TransactionCellView()
-            cell.amount.stringValue = String(transactions[row].amount)
+            cell.amount.stringValue = formattedAmount!
             cell.date.stringValue = String(outputDateString)
             cell.mode.stringValue = transactions[row].currencyType.rawValue
             cell.type.stringValue = transactions[row].transactionType.rawValue
-            if transactions[row].category == "Food" {
-                cell.image.image = NSImage(systemSymbolName: "fork.knife.circle", accessibilityDescription: nil)
+            cell.image.image = NSImage(named: transactions[row].category!)
+            if transactions[row].transactionType.rawValue == "Income" {
+                cell.image.image = NSImage(named: "rupee")
             }
-            else if transactions[row].category == "Travel" {
-                cell.image.image = NSImage(systemSymbolName: "car.circle", accessibilityDescription: nil)
-            }
-            else {
-                cell.image.image = NSImage(systemSymbolName: "cart.circle", accessibilityDescription: nil)
-            }
-            
             return cell
         }
-        cell.amount.stringValue = String(transactions[row].amount)
+        cell.amount.stringValue = formattedAmount!
         cell.date.stringValue = String(outputDateString)
         cell.mode.stringValue = transactions[row].currencyType.rawValue
         cell.type.stringValue = transactions[row].transactionType.rawValue
+        cell.image.image = NSImage(named: transactions[row].category!)
+        if transactions[row].transactionType.rawValue == "Income" {
+            cell.image.image = NSImage(named: "rupee")
+        }
         return cell
     }
 }
@@ -235,7 +238,7 @@ class TransactionCellView: NSTableCellView {
             transactionStack.heightAnchor.constraint(equalTo: heightAnchor),
             image.rightAnchor.constraint(equalTo: transactionStack.leftAnchor, constant: 7),
             image.centerYAnchor.constraint(equalTo: centerYAnchor),
-            image.heightAnchor.constraint(equalTo: heightAnchor),
+            image.heightAnchor.constraint(equalTo: heightAnchor, constant: -50),
             image.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)
         ])
     }
