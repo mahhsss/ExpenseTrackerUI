@@ -18,6 +18,7 @@
 		2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149829BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift */; };
 		2A16149C29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149B29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift */; };
 		2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149D29BB4560005E999E /* GetAnalysisView.swift */; };
+		2A3EE3382A2DFED400276E95 /* ToolBar .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EE3372A2DFED400276E95 /* ToolBar .swift */; };
 		2A5DCDDF2A1CE000007586CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDDE2A1CE000007586CF /* main.swift */; };
 		2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */; };
 		2A5DCDF72A1F26FC007586CF /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDF62A1F26FC007586CF /* CustomText.swift */; };
@@ -91,6 +92,7 @@
 		2A16149829BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A16149B29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A16149D29BB4560005E999E /* GetAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnalysisView.swift; sourceTree = "<group>"; };
+		2A3EE3372A2DFED400276E95 /* ToolBar .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolBar .swift"; sourceTree = "<group>"; };
 		2A5DCDDE2A1CE000007586CF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		2A5DCDF62A1F26FC007586CF /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				2A6458202A27C42F00DC2AB3 /* LeftMenuBarView.swift */,
+				2A3EE3372A2DFED400276E95 /* ToolBar .swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				2AADAFF929B2136E00F7962D /* AddTransactionPresenter.swift in Sources */,
 				2A16148829B8A559005E999E /* GetTransactionPresenter.swift in Sources */,
 				2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */,
+				2A3EE3382A2DFED400276E95 /* ToolBar .swift in Sources */,
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
 				2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */,
 				2A7B9F6729C18A7400A9BFAE /* AddBudget.swift in Sources */,

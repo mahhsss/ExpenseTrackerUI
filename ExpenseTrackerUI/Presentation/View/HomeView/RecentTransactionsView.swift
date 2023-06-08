@@ -34,12 +34,10 @@ class RecentTransactionsView: NSView {
         let year = calendar.component(.year, from: currentDate)
         let month = calendar.component(.month, from: currentDate)
         let startDateComponents = DateComponents(year: year, month: month, day: 1)
-        guard let startDate = calendar.date(from: startDateComponents) else {
-            fatalError("Failed to create the starting date.")
-        }
+        let startDate = calendar.date(from: startDateComponents)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedStartDate = dateFormatter.string(from: startDate)
+        let formattedStartDate = dateFormatter.string(from: startDate!)
         self.presenter.viewLoadTransaction(user: user, month: formattedStartDate)
     }
 }
@@ -88,7 +86,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
     
     func failure(error: GetRecentTransactionError) {
         
-        let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 25, fontColor: .white, fontStyle: "Trap-Medium")
+        let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 22, fontColor: .white, fontStyle: "Trap-Medium")
         let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 15, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         var addTransactionButton = NSButton()
         let transactionStack = NSStackView(views: [noTransactionLable, addTransactionButton])

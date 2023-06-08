@@ -41,12 +41,10 @@ class GetBudgetView: NSView {
         let year = calendar.component(.year, from: currentDate)
         let month = calendar.component(.month, from: currentDate)
         let startDateComponents = DateComponents(year: year, month: month, day: 1)
-        guard let startDate = calendar.date(from: startDateComponents) else {
-            fatalError("Failed to create the starting date.")
-        }
+        let startDate = calendar.date(from: startDateComponents)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
-        let formattedStartDate = dateFormatter.string(from: startDate)
+        let formattedStartDate = dateFormatter.string(from: startDate!)
         
         outterBar.translatesAutoresizingMaskIntoConstraints = false
         innerBar.translatesAutoresizingMaskIntoConstraints = false
@@ -122,9 +120,9 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
         }
         
-        let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 25, fontColor: .white, fontStyle: "Trap-SemiBold")
-        let thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 20, fontColor: .systemBlue, fontStyle: "Trap-Medium")
-        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 19, fontColor: .white, fontStyle: "Trap-Medium")
+        let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 18, fontColor: .systemBlue, fontStyle: "Trap-Medium")
+        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 17, fontColor: .white, fontStyle: "Trap-Medium")
         let budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -160,9 +158,9 @@ extension GetBudgetView: GetBudgetViewContract {
     
     func failure(error: ExpenseTrackerBackend.GetBudgetError) {
         
-        let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 25, fontColor: .white, fontStyle: "Trap-SemiBold")
-        let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 15, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
-        let setBudgetText = CustomText.customStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 15, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
+        let setBudgetText = CustomText.customStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 14, fontColor: .white, fontStyle: "Trap-SemiBold")
         addBudgetButton = customAddBudgetButton(addBudgetButton: addBudgetButton)
         let textAndButtonStack = NSStackView(views: [noBudgetText, setBudgetText, addBudgetButton])
         

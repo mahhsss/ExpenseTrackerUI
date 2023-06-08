@@ -31,12 +31,10 @@ class GetMonthlyIncomeView: NSView {
         let year = calendar.component(.year, from: currentDate)
         let month = calendar.component(.month, from: currentDate)
         let startDateComponents = DateComponents(year: year, month: month, day: 1)
-        guard let startDate = calendar.date(from: startDateComponents) else {
-            fatalError("Failed to create the starting date.")
-        }
+        let startDate = calendar.date(from: startDateComponents)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedStartDate = dateFormatter.string(from: startDate)
+        let formattedStartDate = dateFormatter.string(from: startDate!)
         
         presenter?.viewLoadMonthlySpent(user: user, month: formattedStartDate)
         
@@ -49,8 +47,8 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
     func load(success: ExpenseTrackerBackend.GetMonthlyIncomeResponse) {
         
         
-        let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 33, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let incomeValue = CustomText.customStringLabel(label: String(success.income), fontSize: 40, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let incomeValue = CustomText.customStringLabel(label: String(success.income), fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let incomeStack = NSStackView(views: [incomeLabel, incomeValue])
         
         self.wantsLayer = true
@@ -66,18 +64,18 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
         NSLayoutConstraint.activate([
             
             incomeStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            incomeStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
-            incomeStack.heightAnchor.constraint(equalToConstant:  150),
-            incomeStack.widthAnchor.constraint(equalToConstant: 410),
-            self.heightAnchor.constraint(equalToConstant: 120),
-            self.widthAnchor.constraint(equalToConstant: 320)
+            incomeStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
+            incomeStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
+            incomeStack.widthAnchor.constraint(equalToConstant: 400),
+//            self.heightAnchor.constraint(equalToConstant: 120),
+//            self.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
     
     func failure(error: ExpenseTrackerBackend.GetMonthlyIncomeError) {
-        print("There is no income this month")
-        let spentLabel = CustomText.customStringLabel(label: "Income", fontSize: 33, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 40, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        
+        let spentLabel = CustomText.customStringLabel(label: "Income", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let spentStack = NSStackView(views: [spentLabel, spentValue])
         
         self.wantsLayer = true
@@ -93,11 +91,11 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
         NSLayoutConstraint.activate([
             
             spentStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
-            spentStack.heightAnchor.constraint(equalToConstant:  150),
+            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
+            spentStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
             spentStack.widthAnchor.constraint(equalToConstant: 400),
-            self.heightAnchor.constraint(equalToConstant: 120),
-            self.widthAnchor.constraint(equalToConstant: 320)
+//            self.heightAnchor.constraint(equalToConstant: 120),
+//            self.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
 }

@@ -32,12 +32,10 @@ public class GetMonthlySpentView: NSView {
         let year = calendar.component(.year, from: currentDate)
         let month = calendar.component(.month, from: currentDate)
         let startDateComponents = DateComponents(year: year, month: month, day: 1)
-        guard let startDate = calendar.date(from: startDateComponents) else {
-            fatalError("Failed to create the starting date.")
-        }
+        let startDate = calendar.date(from: startDateComponents)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedStartDate = dateFormatter.string(from: startDate)
+        let formattedStartDate = dateFormatter.string(from: startDate!)
         
         presenter.viewLoadMonthlySpent(user: user, month: formattedStartDate)
         
@@ -49,8 +47,8 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
     
     func load(success: ExpenseTrackerBackend.GetMonthlySpentResponse) {
         
-        let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 35, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let spentValue = CustomText.customStringLabel(label: String(success.spent), fontSize: 40, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let spentValue = CustomText.customStringLabel(label: String(success.spent), fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let spentStack = NSStackView(views: [spentLabel, spentValue])
         
         self.wantsLayer = true
@@ -66,18 +64,18 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
         NSLayoutConstraint.activate([
             
             spentStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
-            spentStack.heightAnchor.constraint(equalToConstant:  150),
+            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
+            spentStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
             spentStack.widthAnchor.constraint(equalToConstant: 400),
-            self.heightAnchor.constraint(equalToConstant: 120),
-            self.widthAnchor.constraint(equalToConstant: 320)
+//            self.heightAnchor.constraint(equalToConstant: 120),
+//            self.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
     
     func failure(error: ExpenseTrackerBackend.GetMonthlySpentError) {
         
-        let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 33, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 40, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let spentStack = NSStackView(views: [spentLabel, spentValue])
         
         self.wantsLayer = true
@@ -93,13 +91,12 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
         NSLayoutConstraint.activate([
             
             spentStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
-            spentStack.heightAnchor.constraint(equalToConstant:  150),
-            spentStack.widthAnchor.constraint(equalToConstant: 410),
-            self.heightAnchor.constraint(equalToConstant: 120),
-            self.widthAnchor.constraint(equalToConstant: 320)
+            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
+            spentStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
+            spentStack.widthAnchor.constraint(equalToConstant: 400),
+//            self.heightAnchor.constraint(equalToConstant: 120),
+//            self.widthAnchor.constraint(equalToConstant: 320)
         ])
-        print("there was no spending in this month")
     }
     
     

@@ -34,7 +34,7 @@ class MainHomeView: NSView {
     
     func configureExpenseViews() {
         
-        let thisMonthText = CustomText.customStringLabel(label: "This month", fontSize: 25, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let thisMonthText = CustomText.customStringLabel(label: "This month", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
         let expenseStack = NSStackView(views: [spent, income, balance])
         
         thisMonthText.translatesAutoresizingMaskIntoConstraints = false
@@ -56,13 +56,22 @@ class MainHomeView: NSView {
             
             expenseView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             expenseView.leftAnchor.constraint(equalTo: leftAnchor, constant: 34),
-            expenseView.heightAnchor.constraint(equalToConstant: 220),
+            expenseView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
             expenseView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.95),
             expenseStack.centerXAnchor.constraint(equalTo: expenseView.centerXAnchor),
             expenseStack.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor,constant: 8),
             expenseStack.widthAnchor.constraint(equalTo: expenseView.widthAnchor, multiplier: 0.90),
             thisMonthText.topAnchor.constraint(equalTo: expenseView.topAnchor, constant: 25),
             thisMonthText.leftAnchor.constraint(equalTo: expenseView.leftAnchor, constant: 52)
+        ])
+        
+        NSLayoutConstraint.activate([
+            spent.heightAnchor.constraint(equalTo: expenseView.heightAnchor, multiplier: 0.50),
+            spent.widthAnchor.constraint(equalToConstant: 320),
+            income.heightAnchor.constraint(equalTo: expenseView.heightAnchor, multiplier: 0.50),
+            income.widthAnchor.constraint(equalToConstant: 320),
+            balance.heightAnchor.constraint(equalTo: expenseView.heightAnchor, multiplier: 0.50),
+            balance.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
     
@@ -80,8 +89,8 @@ class MainHomeView: NSView {
         NSLayoutConstraint.activate([
             recentTransactionsView.topAnchor.constraint(equalTo: expenseView.bottomAnchor, constant: 15),
             recentTransactionsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 34),
-            recentTransactionsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.41),
-            recentTransactionsView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.46)
+            recentTransactionsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.40),
+            recentTransactionsView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.465)
         ])
     }
     
@@ -97,8 +106,8 @@ class MainHomeView: NSView {
         NSLayoutConstraint.activate([
             budgetView.topAnchor.constraint(equalTo: expenseView.bottomAnchor, constant: 15),
             budgetView.rightAnchor.constraint(equalTo: expenseView.rightAnchor),
-            budgetView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.41),
-            budgetView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.46)
+            budgetView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.40),
+            budgetView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.465)
         ])
     }
     

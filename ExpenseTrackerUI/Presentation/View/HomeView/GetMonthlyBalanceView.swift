@@ -33,12 +33,10 @@ class GetMonthlyBalanceView: NSView {
         let year = calendar.component(.year, from: currentDate)
         let month = calendar.component(.month, from: currentDate)
         let startDateComponents = DateComponents(year: year, month: month, day: 1)
-        guard let startDate = calendar.date(from: startDateComponents) else {
-            fatalError("Failed to create the starting date.")
-        }
+        let startDate = calendar.date(from: startDateComponents)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedStartDate = dateFormatter.string(from: startDate)
+        let formattedStartDate = dateFormatter.string(from: startDate!)
         
         self.presenter.viewLoadMonthlyBalance(user: user, month: formattedStartDate)
     }
@@ -47,8 +45,8 @@ class GetMonthlyBalanceView: NSView {
 extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
     func load(success: ExpenseTrackerBackend.GetMonthlyBalanceResponse) {
         
-        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 33, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let balanceValue = CustomText.customStringLabel(label: String(success.balance), fontSize: 40, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let balanceValue = CustomText.customStringLabel(label: String(success.balance), fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let balanceStack = NSStackView(views: [balanceLabel, balanceValue])
         
         self.wantsLayer = true
@@ -64,17 +62,17 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
         NSLayoutConstraint.activate([
             
             balanceStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            balanceStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
-            balanceStack.heightAnchor.constraint(equalToConstant:  150),
-            balanceStack.widthAnchor.constraint(equalToConstant: 410),
-            self.heightAnchor.constraint(equalToConstant: 120),
-            self.widthAnchor.constraint(equalToConstant: 320)
+            balanceStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
+            balanceStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
+            balanceStack.widthAnchor.constraint(equalToConstant: 400),
+//            self.heightAnchor.constraint(equalToConstant: 120),
+//            self.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
     
     func failure(error: ExpenseTrackerBackend.GetMonthlyBalanceError) {
-        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 33, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let balanceValue = CustomText.customStringLabel(label: "0.00", fontSize: 40, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let balanceValue = CustomText.customStringLabel(label: "0.00", fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let balanceStack = NSStackView(views: [balanceLabel, balanceValue])
         
         self.wantsLayer = true
@@ -90,11 +88,11 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
         NSLayoutConstraint.activate([
             
             balanceStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            balanceStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 33),
-            balanceStack.heightAnchor.constraint(equalToConstant:  150),
+            balanceStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
+            balanceStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
             balanceStack.widthAnchor.constraint(equalToConstant: 400),
-            self.heightAnchor.constraint(equalToConstant: 120),
-            self.widthAnchor.constraint(equalToConstant: 320)
+//            self.heightAnchor.constraint(equalToConstant: 120),
+//            self.widthAnchor.constraint(equalToConstant: 320)
         ])
     } 
 }
