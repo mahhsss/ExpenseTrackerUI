@@ -120,7 +120,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         addTransactionButton.isBordered = false
         addTransactionButton.alignment = .center
         addTransactionButton.target = self
-        addTransactionButton.action = #selector(addTransaction(_:))
+//        addTransactionButton.action = #selector(addTransaction(_:))
         addTransactionButton.focusRingType = .none
         addTransactionButton.font = .systemFont(ofSize: 15)
         addTransactionButton.layer?.borderWidth = 1
@@ -136,9 +136,6 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         return addTransactionButton
     }
     
-    @objc func addTransaction(_ sender: NSButton) {
-        print("addTransaction")
-    }
 }
 
 extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {

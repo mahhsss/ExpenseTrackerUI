@@ -17,6 +17,8 @@ class ToolBar: NSView {
     var leftPoint: NSLayoutConstraint!
     var profilePopOver = NSPopover()
     var user: User!
+    var router: Router!
+    var floatingWindow: AddFloatingWindow!
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -38,6 +40,8 @@ class ToolBar: NSView {
         setBudgetTransaction.title = "Set budget"
         profileImageButton.action = #selector(profileButtonClicked(_:))
         profileImageButton.target = self
+        addTransactionButton.action = #selector(addTransactionButtonClicked(_:))
+        addTransactionButton.target = self
         
         addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
         setBudgetTransaction.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +117,19 @@ class ToolBar: NSView {
         } else {
             profilePopOver.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
         }
+    }
+    
+    @objc func addTransactionButtonClicked(_ sender: NSButton) {
+        if floatingWindow != nil {
+            floatingWindow.close()
+        }
+        floatingWindow = AddFloatingWindow(user: user, router: router, reloader: self)
+        floatingWindow.showWindow(self)
+        floatingWindow.window?.hidesOnDeactivate = true
+    }
+    
+    func reload() {
+        self.router.home(user: user)
     }
 }
 

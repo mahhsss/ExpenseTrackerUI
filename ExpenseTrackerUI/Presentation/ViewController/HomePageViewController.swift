@@ -26,6 +26,7 @@ class HomePageViewController: NSViewController {
         mainView = MainHomeView()
         toolBar = ToolBar()
         toolBar.user = user
+        toolBar.router = router
         mainView.spent = spentView
         mainView.income = incomeView
         mainView.balance = balanceView

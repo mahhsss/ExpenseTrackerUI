@@ -41,12 +41,12 @@ class Router {
         self.window.contentView = Assembler.homePageView(router: self, user: user)
     }
     
-    func addExpense(user: User) {
-        self.window.contentView = Assembler.addTransactionView(user: user, router: self, transactionType: TransactionType.spending)
+    func addExpense(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
+        self.window.contentView = Assembler.addTransactionView(user: user, router: self, windowController: windowController, reloader: reloader)
     }
     
-    func addIncome(user: User) {
-        self.window.contentView = Assembler.addTransactionView(user: user, router: self, transactionType: TransactionType.income)
+    func addIncome(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
+        self.window.contentView = Assembler.addTransactionView(user: user, router: self, windowController: windowController, reloader: reloader)
     }
     
     func getAllTransaction(user: User) {

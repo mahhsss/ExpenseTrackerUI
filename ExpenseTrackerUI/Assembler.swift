@@ -84,14 +84,16 @@ extension Assembler {
 //------------------------- Transaction Assembler --------------------------
 extension Assembler {
     
-    static func addTransactionView(user: User, router: Router, transactionType: TransactionType) -> AddTransactionView {
+    static func addTransactionView(user: User, router: Router, windowController: AddFloatingWindow, reloader: ToolBar) -> AddTransactionView {
         let database = AddTransactionDataDatabaseService()
         let dataManager = AddNewTransactionDataManager(database: database)
         let usecase = AddNewTransaction(dataManager: dataManager)
         let presenter = AddTransactionPresenter(AddNewTransaction: usecase)
-        let view = AddTransactionView(user: user, presenter: presenter, transactionType: transactionType)
+        let view = AddTransactionView(user: user, presenter: presenter)
         presenter.view = view
         presenter.router = router
+        presenter.windowController = windowController
+        presenter.reloader = reloader
         return view
         
     }

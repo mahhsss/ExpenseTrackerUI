@@ -12,6 +12,8 @@ class AddTransactionPresenter {
    
     weak var view: AddNewTransactionContract?
     weak var router: Router?
+    weak var reloader: ToolBar?
+    weak var windowController: AddFloatingWindow?
     var newTransaction: AddNewTransaction
     
     init(AddNewTransaction: AddNewTransaction) {
@@ -25,13 +27,12 @@ extension AddTransactionPresenter: AddTransactionContract {
         let request =  AddNewTransactionRequest(userId: user.userId, transaction: transaction)
         newTransaction.execute(request: request) { [weak self] response in
             self?.view?.load(success: response)
-//            self?.router?.categoryView(user: user)
-            self?.router?.addTransaction(user: user)
-            self?.router?.addMonthlyAnalysisTransaction(user: user, transaction: transaction)
+            self?.reloader?.reload()
+            self?.windowController?.close()
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error)
-            self?.router?.categoryView(user: user)
-            
+            self?.reloader?.reload()
+            self?.windowController?.close()
         }
     }
     
