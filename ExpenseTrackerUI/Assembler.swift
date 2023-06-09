@@ -74,12 +74,6 @@ extension Assembler {
     }
 }
 
-extension Assembler {
-    
-    static func homePageView(router: Router, user: User) -> HomePageView {
-        return HomePageView(router: router, user: user)
-    }
-}
 
 //------------------------- Transaction Assembler --------------------------
 extension Assembler {

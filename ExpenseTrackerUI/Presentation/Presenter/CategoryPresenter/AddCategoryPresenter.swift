@@ -25,10 +25,8 @@ extension AddCategoryPresenter: AddCategoryPageContract {
         let request = AddCategoryRequest(userId: user.userId, category: category)
         addCategory.execute(request: request) { response in
             self.view?.load(sucess: response)
-            self.router?.addTransaction(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
-            self.router?.addTransaction(user: user)
         }
         
     }

@@ -37,8 +37,8 @@ class Router {
 //-------------------------------------------------------------------------------------------
     
 //-------------------------------------- Home -----------------------------------------------
-    func addTransaction(user: User) {
-        self.window.contentView = Assembler.homePageView(router: self, user: user)
+    func addTransaction(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
+        self.window.contentView = Assembler.addTransactionView(user: user, router: self, windowController: windowController, reloader: reloader)
     }
     
     func addExpense(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {

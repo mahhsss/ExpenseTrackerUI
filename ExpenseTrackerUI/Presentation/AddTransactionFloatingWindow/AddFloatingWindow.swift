@@ -17,11 +17,13 @@ class AddFloatingWindow: NSWindowController {
     init(user: User, router: Router, reloader: ToolBar) {
         self.user = user
         self.router = router
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-                                styleMask: [.titled, .closable],
+        let window = NSWindow(contentRect: NSRect(x: 415, y: 50, width: 400, height: 300),
+                              styleMask: [.titled, .closable, .fullSizeContentView],
                                 backing: .buffered,
                                 defer: false)
         super.init(window: window)
+        window.titlebarSeparatorStyle = .none
+        window.titlebarAppearsTransparent = true
         customiseFloatingWindow(user: user, router: router, windowController: self, reloader: reloader)
     }
     

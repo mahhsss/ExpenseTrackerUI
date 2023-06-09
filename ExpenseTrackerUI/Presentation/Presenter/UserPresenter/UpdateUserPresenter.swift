@@ -26,7 +26,6 @@ extension UpdateUserPresenter: UpdateUserPresenterContract {
         let request = UpdateUserRequest(user: user, column: column, update: update)
         self.updateUser.execute(request: request) { response in
             self.view?.load(success: response)
-            self.router?.addTransaction(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
         }

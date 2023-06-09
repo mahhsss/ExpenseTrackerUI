@@ -62,7 +62,6 @@
 		2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */; };
 		2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */; };
 		2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */; };
-		2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE929B07BAF00F7962D /* HomePageView.swift */; };
 		2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFEB29B0996500F7962D /* AddTransactionView.swift */; };
 		2AADAFF929B2136E00F7962D /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */; };
 		2AADB00129B5FC4400F7962D /* GetCategorysPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADB00029B5FC4400F7962D /* GetCategorysPresenter.swift */; };
@@ -139,7 +138,6 @@
 		2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationView.swift; sourceTree = "<group>"; };
 		2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 		2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserPresenter.swift; sourceTree = "<group>"; };
-		2AADAFE929B07BAF00F7962D /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		2AADAFEB29B0996500F7962D /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		2AADAFF829B2136E00F7962D /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
 		2AADB00029B5FC4400F7962D /* GetCategorysPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategorysPresenter.swift; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				2A5DCE082A209796007586CF /* MainHomePageView.swift */,
-				2AADAFE929B07BAF00F7962D /* HomePageView.swift */,
 				2AADAFEB29B0996500F7962D /* AddTransactionView.swift */,
 				2A16148529B89F64005E999E /* GetTransactionView.swift */,
 				2A7B9F4E29C0561500A9BFAE /* UpdateTransactionView.swift */,
@@ -545,7 +542,6 @@
 				2AADAFF929B2136E00F7962D /* AddTransactionPresenter.swift in Sources */,
 				2A16148829B8A559005E999E /* GetTransactionPresenter.swift in Sources */,
 				2A5E3B5A2A3247FC0044C8F8 /* AddViewController.swift in Sources */,
-				2AADAFEA29B07BAF00F7962D /* HomePageView.swift in Sources */,
 				2A3EE3382A2DFED400276E95 /* ToolBar .swift in Sources */,
 				2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */,
 				2A7B9F5129C0593800A9BFAE /* UpdateTransactionPresenter.swift in Sources */,

@@ -25,10 +25,8 @@ extension GetWeeklyTransactionAnalysisPresenter: GetWeeklyTransactionAnalysisPre
         let request = GetTransactionAnalysisRequest(userId: user.userId, startDate: startDate, endDate: endDate)
         self.getWeeklyTransactionAnalysis.execute(request: request) { response in
             self.view?.load(success: response)
-            self.router?.addTransaction(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
-            self.router?.addTransaction(user: user)
         }
     }
 }

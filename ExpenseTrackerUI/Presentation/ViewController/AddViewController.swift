@@ -30,7 +30,7 @@ class AddViewController: NSViewController {
     }
     
     override func loadView() {
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 600, height: NSScreen.main!.frame.height - 200))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 700, height: NSScreen.main!.frame.height - 200))
         addTransactionView = Assembler.addTransactionView(user: user, router: router!, windowController: windowController!, reloader: reloader!)
     }
     
