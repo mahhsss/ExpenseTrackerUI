@@ -88,9 +88,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         
         let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 22, fontColor: .white, fontStyle: "Trap-Medium")
         let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 15, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
-        var addTransactionButton = NSButton()
-        let transactionStack = NSStackView(views: [noTransactionLable, addTransactionButton])
-        addTransactionButton = customAddTransactionButton(addTransactionButton: addTransactionButton)
+        let transactionStack = NSStackView(views: [noTransactionLable])
         transactionStack.spacing = 30
         
         transactionLable.translatesAutoresizingMaskIntoConstraints = false
@@ -104,36 +102,10 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
             transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             transactionStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 45),
+            transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 60),
             transactionStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
             transactionStack.widthAnchor.constraint(equalTo: widthAnchor)
         ])
-    }
-    
-    func customAddTransactionButton(addTransactionButton: NSButton) -> NSButton {
-        
-        addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
-        addTransactionButton.wantsLayer = true
-        addTransactionButton.title = "Add Transaction"
-//        loginButton.layer?.backgroundColor = #colorLiteral(red: 0.3159786165, green: 0.8165252209, blue: 1, alpha: 1)
-        addTransactionButton.contentTintColor = .white
-        addTransactionButton.isBordered = false
-        addTransactionButton.alignment = .center
-        addTransactionButton.target = self
-//        addTransactionButton.action = #selector(addTransaction(_:))
-        addTransactionButton.focusRingType = .none
-        addTransactionButton.font = .systemFont(ofSize: 15)
-        addTransactionButton.layer?.borderWidth = 1
-        addTransactionButton.layer?.borderColor = .white
-        
-        addTransactionButton.layer?.cornerRadius = 20
-        addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            addTransactionButton.heightAnchor.constraint(equalToConstant: 45),
-            addTransactionButton.widthAnchor.constraint(equalToConstant: 145),
-        ])
-        return addTransactionButton
     }
     
 }

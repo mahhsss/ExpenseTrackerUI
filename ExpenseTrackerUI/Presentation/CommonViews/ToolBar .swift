@@ -42,6 +42,9 @@ class ToolBar: NSView {
         profileImageButton.target = self
         addTransactionButton.action = #selector(addTransactionButtonClicked(_:))
         addTransactionButton.target = self
+        setBudgetTransaction.action = #selector(setBudgetTransactionButtonClicked(_:))
+        setBudgetTransaction.target = self
+        
         
         addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
         setBudgetTransaction.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +109,7 @@ class ToolBar: NSView {
         profilePopOver = NSPopover()
         profilePopOver.behavior = .transient
         profilePopOver.contentSize = NSSize(width: 200, height: 200)
-        profilePopOver.contentViewController = PopoverContentViewController(user: user)
+        profilePopOver.contentViewController = PopoverContentViewController(user: user, router: router)
     
     }
     
@@ -128,6 +131,11 @@ class ToolBar: NSView {
         floatingWindow.window?.hidesOnDeactivate = true
     }
     
+    @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
+        
+        Assembler.addBudget(user: user, router: router)
+    }
+    
     func reload() {
         self.router.home(user: user)
     }
@@ -136,9 +144,11 @@ class ToolBar: NSView {
 class PopoverContentViewController: NSViewController {
     
     var user: User
+    weak var router: Router?
     
-    init(user: User) {
+    init(user: User, router: Router) {
         self.user = user
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -152,13 +162,19 @@ class PopoverContentViewController: NSViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = .init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.2)
         let logoutButton = custLogoutomButton(logoutButton: NSButton())
-        let userName = CustomText.customStringLabel(label: user.name, fontSize: 12, fontColor: .white, fontStyle: "Trap-Medium")
-        let userMailId = CustomText.customStringLabel(label: user.emailId, fontSize: 12, fontColor: .white, fontStyle: "Trap-Medium")
-        let popUpStack = NSStackView(views: [userName, userMailId, logoutButton])
+        let profileLable = CustomText.customStringLabel(label: "Profile", fontSize: 20, fontStyle: "Trap-SemiBold")
+        let attributedString = NSMutableAttributedString(string: profileLable.stringValue)
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributedString.length))
+        profileLable.attributedStringValue = attributedString
+        let userName = CustomText.customStringLabel(label: user.name, fontSize: 12, fontStyle: "Trap-Medium")
+        let userMailId = CustomText.customStringLabel(label: user.emailId, fontSize: 12, fontStyle: "Trap-Medium")
+        let popUpStack = NSStackView(views: [profileLable, userName, userMailId, logoutButton])
         popUpStack.orientation = .vertical
         popUpStack.spacing = 20
         view.addSubview(popUpStack)
         popUpStack.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.action = #selector(logout(_:))
+        logoutButton.target = self
         
         
         NSLayoutConstraint.activate([
@@ -187,5 +203,21 @@ class PopoverContentViewController: NSViewController {
             logoutButton.widthAnchor.constraint(equalToConstant: 100),
         ])
         return logoutButton
+    }
+    
+    @objc func logout(_ sender: NSButton) {
+        
+        let logoutAlert = NSAlert()
+        logoutAlert.messageText = "Are you sure you want to logout?"
+        logoutAlert.addButton(withTitle: "Yes")
+        logoutAlert.addButton(withTitle: "No")
+        logoutAlert.icon = NSImage(named: "profile")
+        let response = logoutAlert.runModal()
+        if response == .alertFirstButtonReturn {
+            self.router?.launch()
+        }
+        else if response == .alertSecondButtonReturn {
+            return
+        } 
     }
 }

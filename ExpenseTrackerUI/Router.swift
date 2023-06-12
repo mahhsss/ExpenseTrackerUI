@@ -41,17 +41,10 @@ class Router {
         self.window.contentView = Assembler.addTransactionView(user: user, router: self, windowController: windowController, reloader: reloader)
     }
     
-    func addExpense(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
-        self.window.contentView = Assembler.addTransactionView(user: user, router: self, windowController: windowController, reloader: reloader)
-    }
-    
-    func addIncome(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
-        self.window.contentView = Assembler.addTransactionView(user: user, router: self, windowController: windowController, reloader: reloader)
-    }
-    
     func getAllTransaction(user: User) {
         self.window.contentView = Assembler.getAllTransactionView(user: user, router: self)
     }
+    
     func updateTransaction(user: User, transaction: Transaction) {
         
         self.window.contentView = Assembler.updateTransactionView(user: user, transaction: transaction, router: self)
@@ -63,10 +56,6 @@ class Router {
     
     func deleteTransaction(user: User, transaction: Transaction) {
         self.window.contentView = Assembler.deleteTransaction(user: user, transaction: transaction, router: self)
-    }
-    
-    func addBudget(user: User) {
-        self.window.contentView = Assembler.addBudget(user: user, router: self)
     }
     
     func addMonthlyAnalysisTransaction(user: User, transaction: Transaction) {

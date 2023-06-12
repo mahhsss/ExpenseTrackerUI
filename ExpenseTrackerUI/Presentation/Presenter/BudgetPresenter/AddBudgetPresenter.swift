@@ -24,8 +24,10 @@ extension AddBudgetPresenter: AddBudgetPresenterContract {
         let request = AddBudgetRequest(userId: user.userId, budget: budget)
         self.addBudget.execute(request: request) { response in
             self.view?.load(success: response)
+            self.router?.home(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
+            self.router?.home(user: user)
         }
     }
 }

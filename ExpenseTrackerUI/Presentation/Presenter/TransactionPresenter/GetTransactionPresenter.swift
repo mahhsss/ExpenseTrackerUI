@@ -26,12 +26,8 @@ extension GetAllTransactionPresenter: GetAllTranasctionPresenterContract {
         let request = GetAllTransactionRequest(userId: user.userId)
         getAllTransaction.execute(request: request) { response in
             self.view?.load(success: response)
-//            self.router?.updateTransaction(user: user, transaction: response.transactions[0])
-//            self.router?.deleteTransaction(user: user, transaction: response.transactions[0])
-            self.router?.addBudget(user: user)
         } onFailure: { error in
             self.view?.failure(error: error)
-            self.router?.categoryView(user: user)
         }
     }
 }

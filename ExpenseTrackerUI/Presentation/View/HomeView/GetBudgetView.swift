@@ -64,35 +64,6 @@ class GetBudgetView: NSView {
         
         presenter.viewLoadBudget(user: user, month: formattedStartDate)
     }
-    
-    func customAddBudgetButton(addBudgetButton: NSButton) -> NSButton {
-        
-        addBudgetButton.translatesAutoresizingMaskIntoConstraints = false
-        addBudgetButton.wantsLayer = true
-        addBudgetButton.title = "Add budget"
-        addBudgetButton.contentTintColor = .white
-        addBudgetButton.isBordered = false
-        addBudgetButton.alignment = .center
-        addBudgetButton.target = self
-        addBudgetButton.action = #selector(addBudget(_:))
-        addBudgetButton.focusRingType = .none
-        addBudgetButton.font = .systemFont(ofSize: 15)
-        addBudgetButton.layer?.borderWidth = 1
-        addBudgetButton.layer?.borderColor = .white
-        
-        addBudgetButton.layer?.cornerRadius = 20
-        addBudgetButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            addBudgetButton.heightAnchor.constraint(equalToConstant: 45),
-            addBudgetButton.widthAnchor.constraint(equalToConstant: 145),
-        ])
-        return addBudgetButton
-    }
-    
-    @objc func addBudget(_ sender: NSButton) {
-        print("addbudget")
-    }
 }
 
 extension GetBudgetView: GetBudgetViewContract {
@@ -161,29 +132,28 @@ extension GetBudgetView: GetBudgetViewContract {
         let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
         let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         let setBudgetText = CustomText.customStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 14, fontColor: .white, fontStyle: "Trap-SemiBold")
-        addBudgetButton = customAddBudgetButton(addBudgetButton: addBudgetButton)
-        let textAndButtonStack = NSStackView(views: [noBudgetText, setBudgetText, addBudgetButton])
+        let textStack = NSStackView(views: [noBudgetText, setBudgetText])
         
-        textAndButtonStack.orientation = .vertical
-        textAndButtonStack.alignment = .centerX
-        textAndButtonStack.spacing = 20
+        textStack.orientation = .vertical
+        textStack.alignment = .centerX
+        textStack.spacing = 20
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
-        textAndButtonStack.translatesAutoresizingMaskIntoConstraints = false
+        textStack.translatesAutoresizingMaskIntoConstraints = false
         
         budgetLabel.wantsLayer = true
-        textAndButtonStack.wantsLayer = true
+        textStack.wantsLayer = true
         
         addSubview(budgetLabel)
-        addSubview(textAndButtonStack)
+        addSubview(textStack)
         
         NSLayoutConstraint.activate([
             budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
-            textAndButtonStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textAndButtonStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 115),
-            textAndButtonStack.heightAnchor.constraint(equalTo: heightAnchor),
-            textAndButtonStack.widthAnchor.constraint(equalTo: widthAnchor),
+            textStack.centerXAnchor.constraint(equalTo: centerXAnchor),
+            textStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 130),
+            textStack.heightAnchor.constraint(equalTo: heightAnchor),
+            textStack.widthAnchor.constraint(equalTo: widthAnchor),
         ])
         
     }

@@ -9,29 +9,60 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class AddBudgetView: NSView {
+class AddBudgetView: NSAlert {
     
     var user: User
     var presenter: AddBudgetPresenterContract
     init(user: User, presenter: AddBudgetPresenterContract) {
         self.user = user
         self.presenter = presenter
-        super.init(frame: NSRect())
+        super.init()
+        addBudget()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidMoveToSuperview() {
-        if superview != nil {
-            addBudget()
-        }
-    }
-    
     func addBudget() {
-        let budget = Budget(budget: 15_000, month: "2023-02")
-        presenter.viewLoadBudget(user: user, budget: budget)
+        
+        self.alertStyle = .informational
+        self.messageText = "Set Budget to have an awareness on your spending"
+        let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+        textField.translatesAutoresizingMaskIntoConstraints =  false
+        textField.isEditable = true
+        textField.wantsLayer = true
+        textField.isSelectable = true
+        textField.isBordered = false
+        textField.focusRingType = .none
+        textField.usesSingleLineMode = true
+        textField.font = .systemFont(ofSize: 15)
+        textField.wantsLayer = true
+        textField.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.1)
+        self.accessoryView = textField
+        self.addButton(withTitle: "Yes")
+        self.addButton(withTitle: "No")
+        self.icon = NSImage(named: "rupee")
+        let response = self.runModal()
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: currentDate)
+        let month = calendar.component(.month, from: currentDate)
+        let startDateComponents = DateComponents(year: year, month: month, day: 1)
+        let startDate = calendar.date(from: startDateComponents)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM"
+        let formattedStartDate = dateFormatter.string(from: startDate!)
+        
+        if response == .alertFirstButtonReturn {
+            let budget = Budget(budget: Int(textField.stringValue)!, month: formattedStartDate)
+            presenter.viewLoadBudget(user: user, budget: budget)
+        }
+        else if response == .alertSecondButtonReturn {
+            return
+        }
+        
     }
 }
 
