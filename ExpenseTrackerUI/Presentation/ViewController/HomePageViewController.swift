@@ -13,6 +13,7 @@ class HomePageViewController: NSViewController {
     
     var router: Router
     var mainView: MainHomeView
+    var transactionView = AllTransactionView()
     var leftMenuBar = LeftMenuBar()
     var toolBar: ToolBar!
     
@@ -63,8 +64,9 @@ class HomePageViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        var toolBarLine = NSView()
+        let toolBarLine = NSView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
+        transactionView.translatesAutoresizingMaskIntoConstraints = false
         leftMenuBar.translatesAutoresizingMaskIntoConstraints = false
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         toolBarLine.translatesAutoresizingMaskIntoConstraints = false
@@ -82,8 +84,21 @@ class HomePageViewController: NSViewController {
         leftMenuBar.layer?.borderWidth = 1
         leftMenuBar.layer?.cornerRadius = 30
         leftMenuBar.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        leftMenuBar.homeButton.action = #selector(buttonClicked(_:))
+        leftMenuBar.homeButton.target = self
+        leftMenuBar.transactionButton.action = #selector(buttonClicked(_:))
+        leftMenuBar.transactionButton.target = self
+        leftMenuBar.analysisButton.action = #selector(buttonClicked(_:))
+        leftMenuBar.analysisButton.target = self
+        
+        
+        transactionView.wantsLayer = true
+        transactionView.isHidden = true
+        transactionView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        transactionView.layer?.cornerRadius = 30
         
         view.addSubview(mainView)
+        view.addSubview(transactionView)
         view.addSubview(leftMenuBar)
         view.addSubview(toolBar)
 //        view.addSubview(toolBarLine)
@@ -109,10 +124,38 @@ class HomePageViewController: NSViewController {
             toolBar.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            transactionView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 50),
+            transactionView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 27),
+            transactionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90),
+            transactionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.91)
+        ])
+        
 //        NSLayoutConstraint.activate([
 //            toolBarLine.topAnchor.constraint(equalTo: toolBar.bottomAnchor),
 //            toolBarLine.widthAnchor.constraint(equalTo: toolBar.widthAnchor),
 //            toolBarLine.heightAnchor.constraint(equalToConstant: 0.27)
 //        ])
+    }
+    
+    
+    
+    @objc func buttonClicked(_ sender: NSButton) {
+        
+        for views in leftMenuBar.innerstack.views {
+            let button = views as? NSButton
+            button?.layer?.backgroundColor = .clear
+            button?.image = button?.image?.tint(color: .white)
+        }
+        transactionView.isHidden = true
+        mainView.isHidden = true
+        sender.image = sender.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
+        if sender.tag == 1 {
+            mainView.isHidden = false
+        }
+        else if sender.tag == 2 {
+            transactionView.isHidden = false
+        }
+        
     }
 }

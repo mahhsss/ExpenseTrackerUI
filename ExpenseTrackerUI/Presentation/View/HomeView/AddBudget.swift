@@ -13,6 +13,7 @@ class AddBudgetView: NSAlert {
     
     var user: User
     var presenter: AddBudgetPresenterContract
+    let numberFormatter = NumberFormatterr()
     init(user: User, presenter: AddBudgetPresenterContract) {
         self.user = user
         self.presenter = presenter
@@ -33,12 +34,13 @@ class AddBudgetView: NSAlert {
         textField.isEditable = true
         textField.wantsLayer = true
         textField.isSelectable = true
-        textField.isBordered = false
+//        textField.isBordered = false
         textField.focusRingType = .none
         textField.usesSingleLineMode = true
         textField.font = .systemFont(ofSize: 15)
         textField.wantsLayer = true
         textField.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.1)
+        textField.formatter = numberFormatter
         self.accessoryView = textField
         self.addButton(withTitle: "Yes")
         self.addButton(withTitle: "No")
@@ -56,8 +58,13 @@ class AddBudgetView: NSAlert {
         let formattedStartDate = dateFormatter.string(from: startDate!)
         
         if response == .alertFirstButtonReturn {
-            let budget = Budget(budget: Int(textField.stringValue)!, month: formattedStartDate)
-            presenter.viewLoadBudget(user: user, budget: budget)
+            if textField.stringValue.count > 0 {
+                let budget = Budget(budget: Int(textField.stringValue)!, month: formattedStartDate)
+                presenter.viewLoadBudget(user: user, budget: budget)
+            }
+            else {
+                return
+            }
         }
         else if response == .alertSecondButtonReturn {
             return

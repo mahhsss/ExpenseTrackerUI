@@ -35,13 +35,6 @@ class LeftMenuBar: NSView {
         transactionButton = customButton(image: "list", tag: 2)
         analysisButton = customButton(image: "analysis", tag: 3)
         homeButton.image = homeButton.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
-        homeButton.action = #selector(buttonClicked(_:))
-        homeButton.target = self
-        transactionButton.action = #selector(buttonClicked(_:))
-        transactionButton.target = self
-        analysisButton.action = #selector(buttonClicked(_:))
-        analysisButton.target = self
-        
         innerstack = NSStackView(views: [homeButton, transactionButton, analysisButton])
         
         appIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -82,18 +75,6 @@ class LeftMenuBar: NSView {
             button.heightAnchor.constraint(equalToConstant: 40),
         ])
         return button
-    }
-    
-    @objc func buttonClicked(_ sender: NSButton) {
-        
-        for views in innerstack.views {
-            let button = views as? NSButton
-            button?.layer?.backgroundColor = .clear
-            button?.image = button?.image?.tint(color: .white)
-        }
-        sender.image = sender.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
-        print(sender.tag)
-        
     }
 }
 
