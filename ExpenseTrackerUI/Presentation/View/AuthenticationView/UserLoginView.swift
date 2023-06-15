@@ -90,6 +90,7 @@ extension UserLoginPageView {
         
     }
     
+    
     func customTextBox(textField: NSTextField, name: String) -> NSBox {
         
         let borderBox = NSBox()
@@ -109,7 +110,7 @@ extension UserLoginPageView {
         borderBox.wantsLayer = true
         borderBox.layer?.cornerRadius = 10
         borderBox.borderWidth = 0
-        borderBox.layer?.backgroundColor = .black
+        borderBox.layer?.backgroundColor = CustomText.boxColor().cgColor
         borderBox.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -141,7 +142,7 @@ extension UserLoginPageView {
         borderBox.wantsLayer = true
         borderBox.layer?.cornerRadius = 10
         borderBox.borderWidth = 0
-        borderBox.layer?.backgroundColor = .black
+        borderBox.layer?.backgroundColor = CustomText.boxColor().cgColor
         borderBox.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             passwordTextField.centerYAnchor.constraint(equalTo: borderBox.centerYAnchor),

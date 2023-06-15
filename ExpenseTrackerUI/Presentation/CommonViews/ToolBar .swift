@@ -34,7 +34,7 @@ class ToolBar: NSView {
     func customiseToolBar() {
         
         addTransactionButton = customAddButton(addButton: addTransactionButton)
-        setBudgetTransaction = customAddButton(addButton: setBudgetTransaction)
+        setBudgetTransaction = customSetButton(addButton: setBudgetTransaction)
         profileImageButton = customProfileButton(profileButton: profileImageButton)
         addTransactionButton.title = "Add transaction"
         setBudgetTransaction.title = "Set budget"
@@ -84,6 +84,27 @@ class ToolBar: NSView {
         NSLayoutConstraint.activate([
             addButton.heightAnchor.constraint(equalToConstant: 35),
             addButton.widthAnchor.constraint(equalToConstant: 135),
+        ])
+        return addButton
+    }
+    
+    func customSetButton(addButton: NSButton) -> NSButton {
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.wantsLayer = true
+        addButton.layer?.backgroundColor = .init(red: 0.2, green: 0.5, blue: 0.7, alpha: 0.5)
+        addButton.contentTintColor = .white
+        addButton.isBordered = false
+        addButton.alignment = .center
+        addButton.focusRingType = .none
+        addButton.font = .systemFont(ofSize: 13)
+        
+        addButton.layer?.cornerRadius = 10
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addButton.heightAnchor.constraint(equalToConstant: 35),
+            addButton.widthAnchor.constraint(equalToConstant: 105),
         ])
         return addButton
     }

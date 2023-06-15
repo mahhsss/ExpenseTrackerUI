@@ -24,6 +24,7 @@ class AddFloatingWindow: NSWindowController {
         super.init(window: window)
         window.titlebarSeparatorStyle = .none
         window.titlebarAppearsTransparent = true
+        window.title = "Add Transaction"
         customiseFloatingWindow(user: user, router: router, windowController: self, reloader: reloader)
     }
     

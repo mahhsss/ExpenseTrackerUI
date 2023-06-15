@@ -93,7 +93,7 @@ extension GetBudgetView: GetBudgetViewContract {
         
         let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
         let thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 18, fontColor: .systemBlue, fontStyle: "Trap-Medium")
-        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 17, fontColor: .white, fontStyle: "Trap-Medium")
+        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 17, fontStyle: "Trap-Medium")
         let budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -131,7 +131,7 @@ extension GetBudgetView: GetBudgetViewContract {
         
         let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
         let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
-        let setBudgetText = CustomText.customStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 14, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let setBudgetText = CustomText.customHeaderStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 14, fontStyle: "Trap-SemiBold")
         let textStack = NSStackView(views: [noBudgetText, setBudgetText])
         
         textStack.orientation = .vertical
@@ -151,9 +151,9 @@ extension GetBudgetView: GetBudgetViewContract {
             budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             textStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 130),
-            textStack.heightAnchor.constraint(equalTo: heightAnchor),
-            textStack.widthAnchor.constraint(equalTo: widthAnchor),
+            textStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            textStack.heightAnchor.constraint(equalTo: heightAnchor),
+//            textStack.widthAnchor.constraint(equalTo: widthAnchor),
         ])
         
     }

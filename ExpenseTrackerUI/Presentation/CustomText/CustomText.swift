@@ -8,8 +8,15 @@
 import Foundation
 import AppKit
 
-
 class CustomText {
+    
+    static var isDark = {
+        return (UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark")
+    }
+    
+    static let boxColor = {
+        return isDark() ? NSColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0) : NSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    }
     
     static func customStringLabel(label: String, fontSize: Int, fontColor: NSColor? = nil, fontStyle: String? = nil) -> NSTextField {
         

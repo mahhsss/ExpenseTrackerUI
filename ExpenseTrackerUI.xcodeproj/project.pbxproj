@@ -35,6 +35,7 @@
 		2A5E3B582A3247CD0044C8F8 /* AddFloatingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E3B572A3247CD0044C8F8 /* AddFloatingWindow.swift */; };
 		2A5E3B5A2A3247FC0044C8F8 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E3B592A3247FC0044C8F8 /* AddViewController.swift */; };
 		2A5E3B8E2A3762530044C8F8 /* AllTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E3B8D2A3762530044C8F8 /* AllTransactionView.swift */; };
+		2A5E3BAF2A3989260044C8F8 /* DetailedTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E3BAE2A3989260044C8F8 /* DetailedTransactionView.swift */; };
 		2A6458212A27C42F00DC2AB3 /* LeftMenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6458202A27C42F00DC2AB3 /* LeftMenuBarView.swift */; };
 		2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */; };
 		2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */; };
@@ -111,6 +112,7 @@
 		2A5E3B572A3247CD0044C8F8 /* AddFloatingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFloatingWindow.swift; sourceTree = "<group>"; };
 		2A5E3B592A3247FC0044C8F8 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		2A5E3B8D2A3762530044C8F8 /* AllTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionView.swift; sourceTree = "<group>"; };
+		2A5E3BAE2A3989260044C8F8 /* DetailedTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTransactionView.swift; sourceTree = "<group>"; };
 		2A6458202A27C42F00DC2AB3 /* LeftMenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuBarView.swift; sourceTree = "<group>"; };
 		2A7B9F4229BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
 		2A7B9F4429BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetYearlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
@@ -344,8 +346,9 @@
 			children = (
 				2A5DCE082A209796007586CF /* MainHomePageView.swift */,
 				2A5E3B8D2A3762530044C8F8 /* AllTransactionView.swift */,
-				2AADAFEB29B0996500F7962D /* AddTransactionView.swift */,
 				2A16148529B89F64005E999E /* GetTransactionView.swift */,
+				2A961EF72A270FA000F653BD /* RecentTransactionsView.swift */,
+				2AADAFEB29B0996500F7962D /* AddTransactionView.swift */,
 				2A7B9F4E29C0561500A9BFAE /* UpdateTransactionView.swift */,
 				2A7B9F6229C0A41500A9BFAE /* DeleteTransactionView.swift */,
 				2A7B9F6629C18A7400A9BFAE /* AddBudget.swift */,
@@ -354,7 +357,7 @@
 				2A5DCE122A20DC26007586CF /* GetMonthlyIncomeView.swift */,
 				2A5DCE1C2A2202A2007586CF /* GetMonthlyBalanceView.swift */,
 				2A5DCE202A24A3A7007586CF /* GetBudgetView.swift */,
-				2A961EF72A270FA000F653BD /* RecentTransactionsView.swift */,
+				2A5E3BAE2A3989260044C8F8 /* DetailedTransactionView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */,
 				2A7B9F4529BEF1A500A9BFAE /* GetYearlyTransactionAnalysisPresenter.swift in Sources */,
 				2A7B9F4329BEEF0100A9BFAE /* GetYearlyTransactionAnalysisView.swift in Sources */,
+				2A5E3BAF2A3989260044C8F8 /* DetailedTransactionView.swift in Sources */,
 				2A961EF82A270FA000F653BD /* RecentTransactionsView.swift in Sources */,
 				2A7B9F6329C0A41500A9BFAE /* DeleteTransactionView.swift in Sources */,
 			);

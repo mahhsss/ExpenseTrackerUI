@@ -22,6 +22,9 @@ class AddTransactionView: NSView {
     var addTransactionStack: NSStackView!
     var addTransactionButton = NSButton()
     let numberFormatter = NumberFormatterr()
+    var categoryLable = NSTextField()
+    var categoryBox = NSBox()
+    
     init(user: User, presenter: AddTransactionContract) {
         self.user = user
         self.presenter = presenter
@@ -44,16 +47,15 @@ extension AddTransactionView {
     
     func addTransactionView() {
         
-        let addTransactionLable = CustomText.customStringLabel(label: "Add new transaction", fontSize: 30)
         let amountLable = CustomText.customStringLabel(label: "Amount", fontSize: 15)
         let dateLable = CustomText.customStringLabel(label: "Date", fontSize: 15)
-        let categoryLable = CustomText.customStringLabel(label: "Category", fontSize: 15)
+        categoryLable = CustomText.customStringLabel(label: "Category", fontSize: 15)
         let transactionTypeLable = CustomText.customStringLabel(label: "Transaction type", fontSize: 15)
         let currencyLable = CustomText.customStringLabel(label: "Currency type", fontSize: 15)
         let noteLable = CustomText.customStringLabel(label: "Note", fontSize: 15)
         let amountBox = customTextBox(textField: amount, name: "amount")
         let dateBox = customDateBox(date: date)
-        let categoryBox = customPopUpButton(popUpButton: category)
+        categoryBox = customPopUpButton(popUpButton: category)
         let transactionTypeBox = customPopUpButton(popUpButton: transactionType)
         let currencyTypeBox = customPopUpButton(popUpButton: currencyType)
         let noteBox = customTextBox(textField: note, name: "note")
@@ -82,19 +84,15 @@ extension AddTransactionView {
         addTransactionStack.spacing = 10
         
         addTransactionStack.translatesAutoresizingMaskIntoConstraints = false
-        addTransactionLable.translatesAutoresizingMaskIntoConstraints = false
         addTransactionButton.translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(addTransactionLable)
         addSubview(addTransactionStack)
         addSubview(addTransactionButton)
         
         NSLayoutConstraint.activate([
             addTransactionStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            addTransactionStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            addTransactionLable.bottomAnchor.constraint(equalTo: addTransactionStack.topAnchor, constant: -80),
-            addTransactionLable.centerXAnchor.constraint(equalTo: centerXAnchor),
-            addTransactionButton.topAnchor.constraint(equalTo: addTransactionStack.bottomAnchor, constant: 80),
+            addTransactionStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+            addTransactionButton.topAnchor.constraint(equalTo: addTransactionStack.bottomAnchor, constant: 70),
             addTransactionButton.centerXAnchor.constraint(equalTo: centerXAnchor)
             
         ])
@@ -107,13 +105,29 @@ extension AddTransactionView {
     
     @objc func checkTransaction(_ sender: NSPopUpButton) {
         
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = .fade
+        
         if sender.title == "Income" {
 //            category.isHidden = true
+            categoryLable.textColor = #colorLiteral(red: 0.6575580835, green: 0.6575580835, blue: 0.6575580835, alpha: 1)
+            categoryBox.layer?.backgroundColor = #colorLiteral(red: 0.09780230373, green: 0.09780230373, blue: 0.09780230373, alpha: 1)
+            categoryLable.layer?.add(transition, forKey: "colorChangeAnimation")
+            categoryBox.layer?.add(transition, forKey: "colorChangeAnimation")
+            category.isHighlighted = false
+            category.isEnabled = false
             category.pullsDown = true
             category.title = "-"
         }
         else {
 //            category.isHidden = false
+            categoryLable.textColor = .white
+            categoryBox.layer?.backgroundColor = .black
+            categoryLable.layer?.add(transition, forKey: "colorChangeAnimation")
+            categoryBox.layer?.add(transition, forKey: "colorChangeAnimation")
+            category.isHighlighted = true
+            category.isEnabled = true
             category.removeItem(withTitle: "-")
             category.pullsDown = false
             
@@ -122,42 +136,62 @@ extension AddTransactionView {
     
     @objc func addTransaction(_ sender: NSButton) {
         
-        var transactionType = TransactionType.income
-        var currencyType = CurrencyType.bankTransaction
-        if self.transactionType.title == "Spending" {
-            transactionType = TransactionType.spending
+        if amount.stringValue == "" || Int(amount.stringValue)! < 1 {
+            
+            var enterAmountText = CustomText.customStringLabel(label: "Enter the transaction amount", fontSize: 12, fontColor: NSColor.red)
+            
+            addTransactionStack.addArrangedSubview(enterAmountText)
+            let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+            shakeAnimation.duration = 0.05
+            shakeAnimation.repeatCount = 5
+            shakeAnimation.autoreverses = true
+            shakeAnimation.fromValue = NSValue(point: NSPoint(x: -5, y: 0))
+            shakeAnimation.toValue = NSValue(point: NSPoint(x: 5, y: 0))
+                    
+            addTransactionStack.layer?.add(shakeAnimation, forKey: "shakeAnimation")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                enterAmountText.removeFromSuperview()
+            }
         }
-        if self.currencyType.title == "Cash" {
-            currencyType = CurrencyType.cash
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: date.dateValue)
-        let transaction: Transaction!
-        if transactionType == TransactionType.income {
-            transaction  = Transaction(transactionId: 0, userId: user.userId, amount: Int(amount.stringValue) ?? 0, transactionType: transactionType, currencyType: currencyType, date: dateString, note: note.stringValue)
-        }
-        else {
-            transaction = Transaction(transactionId: 0, userId: user.userId, amount: Int(amount.stringValue) ?? 0, transactionType: transactionType, currencyType: currencyType, date: dateString, category: category.title, note: note.stringValue)
-        }
-       
         
-        presenter.viewDidLoadExpense(user: user, transaction: transaction)
+        else {
+            
+            var transactionType = TransactionType.income
+            var currencyType = CurrencyType.bankTransaction
+            if self.transactionType.title == "Spending" {
+                transactionType = TransactionType.spending
+            }
+            if self.currencyType.title == "Cash" {
+                currencyType = CurrencyType.cash
+            }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: date.dateValue)
+            let transaction: Transaction!
+            if transactionType == TransactionType.income {
+                transaction  = Transaction(transactionId: 0, userId: user.userId, amount: Int(amount.stringValue) ?? 0, transactionType: transactionType, currencyType: currencyType, date: dateString, note: note.stringValue)
+            }
+            else {
+                transaction = Transaction(transactionId: 0, userId: user.userId, amount: Int(amount.stringValue) ?? 0, transactionType: transactionType, currencyType: currencyType, date: dateString, category: category.title, note: note.stringValue)
+            }
+           
+            
+            presenter.viewDidLoadExpense(user: user, transaction: transaction)
+        }
     }
     
     func customAddTransactionButton(addTransaction: NSButton) -> NSButton {
         
+        addTransaction.title = "Add Transaction"
         addTransaction.translatesAutoresizingMaskIntoConstraints = false
         addTransaction.wantsLayer = true
-        addTransaction.title = "Add Transaction"
+        addTransaction.layer?.backgroundColor = .init(red: 0.2, green: 0.5, blue: 0.7, alpha: 0.5)
         addTransaction.contentTintColor = .white
         addTransaction.isBordered = false
         addTransaction.alignment = .center
-        addTransaction.target = self
         addTransaction.focusRingType = .none
-        addTransaction.font = .systemFont(ofSize: 15)
-        addTransaction.layer?.borderWidth = 2
-        addTransaction.layer?.borderColor = .white
+        addTransaction.font = .systemFont(ofSize: 13)
         
         addTransaction.layer?.cornerRadius = 10
         addTransaction.translatesAutoresizingMaskIntoConstraints = false
@@ -234,7 +268,6 @@ extension AddTransactionView {
         date.datePickerStyle = .textFieldAndStepper
         date.datePickerMode = .single
         date.isBordered = false
-        let dateFormatter = DateFormatter()
         date.datePickerElements = [.yearMonthDay]
         date.dateValue = Date()
         date.alignment = .center

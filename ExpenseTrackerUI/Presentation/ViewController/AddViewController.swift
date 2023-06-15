@@ -30,7 +30,7 @@ class AddViewController: NSViewController {
     }
     
     override func loadView() {
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 700, height: NSScreen.main!.frame.height - 200))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 700, height: NSScreen.main!.frame.height - 280))
         addTransactionView = Assembler.addTransactionView(user: user, router: router!, windowController: windowController!, reloader: reloader!)
     }
     
@@ -39,6 +39,7 @@ class AddViewController: NSViewController {
         view.addSubview(addTransactionView)
         addTransactionView.translatesAutoresizingMaskIntoConstraints = false
         addTransactionView.wantsLayer = true
+        view.layer?.backgroundColor = .init(red: 0.3159786165, green: 0.5165252209, blue: 1, alpha: 0.2)
         addTransactionView.layer?.backgroundColor = .init(red: 0.3159786165, green: 0.5165252209, blue: 1, alpha: 0.2)
         view.addSubview(addTransactionView)
         

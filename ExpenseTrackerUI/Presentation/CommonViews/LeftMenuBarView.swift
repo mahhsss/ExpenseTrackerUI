@@ -14,7 +14,6 @@ class LeftMenuBar: NSView {
     var transactionButton: NSButton!
     var analysisButton: NSButton!
     var innerstack: NSStackView!
-    var appIcon = NSImageView()
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -27,36 +26,24 @@ class LeftMenuBar: NSView {
     
     func configureMenuBar() {
         
-        var image = NSImage(named: "icon")
-        appIcon.image = image
-        image?.size = NSSize(width: 30, height: 30)
-        appIcon.imageScaling = .scaleProportionallyUpOrDown
         homeButton = customButton(image: "home", tag: 1)
         transactionButton = customButton(image: "list", tag: 2)
         analysisButton = customButton(image: "analysis", tag: 3)
         homeButton.image = homeButton.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
         innerstack = NSStackView(views: [homeButton, transactionButton, analysisButton])
         
-        appIcon.translatesAutoresizingMaskIntoConstraints = false
         innerstack.translatesAutoresizingMaskIntoConstraints = false
         innerstack.orientation = .vertical
-        innerstack.distribution = .equalCentering
+        innerstack.distribution = .equalSpacing
         
         addSubview(innerstack)
-        addSubview(appIcon)
         
         NSLayoutConstraint.activate([
             innerstack.centerXAnchor.constraint(equalTo: centerXAnchor),
             innerstack.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            innerstack.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             innerstack.widthAnchor.constraint(equalTo: widthAnchor),
             innerstack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45)
-        ])
-        
-        NSLayoutConstraint.activate([
-            appIcon.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            appIcon.centerXAnchor.constraint(equalTo: centerXAnchor),
-            appIcon.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85),
-            appIcon.heightAnchor.constraint(equalTo: appIcon.widthAnchor)
         ])
     }
     

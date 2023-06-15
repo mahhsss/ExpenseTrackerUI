@@ -16,6 +16,7 @@ class HomePageViewController: NSViewController {
     var transactionView = AllTransactionView()
     var leftMenuBar = LeftMenuBar()
     var toolBar: ToolBar!
+    var currentPage = CurrentPage.homePage
     
     init(user: User, router: Router) {
         self.router = router
@@ -24,6 +25,7 @@ class HomePageViewController: NSViewController {
         let balanceView = Assembler.getMonthlyBalance(user: user, router: router)
         let budgetView = Assembler.getBudget(user: user, router: router)
         let recentTransaction = Assembler.getRecentTranasctionsView(user: user, router: router)
+        let allTransactions = Assembler.getAllTransactionView(user: user, router: router)
         mainView = MainHomeView()
         toolBar = ToolBar()
         toolBar.user = user
@@ -33,6 +35,8 @@ class HomePageViewController: NSViewController {
         mainView.balance = balanceView
         mainView.budgetView = budgetView
         mainView.recentTransactionsView = recentTransaction
+        transactionView.transactionTableView = allTransactions
+        transactionView.transactionTableView.transactionView = transactionView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,6 +46,7 @@ class HomePageViewController: NSViewController {
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: NSScreen.main!.frame.width, height: NSScreen.main!.frame.height))
+        
     }
     
     override func viewWillLayout() {
@@ -74,10 +79,7 @@ class HomePageViewController: NSViewController {
         toolBar.wantsLayer = true
         mainView.wantsLayer = true
         view.wantsLayer = true
-        mainView.wantsLayer = true
         view.layer?.backgroundColor = .black
-        mainView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
-        mainView.layer?.cornerRadius = 20
         leftMenuBar.wantsLayer = true
         toolBarLine.layer?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         leftMenuBar.layer?.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -92,10 +94,15 @@ class HomePageViewController: NSViewController {
         leftMenuBar.analysisButton.target = self
         
         
+        mainView.wantsLayer = true
+        mainView.isHidden = true
+        mainView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        mainView.layer?.cornerRadius = 20
+        
         transactionView.wantsLayer = true
         transactionView.isHidden = true
         transactionView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
-        transactionView.layer?.cornerRadius = 30
+        transactionView.layer?.cornerRadius = 20
         
         view.addSubview(mainView)
         view.addSubview(transactionView)
@@ -136,11 +143,51 @@ class HomePageViewController: NSViewController {
 //            toolBarLine.widthAnchor.constraint(equalTo: toolBar.widthAnchor),
 //            toolBarLine.heightAnchor.constraint(equalToConstant: 0.27)
 //        ])
+        displayView()
+    }
+    
+    func displayView() {
+        
+        switch currentPage {
+        case .homePage:
+            displatMainView()
+        case .transactionPage:
+            displayTransactionView()
+        case .analysisPage:
+            displatMainView()
+        }
     }
     
     
-    
     @objc func buttonClicked(_ sender: NSButton) {
+        
+        if sender.tag == 1 {
+            currentPage = .homePage
+            displatMainView()
+        }
+        else if sender.tag == 2 {
+            currentPage = .transactionPage
+            displayTransactionView()
+        }
+        else {
+            currentPage = .analysisPage
+        }
+        
+    }
+    
+    func displayTransactionView() {
+        
+        for views in leftMenuBar.innerstack.views {
+            let button = views as? NSButton
+            button?.layer?.backgroundColor = .clear
+            button?.image = button?.image?.tint(color: .white)
+        }
+        transactionView.isHidden = false
+        mainView.isHidden = true
+        leftMenuBar.transactionButton.image = leftMenuBar.transactionButton.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
+    }
+    
+    func displatMainView() {
         
         for views in leftMenuBar.innerstack.views {
             let button = views as? NSButton
@@ -148,14 +195,15 @@ class HomePageViewController: NSViewController {
             button?.image = button?.image?.tint(color: .white)
         }
         transactionView.isHidden = true
-        mainView.isHidden = true
-        sender.image = sender.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
-        if sender.tag == 1 {
-            mainView.isHidden = false
-        }
-        else if sender.tag == 2 {
-            transactionView.isHidden = false
-        }
-        
+        mainView.isHidden = false
+        leftMenuBar.homeButton.image = leftMenuBar.homeButton.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
     }
+}
+
+
+enum CurrentPage: CaseIterable {
+    
+    case homePage
+    case transactionPage
+    case analysisPage
 }

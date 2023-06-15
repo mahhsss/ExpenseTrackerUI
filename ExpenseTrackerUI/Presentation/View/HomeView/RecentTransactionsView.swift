@@ -102,9 +102,9 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
             transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             transactionStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 60),
-            transactionStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
-            transactionStack.widthAnchor.constraint(equalTo: widthAnchor)
+            transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            transactionStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
+//            transactionStack.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
     
