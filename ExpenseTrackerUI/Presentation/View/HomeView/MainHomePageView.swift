@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import ExpenseTrackerBackend
 
 class MainHomeView: NSView {
     
@@ -108,6 +109,10 @@ class MainHomeView: NSView {
             budgetView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.40),
             budgetView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.48)
         ])
+    }
+    
+    func addTransactionWithAnimation(transaction: Transaction) {
+        recentTransactionsView.insertNewTransaction(transation: transaction)
     }
     
 }

@@ -15,6 +15,7 @@ class RecentTransactionsView: NSView {
     var presenter: GetRecentTransactionPresenterContract
     var user: User
     var transactions: [Transaction] = []
+    let tableView = NSTableView()
     
     init(user: User, presenter: GetRecentTransactionPresenterContract) {
         self.presenter = presenter
@@ -40,6 +41,14 @@ class RecentTransactionsView: NSView {
         let formattedStartDate = dateFormatter.string(from: startDate!)
         self.presenter.viewLoadTransaction(user: user, month: formattedStartDate)
     }
+    
+    func insertNewTransaction(transation: Transaction) {
+        
+        transactions.insert(transation, at: 0)
+        let indexSet = IndexSet(integer: 0)
+        tableView.insertRows(at: indexSet, withAnimation: .slideLeft)
+        
+    }
 }
 
 extension RecentTransactionsView: GetRecentTransactionViewContract {
@@ -48,7 +57,6 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         
         let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let scrollView = NSScrollView()
-        let tableView = NSTableView()
         transactions = success.transactions
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder

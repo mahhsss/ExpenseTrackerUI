@@ -18,6 +18,7 @@ class GetBudgetView: NSView {
     var outterBar = NSView()
     var innerBar = NSView()
     var progressBar = NSView()
+
     
     public init(presenter: GetBudgetPresenterContract, user: User) {
         self.presenter = presenter

@@ -205,6 +205,10 @@ class HomePageViewController: NSViewController {
         if currentPage == .transactionPage {
             transactionView.insertNewTransaction(transaction: transaction)
         }
+        
+        else if currentPage == .homePage {
+            mainView.addTransactionWithAnimation(transaction: transaction)
+        }
     }
 }
 
