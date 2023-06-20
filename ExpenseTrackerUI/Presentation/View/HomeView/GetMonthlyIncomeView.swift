@@ -47,8 +47,8 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
     func load(success: ExpenseTrackerBackend.GetMonthlyIncomeResponse) {
         
         
-        let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let incomeValue = CustomText.customStringLabel(label: String(success.income), fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let incomeValue = CustomText.customStringLabel(label: String(success.income), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let incomeStack = NSStackView(views: [incomeLabel, incomeValue])
         
         self.wantsLayer = true
@@ -74,8 +74,8 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
     
     func failure(error: ExpenseTrackerBackend.GetMonthlyIncomeError) {
         
-        let spentLabel = CustomText.customStringLabel(label: "Income", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let spentLabel = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let spentStack = NSStackView(views: [spentLabel, spentValue])
         
         self.wantsLayer = true

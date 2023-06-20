@@ -91,9 +91,9 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
         }
         
-        let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
-        let thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 18, fontColor: .systemBlue, fontStyle: "Trap-Medium")
-        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 17, fontStyle: "Trap-Medium")
+        let budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
+        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 15, fontStyle: "Trap-Medium")
         let budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -106,8 +106,6 @@ extension GetBudgetView: GetBudgetViewContract {
         addSubview(budgetLabel)
         addSubview(budgetStack)
         
-        
-        
         NSLayoutConstraint.activate([
             progressBar.heightAnchor.constraint(equalToConstant: 25),
             outterBar.centerXAnchor.constraint(equalTo: progressBar.centerXAnchor),
@@ -118,7 +116,7 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.leadingAnchor.constraint(equalTo: outterBar.leadingAnchor),
             innerBar.heightAnchor.constraint(equalTo: outterBar.heightAnchor),
             innerBar.widthAnchor.constraint(equalTo: outterBar.widthAnchor, multiplier: CGFloat(innerWidth)),
-            budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             budgetStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             budgetStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
@@ -129,9 +127,9 @@ extension GetBudgetView: GetBudgetViewContract {
     
     func failure(error: ExpenseTrackerBackend.GetBudgetError) {
         
-        let budgetLabel = CustomText.customStringLabel(label: "Monthly budget", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
-        let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
-        let setBudgetText = CustomText.customHeaderStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 14, fontStyle: "Trap-SemiBold")
+        let budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 13, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
+        let setBudgetText = CustomText.customHeaderStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 13, fontStyle: "Trap-Medium")
         let textStack = NSStackView(views: [noBudgetText, setBudgetText])
         
         textStack.orientation = .vertical
@@ -148,7 +146,7 @@ extension GetBudgetView: GetBudgetViewContract {
         addSubview(textStack)
         
         NSLayoutConstraint.activate([
-            budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             textStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             textStack.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -158,3 +156,5 @@ extension GetBudgetView: GetBudgetViewContract {
         
     }
 }
+
+

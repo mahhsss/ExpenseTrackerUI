@@ -118,6 +118,7 @@ extension AddTransactionView {
             category.isHighlighted = false
             category.isEnabled = false
             category.pullsDown = true
+//            category.addItem(withTitle: "-")
             category.title = "-"
         }
         else {
@@ -128,7 +129,8 @@ extension AddTransactionView {
             categoryBox.layer?.add(transition, forKey: "colorChangeAnimation")
             category.isHighlighted = true
             category.isEnabled = true
-            category.removeItem(withTitle: "-")
+//            category.removeItem(withTitle: "-")
+            category.title = "Food"
             category.pullsDown = false
             
         }
@@ -169,6 +171,11 @@ extension AddTransactionView {
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let dateString = dateFormatter.string(from: date.dateValue)
             let transaction: Transaction!
+            
+            if note.stringValue == "" {
+                note.stringValue = "-"
+            }
+            
             if transactionType == TransactionType.income {
                 transaction  = Transaction(transactionId: 0, userId: user.userId, amount: Int(amount.stringValue) ?? 0, transactionType: transactionType, currencyType: currencyType, date: dateString, note: note.stringValue)
             }

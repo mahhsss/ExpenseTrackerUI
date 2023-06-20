@@ -29,6 +29,7 @@ class AddFloatingWindow: NSWindowController {
     }
     
     override func close() {
+        ToolBar.windowExist = false 
         window?.close()
     }
     

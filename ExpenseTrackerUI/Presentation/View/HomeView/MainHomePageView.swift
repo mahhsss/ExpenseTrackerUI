@@ -34,7 +34,7 @@ class MainHomeView: NSView {
     
     func configureExpenseViews() {
         
-        let thisMonthText = CustomText.customStringLabel(label: "This month", fontSize: 22, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let thisMonthText = CustomText.customHeaderStringLabel(label: "This month", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let expenseStack = NSStackView(views: [spent, income, balance])
         
         thisMonthText.translatesAutoresizingMaskIntoConstraints = false
@@ -57,22 +57,22 @@ class MainHomeView: NSView {
             expenseView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
 //            expenseView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),
             expenseView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            expenseView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
+            expenseView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.22),
             expenseView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.97),
             expenseStack.centerXAnchor.constraint(equalTo: expenseView.centerXAnchor),
             expenseStack.centerYAnchor.constraint(equalTo: expenseView.centerYAnchor,constant: 8),
             expenseStack.widthAnchor.constraint(equalTo: expenseView.widthAnchor, multiplier: 0.90),
-            thisMonthText.topAnchor.constraint(equalTo: expenseView.topAnchor, constant: 25),
+            thisMonthText.topAnchor.constraint(equalTo: expenseView.topAnchor, constant: 20),
             thisMonthText.leftAnchor.constraint(equalTo: expenseView.leftAnchor, constant: 52)
         ])
         
         NSLayoutConstraint.activate([
             spent.heightAnchor.constraint(equalTo: expenseView.heightAnchor, multiplier: 0.50),
-            spent.widthAnchor.constraint(equalToConstant: 320),
+            spent.widthAnchor.constraint(equalToConstant: 280),
             income.heightAnchor.constraint(equalTo: expenseView.heightAnchor, multiplier: 0.50),
-            income.widthAnchor.constraint(equalToConstant: 320),
+            income.widthAnchor.constraint(equalToConstant: 280),
             balance.heightAnchor.constraint(equalTo: expenseView.heightAnchor, multiplier: 0.50),
-            balance.widthAnchor.constraint(equalToConstant: 320)
+            balance.widthAnchor.constraint(equalToConstant: 280)
         ])
     }
     

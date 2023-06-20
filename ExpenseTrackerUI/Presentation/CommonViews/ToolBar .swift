@@ -19,6 +19,9 @@ class ToolBar: NSView {
     var user: User!
     var router: Router!
     var floatingWindow: AddFloatingWindow!
+    static var windowExist = false
+    
+    weak var homePageReloader: HomePageViewController?
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -130,7 +133,7 @@ class ToolBar: NSView {
         profilePopOver = NSPopover()
         profilePopOver.behavior = .transient
         profilePopOver.contentSize = NSSize(width: 200, height: 200)
-        profilePopOver.contentViewController = PopoverContentViewController(user: user, router: router)
+        profilePopOver.contentViewController = PopoverContentViewController(user: user, router: router, toolbar: self)
     
     }
     
@@ -147,6 +150,7 @@ class ToolBar: NSView {
         if floatingWindow != nil {
             floatingWindow.close()
         }
+        ToolBar.windowExist = true
         floatingWindow = AddFloatingWindow(user: user, router: router, reloader: self)
         floatingWindow.showWindow(self)
         floatingWindow.window?.hidesOnDeactivate = true
@@ -157,8 +161,8 @@ class ToolBar: NSView {
         Assembler.addBudget(user: user, router: router)
     }
     
-    func reload() {
-        self.router.home(user: user)
+    func reload(transaction: Transaction) {
+        homePageReloader?.reloadAfterAtransaction(transaction: transaction)
     }
 }
 
@@ -166,10 +170,12 @@ class PopoverContentViewController: NSViewController {
     
     var user: User
     weak var router: Router?
+    weak var toolbar: ToolBar?
     
-    init(user: User, router: Router) {
+    init(user: User, router: Router, toolbar: ToolBar) {
         self.user = user
         self.router = router
+        self.toolbar = toolbar
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -235,6 +241,9 @@ class PopoverContentViewController: NSViewController {
         logoutAlert.icon = NSImage(named: "profile")
         let response = logoutAlert.runModal()
         if response == .alertFirstButtonReturn {
+            if ToolBar.windowExist == true {
+                toolbar?.floatingWindow.close()
+            }
             self.router?.launch()
         }
         else if response == .alertSecondButtonReturn {

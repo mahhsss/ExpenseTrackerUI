@@ -11,19 +11,19 @@ import ExpenseTrackerBackend
 
 class DetailTransactionView: NSView {
     
-    var detailsLable = CustomText.customStringLabel(label: "Transaction details", fontSize: 23, fontStyle: "Trap-SemiBold")
-    var amount = CustomText.customStringLabel(label: "", fontSize: 17, fontStyle: "Trap-Medium")
-    var category = CustomText.customStringLabel(label: "", fontSize: 17, fontStyle: "Trap-Medium")
-    var transactionType = CustomText.customStringLabel(label: "", fontSize: 17, fontStyle: "Trap-Medium")
-    var currencyType = CustomText.customStringLabel(label: "", fontSize: 20)
-    var date = CustomText.customStringLabel(label: "", fontSize: 20)
-    var note = CustomText.customStringLabel(label: "", fontSize: 20)
-    let amountLable = CustomText.customStringLabel(label: "Amount :", fontSize: 20, fontStyle: "Trap-Medium")
-    let categoryLable = CustomText.customStringLabel(label: "Category :", fontSize: 20, fontStyle: "Trap-Medium")
-    let transactionLable = CustomText.customStringLabel(label: "Transaction type :", fontSize: 20, fontStyle: "Trap-Medium")
-    let currencyLable = CustomText.customStringLabel(label: "CurrencyType :", fontSize: 20, fontStyle: "Trap-Medium")
-    let dateLabel = CustomText.customStringLabel(label: "Date :", fontSize: 17, fontStyle: "Trap-Medium")
-    let noteLable = CustomText.customStringLabel(label: "Note :", fontSize: 20, fontStyle: "Trap-Medium")
+    var detailsLable = CustomText.customStringLabel(label: "Transaction details", fontSize: 20, fontStyle: "Trap-SemiBold")
+    var amount = CustomText.customStringLabel(label: "", fontSize: 13, fontStyle: "Trap-Medium")
+    var category = CustomText.customStringLabel(label: "", fontSize: 13, fontStyle: "Trap-Medium")
+    var transactionType = CustomText.customStringLabel(label: "", fontSize: 13, fontStyle: "Trap-Medium")
+    var currencyType = CustomText.customStringLabel(label: "", fontSize: 13)
+    var date = CustomText.customStringLabel(label: "", fontSize: 13)
+    var note = CustomText.customStringLabel(label: "", fontSize: 13)
+    let amountLable = CustomText.customStringLabel(label: "Amount :", fontSize: 15, fontStyle: "Trap-Medium")
+    let categoryLable = CustomText.customStringLabel(label: "Category :", fontSize: 15, fontStyle: "Trap-Medium")
+    let transactionLable = CustomText.customStringLabel(label: "Transaction type :", fontSize: 15, fontStyle: "Trap-Medium")
+    let currencyLable = CustomText.customStringLabel(label: "CurrencyType :", fontSize: 15, fontStyle: "Trap-Medium")
+    let dateLabel = CustomText.customStringLabel(label: "Date :", fontSize: 15, fontStyle: "Trap-Medium")
+    let noteLable = CustomText.customStringLabel(label: "Note :", fontSize: 15, fontStyle: "Trap-Medium")
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -69,12 +69,12 @@ class DetailTransactionView: NSView {
         let noteStack = NSStackView(views: [noteLable, note])
         let stack = NSStackView(views: [amountStack, categoryStack, transactionstack, currencyStack, dateStack, noteStack])
         
-        amount.stringValue = formattedAmount!
-        category.stringValue = transaction.category ?? "-"
-        transactionType.stringValue = transaction.transactionType.rawValue
-        currencyType.stringValue = transaction.currencyType.rawValue
-        date.stringValue = formattedDate
-        note.stringValue = transaction.note ?? "-"
+        amount.stringValue = "" + formattedAmount!
+        category.stringValue = "" + (transaction.category ?? "-")
+        transactionType.stringValue = "" + transaction.transactionType.rawValue
+        currencyType.stringValue = "" + transaction.currencyType.rawValue
+        date.stringValue = "" + formattedDate
+        note.stringValue = "" + (transaction.note ?? "-")
         
         amountStack.orientation = .vertical
         amountStack.spacing = 10
@@ -108,7 +108,7 @@ class DetailTransactionView: NSView {
         NSLayoutConstraint.activate([
 //            stack.centerXAnchor.constraint(equalTo: centerXAnchor),
             stack.leftAnchor.constraint(equalTo: leftAnchor, constant: 65),
-            stack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -40)
+            stack.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     

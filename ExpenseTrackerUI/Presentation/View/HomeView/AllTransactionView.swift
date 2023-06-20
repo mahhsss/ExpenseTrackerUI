@@ -30,6 +30,13 @@ class AllTransactionView: NSView {
         detailedTransactionView.displayTransactionDetails(transaction: transaction)
     }
     
+    func insertNewTransaction(transaction: Transaction) {
+        
+        if transactionTableView != nil {
+            transactionTableView.insertNewTransaction(transation: transaction)
+        }
+    }
+    
     func configureTransactionTableView() {
         
         transactionTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +57,8 @@ class AllTransactionView: NSView {
             transactionTableView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),
 //            transactionTableView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.95),
             transactionTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            transactionTableView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.48)
+            transactionTableView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.48),
+//            transactionTableView.widthAnchor.constraint(greaterThanOrEqualTo: widthAnchor, multiplier: 0.48)
         ])
         
         configureDetailedTransactionLayout()

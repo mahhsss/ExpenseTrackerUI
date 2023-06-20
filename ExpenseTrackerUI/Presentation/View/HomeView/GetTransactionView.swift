@@ -14,8 +14,9 @@ class GetAllTransactionView: NSView {
     var presenter: GetAllTranasctionPresenterContract
     var user: User
     var transactions: [Transaction] = []
+    let tableView = NSTableView()
     var transactionView: AllTransactionView!
-    let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 25, fontColor: .white, fontStyle: "Trap-Medium")
+    let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
     
     init(user: User, presenter: GetAllTranasctionPresenterContract) {
         self.user = user
@@ -48,6 +49,14 @@ class GetAllTransactionView: NSView {
             transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
         ])
     }
+    
+    func insertNewTransaction(transation: Transaction) {
+        
+        transactions.insert(transation, at: 0)
+        let indexSet = IndexSet(integer: 0)
+        tableView.insertRows(at: indexSet, withAnimation: .slideLeft)
+        
+    }
 }
 
 
@@ -57,7 +66,6 @@ extension GetAllTransactionView: GetAllTransactionViewContract {
         
         transactions = success.transactions
         let scrollView = NSScrollView()
-        let tableView = NSTableView()
         transactions = success.transactions
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder
@@ -69,7 +77,7 @@ extension GetAllTransactionView: GetAllTransactionViewContract {
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 100
+        tableView.rowHeight = 65
         tableView.headerView = nil
 //        tableView.selectionHighlightStyle = .none
         scrollView.documentView = tableView
@@ -89,10 +97,9 @@ extension GetAllTransactionView: GetAllTransactionViewContract {
     }
     
     func failure(error: GetAllTransactionError) {
-        
-        let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 22, fontColor: .white, fontStyle: "Trap-Medium")
-        let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded", fontSize: 15, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
-        let addTransactionLable = CustomText.customHeaderStringLabel(label: "Add transaction to keep a track on your expendature and income", fontSize: 15, fontStyle: "Trap-Medium")
+
+        let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded", fontSize: 13, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
+        let addTransactionLable = CustomText.customHeaderStringLabel(label: "Add transaction to keep a track on your expendature and income", fontSize: 13, fontStyle: "Trap-Medium")
         let transactionStack = NSStackView(views: [noTransactionLable, addTransactionLable])
         transactionStack.spacing = 30
         
@@ -145,9 +152,11 @@ extension GetAllTransactionView: NSTableViewDelegate, NSTableViewDataSource   {
             cell.date.stringValue = String(outputDateString)
             cell.mode.stringValue = transactions[row].currencyType.rawValue
             cell.type.stringValue = transactions[row].transactionType.rawValue
-            cell.image.image = NSImage(named: transactions[row].category!)
             if transactions[row].transactionType.rawValue == "Income" {
                 cell.image.image = NSImage(named: "rupee")
+            }
+            else {
+                cell.image.image = NSImage(named: transactions[row].category!)
             }
             return cell
         }

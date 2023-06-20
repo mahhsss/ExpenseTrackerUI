@@ -38,6 +38,7 @@ class HomePageViewController: NSViewController {
         transactionView.transactionTableView = allTransactions
         transactionView.transactionTableView.transactionView = transactionView
         super.init(nibName: nil, bundle: nil)
+        toolBar.homePageReloader = self
     }
     
     required init?(coder: NSCoder) {
@@ -197,6 +198,13 @@ class HomePageViewController: NSViewController {
         transactionView.isHidden = true
         mainView.isHidden = false
         leftMenuBar.homeButton.image = leftMenuBar.homeButton.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
+    }
+    
+    func reloadAfterAtransaction(transaction: Transaction) {
+        
+        if currentPage == .transactionPage {
+            transactionView.insertNewTransaction(transaction: transaction)
+        }
     }
 }
 

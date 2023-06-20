@@ -45,8 +45,8 @@ class GetMonthlyBalanceView: NSView {
 extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
     func load(success: ExpenseTrackerBackend.GetMonthlyBalanceResponse) {
         
-        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let balanceValue = CustomText.customStringLabel(label: String(success.balance), fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let balanceValue = CustomText.customStringLabel(label: String(success.balance), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let balanceStack = NSStackView(views: [balanceLabel, balanceValue])
         
         self.wantsLayer = true
@@ -71,8 +71,8 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
     }
     
     func failure(error: ExpenseTrackerBackend.GetMonthlyBalanceError) {
-        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 28, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let balanceValue = CustomText.customStringLabel(label: "0.00", fontSize: 30, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
+        let balanceValue = CustomText.customStringLabel(label: "0.00", fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let balanceStack = NSStackView(views: [balanceLabel, balanceValue])
         
         self.wantsLayer = true

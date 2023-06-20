@@ -43,7 +43,7 @@ class LeftMenuBar: NSView {
             innerstack.centerYAnchor.constraint(equalTo: centerYAnchor),
 //            innerstack.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             innerstack.widthAnchor.constraint(equalTo: widthAnchor),
-            innerstack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45)
+            innerstack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
         ])
     }
     

@@ -46,7 +46,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
     
     func load(success: GetRecentTransactionResponse) {
         
-        let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 25, fontColor: .white, fontStyle: "Trap-Medium")
+        let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let scrollView = NSScrollView()
         let tableView = NSTableView()
         transactions = success.transactions
@@ -61,7 +61,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 100
+        tableView.rowHeight = 65
         tableView.allowsMultipleSelection = true
         tableView.headerView = nil
         tableView.selectionHighlightStyle = .none
@@ -75,7 +75,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         addSubview(transactionLable)
         
         NSLayoutConstraint.activate([
-            transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
             scrollView.topAnchor.constraint(equalTo: transactionLable.bottomAnchor, constant: 5),
@@ -86,8 +86,8 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
     
     func failure(error: GetRecentTransactionError) {
         
-        let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 22, fontColor: .white, fontStyle: "Trap-Medium")
-        let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 15, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
+        let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
+        let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         let transactionStack = NSStackView(views: [noTransactionLable])
         transactionStack.spacing = 30
         
@@ -99,7 +99,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         addSubview(transactionLable)
         
         NSLayoutConstraint.activate([
-            transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             transactionStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -162,10 +162,10 @@ class TransactionCellView: NSTableCellView {
     
     static var identifier = "transactions"
     var image = NSImageView()
-    var amount = CustomText.customStringLabel(label: "", fontSize: 25, fontColor: .white, fontStyle: "Trap-Medium")
-    var date = CustomText.customStringLabel(label: "", fontSize: 20, fontColor: .white, fontStyle: "Trap-Medium")
-    var mode = CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .white, fontStyle: "Trap-Medium")
-    var type = CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .white, fontStyle: "Trap-Medium")
+    var amount = CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .white, fontStyle: "Trap-Medium")
+    var date = CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .white, fontStyle: "Trap-Medium")
+    var mode = CustomText.customStringLabel(label: "", fontSize: 13, fontColor: .white, fontStyle: "Trap-Medium")
+    var type = CustomText.customStringLabel(label: "", fontSize: 13, fontColor: .white, fontStyle: "Trap-Medium")
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -205,7 +205,7 @@ class TransactionCellView: NSTableCellView {
             transactionStack.heightAnchor.constraint(equalTo: heightAnchor),
             image.rightAnchor.constraint(equalTo: transactionStack.leftAnchor, constant: 7),
             image.centerYAnchor.constraint(equalTo: centerYAnchor),
-            image.heightAnchor.constraint(equalTo: heightAnchor, constant: -50),
+            image.heightAnchor.constraint(equalTo: heightAnchor, constant: -38),
             image.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)
         ])
     }
