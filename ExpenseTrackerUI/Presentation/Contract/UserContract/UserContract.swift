@@ -62,12 +62,13 @@ protocol AddBudgetPresenterContract: AnyObject {
     func viewLoadBudget(user: User, budget: Budget)
 }
 protocol AddBudgetViewContract: AnyObject {
-    func load(success: AddBudgetResponse)
-    func failure(error: AddBudgetError)
+    func load(success: String)
+    func failure(error: String)
 }
 //------------------------ GetBudget Contracts ---------------------------------
 protocol GetBudgetPresenterContract: AnyObject {
     func viewLoadBudget(user: User, month: String)
+    func reload(user: User)
 }
 protocol GetBudgetViewContract: AnyObject {
     func load(success: GetBudgetResponse)
@@ -81,8 +82,8 @@ protocol AddMonthlyAnalysisPresenterContract: AnyObject {
 }
 
 protocol AddMonthlyAnalysisViewContract: AnyObject {
-    func load(success: AddMonthlyAnalysisTransactionResponse)
-    func failure(error: AddMonthlyAnalysisTransactionError)
+    func load(success: String)
+    func failure(error: String)
 }
 //------------------------------------------------------------------------------
 
@@ -100,7 +101,7 @@ protocol GetRecentTransactionPresenterContract: AnyObject {
     func viewLoadTransaction(user: User, month: String)
 }
 protocol GetRecentTransactionViewContract: AnyObject {
-    func load(success: GetRecentTransactionResponse)
+    func load(transaction: [Transaction])
     func failure(error: GetRecentTransactionError)
 }
 //------------------------------------------------------------------------------
@@ -111,8 +112,8 @@ protocol DeleteTransactionPresenterContract: AnyObject {
 }
 
 protocol DeleteTransactionViewContract: AnyObject {
-    func load(success: DeleteTransactionResponse)
-    func failure(error: DeleteTransactionError)
+    func load(success: String)
+    func failure(error: String)
 }
 //------------------------------------------------------------------------------
 
@@ -186,8 +187,8 @@ protocol GetMonthlySpentPresenterContract: AnyObject {
 }
  
 protocol GetMonthlySpentViewContract: AnyObject {
-    func load(success: GetMonthlySpentResponse)
-    func failure(error: GetMonthlySpentError)
+    func load(spent: Int)
+    func failure(error: String)
 }
 //------------------------ GetMonthlyIncome Contracts ----------------------------
 protocol GetMonthlyIncomePresenterContract: AnyObject {

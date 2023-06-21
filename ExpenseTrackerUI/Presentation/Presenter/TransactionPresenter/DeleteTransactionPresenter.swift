@@ -12,7 +12,6 @@ import ExpenseTrackerBackend
 class DeleteTransactionPresenter {
     
     weak var view: DeleteTransactionViewContract?
-    weak var router: Router?
     var deleteTransaction: DeleteTransaction
     init(deleteTransaction: DeleteTransaction) {
         self.deleteTransaction = deleteTransaction
@@ -23,10 +22,10 @@ extension DeleteTransactionPresenter: DeleteTransactionPresenterContract {
    
     func viewLoad(user: ExpenseTrackerBackend.User, transaction: ExpenseTrackerBackend.Transaction, columnName: String, columnValue: Any) {
         let request = DeleteTransactionRequest(userId: user.userId, transaction: transaction, columnName: columnName, columnValue: columnValue)
-        self.deleteTransaction.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        self.deleteTransaction.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response.message)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error.error.localizedDescription)
         }
     }
    

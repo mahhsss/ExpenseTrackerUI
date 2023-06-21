@@ -37,11 +37,11 @@ class DeleteTransactionView: NSView {
 }
 extension DeleteTransactionView: DeleteTransactionViewContract {
     
-    func load(success: ExpenseTrackerBackend.DeleteTransactionResponse) {
-        print("\n\(success.message)\n")
+    func load(success: String) {
+        print("\n\(success)\n")
     }
     
-    func failure(error: ExpenseTrackerBackend.DeleteTransactionError) {
-        print("\n\(error.error)\n")
+    func failure(error: String) {
+        print("\n\(error)\n")
     }
 }

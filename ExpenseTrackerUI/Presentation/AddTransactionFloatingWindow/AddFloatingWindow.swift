@@ -13,10 +13,8 @@ import ExpenseTrackerBackend
 class AddFloatingWindow: NSWindowController {
     
     var user: User
-    weak var router: Router?
-    init(user: User, router: Router, reloader: ToolBar) {
+    init(user: User, reloader: ToolBar) {
         self.user = user
-        self.router = router
         let window = NSWindow(contentRect: NSRect(x: 415, y: 50, width: 400, height: 300),
                               styleMask: [.titled, .closable, .fullSizeContentView],
                                 backing: .buffered,
@@ -25,7 +23,7 @@ class AddFloatingWindow: NSWindowController {
         window.titlebarSeparatorStyle = .none
         window.titlebarAppearsTransparent = true
         window.title = "Add Transaction"
-        customiseFloatingWindow(user: user, router: router, windowController: self, reloader: reloader)
+        customiseFloatingWindow(user: user, windowController: self, reloader: reloader)
     }
     
     override func close() {
@@ -37,8 +35,8 @@ class AddFloatingWindow: NSWindowController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func customiseFloatingWindow(user: User, router: Router, windowController: AddFloatingWindow, reloader: ToolBar) {
+    func customiseFloatingWindow(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
         
-        window?.contentViewController = AddViewController(user: user, router: router, windowController: self, reloader: reloader)
+        window?.contentViewController = AddViewController(user: user, windowController: self, reloader: reloader)
     }
 }

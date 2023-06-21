@@ -11,7 +11,6 @@ import ExpenseTrackerBackend
 
 class HomePageViewController: NSViewController {
     
-    var router: Router
     var mainView: MainHomeView
     var transactionView = AllTransactionView()
     var leftMenuBar = LeftMenuBar()
@@ -19,13 +18,13 @@ class HomePageViewController: NSViewController {
     var currentPage = CurrentPage.homePage
     
     init(user: User, router: Router) {
-        self.router = router
-        let spentView = Assembler.getMonthlySpent(user: user, router: router)
-        let incomeView = Assembler.getMonthlyIncome(user: user, router: router)
-        let balanceView = Assembler.getMonthlyBalance(user: user, router: router)
+        
+        let spentView = Assembler.getMonthlySpent(user: user)
+        let incomeView = Assembler.getMonthlyIncome(user: user)
+        let balanceView = Assembler.getMonthlyBalance(user: user)
         let budgetView = Assembler.getBudget(user: user, router: router)
-        let recentTransaction = Assembler.getRecentTranasctionsView(user: user, router: router)
-        let allTransactions = Assembler.getAllTransactionView(user: user, router: router)
+        let recentTransaction = Assembler.getRecentTranasctionsView(user: user)
+        let allTransactions = Assembler.getAllTransactionView(user: user)
         mainView = MainHomeView()
         toolBar = ToolBar()
         toolBar.user = user
@@ -208,6 +207,14 @@ class HomePageViewController: NSViewController {
         
         else if currentPage == .homePage {
             mainView.addTransactionWithAnimation(transaction: transaction)
+            mainView.calculatedBalance(transactionAmount: transaction.amount)
+            if transaction.transactionType == .spending {
+                mainView.loadBudgetWithAnimation(spent: transaction.amount)
+                mainView.calculateSpent(transactionAmount: transaction.amount)
+            }
+            else {
+                mainView.calculateIncome(transactionAmount: transaction.amount)
+            }
         }
     }
 }

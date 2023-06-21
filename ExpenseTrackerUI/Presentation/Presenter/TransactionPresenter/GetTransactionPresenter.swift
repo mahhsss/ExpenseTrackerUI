@@ -11,7 +11,6 @@ import ExpenseTrackerBackend
 class GetAllTransactionPresenter {
     
     weak var view: GetAllTransactionViewContract?
-    weak var router: Router?
     var getAllTransaction: GetAllTransaction
     
     init(getAllTransaction: GetAllTransaction) {
@@ -24,10 +23,10 @@ extension GetAllTransactionPresenter: GetAllTranasctionPresenterContract {
     
     func viewLoadTransaction(user: User) {
         let request = GetAllTransactionRequest(userId: user.userId)
-        getAllTransaction.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        getAllTransaction.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
         }
     }
 }

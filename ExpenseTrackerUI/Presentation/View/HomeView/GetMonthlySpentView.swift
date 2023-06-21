@@ -14,15 +14,22 @@ public class GetMonthlySpentView: NSView {
     
     var presenter: GetMonthlySpentPresenterContract
     var user: User
+    var spentValue: NSTextField!
+    var currentSpent = 0
+    
     init(presenter: GetMonthlySpentPresenterContract, user: User) {
         self.presenter = presenter
         self.user = user
-        super.init(frame: NSRect())
+        super.init(frame: NSZeroRect)
         configureSpentView()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func currentSpentUpdate(transationAmount: Int) {
+        spentValue.stringValue = String(transationAmount + currentSpent)
     }
     
     func configureSpentView() {
@@ -45,10 +52,21 @@ public class GetMonthlySpentView: NSView {
 
 extension GetMonthlySpentView: GetMonthlySpentViewContract {
     
-    func load(success: ExpenseTrackerBackend.GetMonthlySpentResponse) {
+    func load(spent: Int) {
+        
+        currentSpent = spent
+        displayMonthlySpent(spent: spent)
+    }
+    
+    func failure(error: String) {
+        displayMonthlySpent(spent: 0)
+        print(error)
+    }
+    
+    func displayMonthlySpent(spent: Int) {
         
         let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let spentValue = CustomText.customStringLabel(label: String(success.spent), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        spentValue = CustomText.customStringLabel(label: String(spent), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let spentStack = NSStackView(views: [spentLabel, spentValue])
         
         self.wantsLayer = true
@@ -71,33 +89,5 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
 //            self.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
-    
-    func failure(error: ExpenseTrackerBackend.GetMonthlySpentError) {
-        
-        let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        let spentValue = CustomText.customStringLabel(label: "0.00", fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
-        let spentStack = NSStackView(views: [spentLabel, spentValue])
-        
-        self.wantsLayer = true
-        spentStack.wantsLayer = true
-        spentStack.translatesAutoresizingMaskIntoConstraints = false
-        spentStack.orientation = .vertical
-        spentStack.spacing = 15
-        self.layer?.backgroundColor = #colorLiteral(red: 0.9496220946, green: 0.6933776736, blue: 0.00462017348, alpha: 1)
-        self.layer?.cornerRadius = 20
-        
-        addSubview(spentStack)
-        
-        NSLayoutConstraint.activate([
-            
-            spentStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
-            spentStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
-            spentStack.widthAnchor.constraint(equalToConstant: 400),
-//            self.heightAnchor.constraint(equalToConstant: 120),
-//            self.widthAnchor.constraint(equalToConstant: 320)
-        ])
-    }
-    
     
 }

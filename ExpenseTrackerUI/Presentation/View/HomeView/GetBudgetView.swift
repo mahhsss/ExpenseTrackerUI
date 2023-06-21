@@ -17,7 +17,17 @@ class GetBudgetView: NSView {
     var user: User
     var outterBar = NSView()
     var innerBar = NSView()
+    var innerWidth: Float = 0
+    var currentWidth: Float = 0
     var progressBar = NSView()
+    var thisMonthBudget = 0
+    var thisMonthSpent = 0
+    var currentColor: NSColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+    var thisMonthBudgetText: NSTextField!
+    var budgetLabel: NSTextField!
+    var balanceBudgetText: NSTextField!
+    var budgetStack: NSStackView!
+    var budgetString = ""
 
     
     public init(presenter: GetBudgetPresenterContract, user: User) {
@@ -65,19 +75,83 @@ class GetBudgetView: NSView {
         
         presenter.viewLoadBudget(user: user, month: formattedStartDate)
     }
+    
+    func loadBudgetWithAnimation(spent: Int) {
+        
+        thisMonthSpent += spent
+        var targetColor: NSColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+        print(currentWidth)
+        let widthvalue = self.frame.width
+        
+        innerWidth = Float((thisMonthSpent)) / Float((thisMonthBudget))
+        var targetWidth = Float(widthvalue) * 0.80 * innerWidth
+        print(targetWidth)
+        
+        if Float((thisMonthSpent)) == (Float(thisMonthBudget)) {
+            targetColor = NSColor.systemRed
+            targetWidth = Float(self.frame.width * 0.80)
+            innerWidth = 1
+        }
+        else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
+            targetColor = NSColor.systemRed
+            targetWidth = Float(self.frame.width * 0.80)
+            innerWidth = 1
+        }
+        else if  Float((thisMonthSpent)) > (Float(thisMonthBudget) / 2) {
+            print("in orange")
+            targetColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
+        }
+        
+        
+        let widthAnimation = CABasicAnimation(keyPath: "bounds.size.width")
+        widthAnimation.fromValue = currentWidth
+        widthAnimation.toValue = targetWidth
+        widthAnimation.duration = 1.0
+        widthAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        
+        let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        colorAnimation.fromValue = currentColor
+        colorAnimation.toValue = targetColor.cgColor
+        colorAnimation.duration = 1.0
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.animations = [widthAnimation, colorAnimation]
+        animationGroup.duration = 1.0
+        
+        innerBar.layer?.add(animationGroup, forKey: "widthAndColorAnimation")
+        
+        var restToSpent = thisMonthBudget - thisMonthSpent
+        if restToSpent < 0 {
+            restToSpent = 0
+        }
+        budgetString = "\(thisMonthSpent) spent already. \(restToSpent) is left to reach the budget"
+        balanceBudgetText.stringValue = budgetString
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationGroup.duration - 0.25) {
+            self.innerBar.frame.size.width = CGFloat(targetWidth)
+            self.innerBar.layer?.backgroundColor = targetColor.cgColor
+            self.currentWidth = targetWidth
+            self.currentColor = targetColor
+        }
+    }
+    
 }
 
 extension GetBudgetView: GetBudgetViewContract {
     
     func load(success: ExpenseTrackerBackend.GetBudgetResponse) {
         
+        thisMonthBudget = success.budget
+        thisMonthSpent = success.spent
         var restToSpent = success.budget - success.spent
         if restToSpent < 0 {
             restToSpent = 0
         }
         
-        var budgetString = "\(success.spent) spent already. \(restToSpent) is left to reach the budget"
-        var innerWidth = Float((success.spent)) / Float((success.budget))
+        budgetString = "\(success.spent) spent already. \(restToSpent) is left to reach the budget"
+        innerWidth = Float((success.spent)) / Float((success.budget))
         
         if Float((success.spent)) == (Float(success.budget)) {
             innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
@@ -92,10 +166,10 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
         }
         
-        let budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
-        let thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
-        let balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 15, fontStyle: "Trap-Medium")
-        let budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
+        budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
+        thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
+        balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 15, fontStyle: "Trap-Medium")
+        budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
         budgetStack.translatesAutoresizingMaskIntoConstraints = false
@@ -106,6 +180,10 @@ extension GetBudgetView: GetBudgetViewContract {
         
         addSubview(budgetLabel)
         addSubview(budgetStack)
+        var widthvalue = self.frame.width
+        currentWidth = Float(widthvalue) * 0.80 * innerWidth
+        
+        innerBar.frame.size.width = widthvalue * 0.80 * CGFloat(innerWidth)
         
         NSLayoutConstraint.activate([
             progressBar.heightAnchor.constraint(equalToConstant: 25),
@@ -116,7 +194,8 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.topAnchor.constraint(equalTo: outterBar.topAnchor),
             innerBar.leadingAnchor.constraint(equalTo: outterBar.leadingAnchor),
             innerBar.heightAnchor.constraint(equalTo: outterBar.heightAnchor),
-            innerBar.widthAnchor.constraint(equalTo: outterBar.widthAnchor, multiplier: CGFloat(innerWidth)),
+//            innerBar.widthAnchor.constraint(equalTo: outterBar.widthAnchor, multiplier: CGFloat(innerWidth)),
+//            innerBar.widthAnchor.constraint(equalToConstant: CGFloat((Float(widthvalue) * 0.80 * innerWidth))),
             budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             budgetStack.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -125,6 +204,7 @@ extension GetBudgetView: GetBudgetViewContract {
             budgetStack.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
+    
     
     func failure(error: ExpenseTrackerBackend.GetBudgetError) {
         

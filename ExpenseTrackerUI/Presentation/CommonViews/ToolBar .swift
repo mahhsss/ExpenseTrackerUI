@@ -151,7 +151,7 @@ class ToolBar: NSView {
             floatingWindow.close()
         }
         ToolBar.windowExist = true
-        floatingWindow = AddFloatingWindow(user: user, router: router, reloader: self)
+        floatingWindow = AddFloatingWindow(user: user, reloader: self)
         floatingWindow.showWindow(self)
         floatingWindow.window?.hidesOnDeactivate = true
     }
@@ -169,7 +169,7 @@ class ToolBar: NSView {
 class PopoverContentViewController: NSViewController {
     
     var user: User
-    weak var router: Router?
+    weak var router: LogOutRouterContract?
     weak var toolbar: ToolBar?
     
     init(user: User, router: Router, toolbar: ToolBar) {
@@ -244,7 +244,7 @@ class PopoverContentViewController: NSViewController {
             if ToolBar.windowExist == true {
                 toolbar?.floatingWindow.close()
             }
-            self.router?.launch()
+            self.router?.logout()
         }
         else if response == .alertSecondButtonReturn {
             return

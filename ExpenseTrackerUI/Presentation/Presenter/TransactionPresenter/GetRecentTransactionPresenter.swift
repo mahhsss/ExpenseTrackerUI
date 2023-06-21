@@ -11,7 +11,6 @@ import ExpenseTrackerBackend
 class GetRecentTranasactionPresenter {
     
     weak var view: GetRecentTransactionViewContract?
-    weak var router: Router?
     var getRecentTransaction: GetRecentTransaction
     
     init(getRecentTransaction: GetRecentTransaction) {
@@ -20,13 +19,13 @@ class GetRecentTranasactionPresenter {
 }
 
 extension GetRecentTranasactionPresenter: GetRecentTransactionPresenterContract {
+    
     func viewLoadTransaction(user: User, month: String) {
-        
         let request = GetRecentTransactionRequest(userId: user.userId, month: month)
-        getRecentTransaction.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        getRecentTransaction.execute(request: request) { [weak self] response in
+            self?.view?.load(transaction: response.transactions)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
         }
     }
 }

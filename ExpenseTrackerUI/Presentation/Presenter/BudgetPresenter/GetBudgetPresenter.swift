@@ -11,7 +11,7 @@ import ExpenseTrackerBackend
 public class GetBudgetPresenter {
     
     weak var view: GetBudgetViewContract?
-    weak var router: Router?
+    weak var router: GetBudgetRouterContract?
     var getBudget: GetBudget
     
     public init(getBudget: GetBudget) {
@@ -22,13 +22,23 @@ public class GetBudgetPresenter {
 
 extension GetBudgetPresenter: GetBudgetPresenterContract {
     
+    func reload(user: User) {
+        if let router = router {
+            router.reloadHomePage(user: user)
+        }
+        else {
+            print("failed")
+        }
+        
+    }
+    
     func viewLoadBudget(user: ExpenseTrackerBackend.User, month: String) {
         
         let request = GetBudgetRequest(userId: user.userId, month: month)
-        getBudget.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        getBudget.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
         }
     }
 }

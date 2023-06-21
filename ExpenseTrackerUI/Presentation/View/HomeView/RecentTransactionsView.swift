@@ -52,12 +52,12 @@ class RecentTransactionsView: NSView {
 }
 
 extension RecentTransactionsView: GetRecentTransactionViewContract {
-    
-    func load(success: GetRecentTransactionResponse) {
+   
+    func load(transaction: [Transaction]) {
         
         let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let scrollView = NSScrollView()
-        transactions = success.transactions
+        transactions = transaction
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder
         scrollView.scrollerKnobStyle = .light
@@ -147,10 +147,13 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
             cell.date.stringValue = String(outputDateString)
             cell.mode.stringValue = transactions[row].currencyType.rawValue
             cell.type.stringValue = transactions[row].transactionType.rawValue
-            cell.image.image = NSImage(named: transactions[row].category!)
             if transactions[row].transactionType.rawValue == "Income" {
                 cell.image.image = NSImage(named: "rupee")
             }
+            else {
+                cell.image.image = NSImage(named: transactions[row].category!)
+            }
+            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: TransactionCellView.identifier)
             return cell
         }
         cell.amount.stringValue = formattedAmount!

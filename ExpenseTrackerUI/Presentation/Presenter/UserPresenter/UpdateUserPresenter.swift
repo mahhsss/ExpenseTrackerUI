@@ -24,10 +24,10 @@ extension UpdateUserPresenter: UpdateUserPresenterContract {
     
     func viewLoad(user: User, column: String, update: Any) {
         let request = UpdateUserRequest(user: user, column: column, update: update)
-        self.updateUser.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        self.updateUser.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
         }
     }
     

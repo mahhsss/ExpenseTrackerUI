@@ -15,6 +15,7 @@ class Assembler {
     }
     
     static func HomeView(user: User, router: Router) -> HomePageViewController {
+        //
         return HomePageViewController(user: user, router: router)
     }
 }
@@ -69,7 +70,6 @@ extension Assembler {
         let presenter = DeleteTransactionPresenter(deleteTransaction: usecase)
         let view = DeleteTransactionView(user: user, presenter: presenter, transaction: transaction)
         presenter.view = view
-        presenter.router = router
         return view
     }
 }
@@ -78,52 +78,49 @@ extension Assembler {
 //------------------------- Transaction Assembler --------------------------
 extension Assembler {
     
-    static func addTransactionView(user: User, router: Router, windowController: AddFloatingWindow, reloader: ToolBar) -> AddTransactionView {
+    static func addTransactionView(user: User, windowController: AddFloatingWindow, reloader: ToolBar) -> AddTransactionView {
         let database = AddTransactionDataDatabaseService()
         let dataManager = AddNewTransactionDataManager(database: database)
         let usecase = AddNewTransaction(dataManager: dataManager)
         let presenter = AddTransactionPresenter(AddNewTransaction: usecase)
         let view = AddTransactionView(user: user, presenter: presenter)
         presenter.view = view
-        presenter.router = router
         presenter.windowController = windowController
         presenter.reloader = reloader
         return view
         
     }
     
-    static func getRecentTranasctionsView(user: User, router: Router) -> RecentTransactionsView {
+    static func getRecentTranasctionsView(user: User) -> RecentTransactionsView {
         let database = GetRecentTransactionDatabase()
         let dataManager = GetRecentTransactionDataManager(database: database)
         let usecase = GetRecentTransaction(dataManager: dataManager)
         let presenter = GetRecentTranasactionPresenter(getRecentTransaction: usecase)
         let view = RecentTransactionsView(user: user, presenter: presenter)
-        presenter.router = router
         presenter.view = view
         return view
     }
     
-    static func getAllTransactionView(user: User, router: Router) -> GetAllTransactionView {
+    static func getAllTransactionView(user: User) -> GetAllTransactionView {
         let database = GetAllTransactionDatabase()
         let dataManager = GetAllTransactionDataManager(database: database)
         let usecase = GetAllTransaction(dataManager: dataManager)
         let presenter = GetAllTransactionPresenter(getAllTransaction: usecase)
         let view = GetAllTransactionView(user: user, presenter: presenter)
         presenter.view = view
-        presenter.router = router
         return view
     }
     
-    static func updateTransactionView(user: User, transaction: Transaction, router: Router) -> UpdateTransactionView {
-        let database = UpdateTranastionDatabaseServise()
-        let dataManager = UpdateTransactionDataManager(database: database)
-        let usecase = UpdateTransaction(dataManager: dataManager)
-        let presenter = UpdateTransactionPresenter(updateTransaction: usecase)
-        let view = UpdateTransactionView(user: user, presenter: presenter, transaction: transaction)
-        presenter.view = view
-        presenter.router = router
-        return view
-    }
+//    static func updateTransactionView(user: User, transaction: Transaction, router: Router) -> UpdateTransactionView {
+//        let database = UpdateTranastionDatabaseServise()
+//        let dataManager = UpdateTransactionDataManager(database: database)
+//        let usecase = UpdateTransaction(dataManager: dataManager)
+//        let presenter = UpdateTransactionPresenter(updateTransaction: usecase)
+//        let view = UpdateTransactionView(user: user, presenter: presenter, transaction: transaction)
+//        presenter.view = view
+//        presenter.router = router
+//        return view
+//    }
     
     static func addMonthlyAnalysisTransaction(user: User, transaction: Transaction, router: Router) -> AddMonthlyAnalysisView {
         let database = AddMonthlyAnalysisTransactionDatabase()
@@ -136,36 +133,33 @@ extension Assembler {
         return view
     }
     
-    static func getMonthlySpent(user: User, router: Router) -> GetMonthlySpentView {
+    static func getMonthlySpent(user: User) -> GetMonthlySpentView {
         let database = GetMonthlySpentDatabase()
         let databaseManager = GetMonthlySpentDataManager(database: database)
         let usecase = GetMonthlySpent(dataManager: databaseManager)
         let presenter = GetMonthlySpentPresenter(getMonthlySpent: usecase)
         let view = GetMonthlySpentView(presenter: presenter, user: user)
         presenter.view = view
-        presenter.routher = router
         return view
     }
     
-    static func getMonthlyIncome(user: User, router: Router) -> GetMonthlyIncomeView {
+    static func getMonthlyIncome(user: User) -> GetMonthlyIncomeView {
         let database = GetMonthlyIncomeDatabase()
         let dataManager = GetMonthlyIncomeDataManager(database: database)
         let usecase = GetMonthlyIncome(dataManager: dataManager)
         let presenter = GetMonthlyIncomePresenter(getMonthlyIncome: usecase)
         let view = GetMonthlyIncomeView(presenter: presenter, user: user)
         presenter.view = view
-        presenter.routher = router
         return view
     }
     
-    static func getMonthlyBalance(user: User, router: Router) -> GetMonthlyBalanceView {
+    static func getMonthlyBalance(user: User) -> GetMonthlyBalanceView {
         let database = GetMonthlyBalanceDatabase()
         let dataManager = GetMonthlyBalanceDataManager(database: database)
         let usecase = GetMonthlyBalance(dataManager: dataManager)
         let presenter = GetMonthlyBalancePresenter(getMonthlyBalance: usecase)
         let view = GetMonthlyBalanceView(presenter: presenter, user: user)
         presenter.view = view
-        presenter.router = router
         return view
     }
 }
@@ -196,42 +190,6 @@ extension Assembler {
         return view
     }
 }
-
-//------------------------- Category Assembler --------------------------
-extension Assembler {
-    
-    static func categoryView(user: User, router: Router) -> CategoryView {
-        return CategoryView(router: router, user: user)
-    }
-}
-
-extension Assembler {
-    
-    static func getCategory(user: User, router: Router) -> GetCategoryView {
-        let database = GetCategoryDatabaseService()
-        let dataManager = GetCategoryDataManagerServise(database: database)
-        let usecase = GetCategory(dataManager: dataManager)
-        let presenter = GetCategoryPresenter(getCategory: usecase)
-        let view = GetCategoryView(presenter: presenter, user: user)
-        presenter.view = view
-        presenter.router = router
-        return view
-    }
-}
-
-extension Assembler {
-    
-    static func addCategory(user: User, router: Router) -> AddCategoryView {
-        let database = AddCategoryDatabaseService()
-        let dataManager  = AddCategoryDatamanager(database: database)
-        let usecase = AddCategory(dataManager: dataManager)
-        let presenter = AddCategoryPresenter(addCategory: usecase)
-        let view = AddCategoryView(user: user, presenter: presenter)
-        presenter.view = view
-        return view
-    }
-}
-
 
 //------------------------- Analysis Assembler --------------------------
 extension Assembler {

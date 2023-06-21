@@ -23,13 +23,13 @@ extension GetUserPresenter: UserLoginPresenterContract {
   
     func viewDidLoad(emailId: String, password: String) {
         let request = UserLoginRequest(emailId: emailId, password: password)
-        userLogin.execute(request: request) { response in
-            self.view?.load(success: response.user)
-            self.router?.home(user: response.user)
+        userLogin.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response.user)
+            self?.router?.home(user: response.user)
 //            self.router?.addTransaction(user: response.user)
-        } onFailure: { error in
-            self.view?.failure(error: error)
-            self.router?.launch()
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
+            self?.router?.launch()
         }
     }
   

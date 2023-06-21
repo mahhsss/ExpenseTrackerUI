@@ -13,13 +13,11 @@ class AddViewController: NSViewController {
     
     var addTransactionView: AddTransactionView!
     var user: User
-    weak var router: Router?
     weak var windowController: AddFloatingWindow?
     weak var reloader: ToolBar?
     
-    init(user: User, router: Router, windowController: AddFloatingWindow, reloader: ToolBar) {
+    init(user: User, windowController: AddFloatingWindow, reloader: ToolBar) {
         self.user = user
-        self.router = router
         self.windowController = windowController
         self.reloader = reloader
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +29,7 @@ class AddViewController: NSViewController {
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: 700, height: NSScreen.main!.frame.height - 280))
-        addTransactionView = Assembler.addTransactionView(user: user, router: router!, windowController: windowController!, reloader: reloader!)
+        addTransactionView = Assembler.addTransactionView(user: user, windowController: windowController!, reloader: reloader!)
     }
     
     override func viewDidLoad() {

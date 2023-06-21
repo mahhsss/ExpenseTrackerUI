@@ -23,10 +23,10 @@ public class AddCategoryPresenter {
 extension AddCategoryPresenter: AddCategoryPageContract {
     func viewDidLoadExpense(user: User, category: ExpendatureCategory) {
         let request = AddCategoryRequest(userId: user.userId, category: category)
-        addCategory.execute(request: request) { response in
-            self.view?.load(sucess: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        addCategory.execute(request: request) { [weak self] response in
+            self?.view?.load(sucess: response)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
         }
         
     }

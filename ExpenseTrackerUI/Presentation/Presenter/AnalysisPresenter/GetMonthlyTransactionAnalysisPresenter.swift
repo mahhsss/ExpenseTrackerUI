@@ -24,10 +24,10 @@ extension GetMonthlyTransactionAnalysisPresenter: GetMonthlyTranasctionAnalysisP
     
     func viewLoadMonthyTransaction(user: User, startDate: String, endDate: String) {
         let request = GetTransactionAnalysisRequest(userId: user.userId, startDate: startDate, endDate: endDate)
-        self.getMonthlyTransactionAnalysis.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        self.getMonthlyTransactionAnalysis.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error)
         }
     }
 }

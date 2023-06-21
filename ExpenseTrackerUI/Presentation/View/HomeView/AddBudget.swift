@@ -76,11 +76,11 @@ class AddBudgetView: NSAlert {
 
 extension AddBudgetView: AddBudgetViewContract {
     
-    func load(success: AddBudgetResponse) {
-        print("\n\(success.message)\n")
+    func load(success: String) {
+        print("\n\(success)\n")
     }
     
-    func failure(error: AddBudgetError) {
-        print("\n\(error.error)\n")
+    func failure(error: String) {
+        print("\n\(error)\n")
     }
 }

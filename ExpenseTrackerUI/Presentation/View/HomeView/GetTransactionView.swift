@@ -158,6 +158,7 @@ extension GetAllTransactionView: NSTableViewDelegate, NSTableViewDataSource   {
             else {
                 cell.image.image = NSImage(named: transactions[row].category!)
             }
+            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: TransactionCellView.identifier)
             return cell
         }
         cell.amount.stringValue = formattedAmount!

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		02BF3FB7A46291778A7A74BA /* Pods_ExpenseTrackerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */; };
 		2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A030E5229ACDE560096587B /* UserSignUpView.swift */; };
-		2A16147929B71305005E999E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16147829B71305005E999E /* CategoryView.swift */; };
 		2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16147B29B75468005E999E /* AddCategoryView.swift */; };
 		2A16148229B7AC3C005E999E /* AddCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16148129B7AC3C005E999E /* AddCategoryPresenter.swift */; };
 		2A16148429B852F2005E999E /* GetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16148329B852F2005E999E /* GetCategoryView.swift */; };
@@ -19,6 +18,7 @@
 		2A16149C29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149B29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift */; };
 		2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149D29BB4560005E999E /* GetAnalysisView.swift */; };
 		2A3EE3382A2DFED400276E95 /* ToolBar .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EE3372A2DFED400276E95 /* ToolBar .swift */; };
+		2A4731622A43782000BBF682 /* RouterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4731612A43782000BBF682 /* RouterContract.swift */; };
 		2A5DCDDF2A1CE000007586CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDDE2A1CE000007586CF /* main.swift */; };
 		2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */; };
 		2A5DCDF72A1F26FC007586CF /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDF62A1F26FC007586CF /* CustomText.swift */; };
@@ -86,7 +86,6 @@
 /* Begin PBXFileReference section */
 		201BA1BEF5A874BD96695921 /* Pods-ExpenseTrackerUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.release.xcconfig"; sourceTree = "<group>"; };
 		2A030E5229ACDE560096587B /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
-		2A16147829B71305005E999E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		2A16147B29B75468005E999E /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		2A16148129B7AC3C005E999E /* AddCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryPresenter.swift; sourceTree = "<group>"; };
 		2A16148329B852F2005E999E /* GetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoryView.swift; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		2A16149B29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyTransactionAnalysisPresenter.swift; sourceTree = "<group>"; };
 		2A16149D29BB4560005E999E /* GetAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnalysisView.swift; sourceTree = "<group>"; };
 		2A3EE3372A2DFED400276E95 /* ToolBar .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolBar .swift"; sourceTree = "<group>"; };
+		2A4731612A43782000BBF682 /* RouterContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterContract.swift; sourceTree = "<group>"; };
 		2A5DCDDE2A1CE000007586CF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		2A5DCDF62A1F26FC007586CF /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
@@ -174,7 +174,6 @@
 		2A16147A29B714C4005E999E /* CategoryVIew */ = {
 			isa = PBXGroup;
 			children = (
-				2A16147829B71305005E999E /* CategoryView.swift */,
 				2A16147B29B75468005E999E /* AddCategoryView.swift */,
 				2A16148329B852F2005E999E /* GetCategoryView.swift */,
 			);
@@ -316,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA2455929A8A49C007BBE2D /* UserContract.swift */,
+				2A4731612A43782000BBF682 /* RouterContract.swift */,
 			);
 			path = UserContract;
 			sourceTree = "<group>";
@@ -567,8 +567,8 @@
 				2A5DCE212A24A3A7007586CF /* GetBudgetView.swift in Sources */,
 				2A7B9F6529C0A51E00A9BFAE /* DeleteTransactionPresenter.swift in Sources */,
 				2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */,
+				2A4731622A43782000BBF682 /* RouterContract.swift in Sources */,
 				2AADB00129B5FC4400F7962D /* GetCategorysPresenter.swift in Sources */,
-				2A16147929B71305005E999E /* CategoryView.swift in Sources */,
 				2A7B9F7E29C1AFA300A9BFAE /* AddMonthlyAnalysisView.swift in Sources */,
 				2A7B9F5329C0678200A9BFAE /* UpdateUserView.swift in Sources */,
 				2A5E3B582A3247CD0044C8F8 /* AddFloatingWindow.swift in Sources */,

@@ -23,10 +23,10 @@ extension GetMonthlySpentPresenter: GetMonthlySpentPresenterContract {
     
     func viewLoadMonthlySpent(user: User, month: String) {
         let request = GetMonthlySpentRequest(userId: user.userId, month: month)
-        self.getMonthlySpent.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        self.getMonthlySpent.execute(request: request) { [weak self] response in
+            self?.view?.load(spent: response.spent)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error.error.localizedDescription)
         }
     }
 }

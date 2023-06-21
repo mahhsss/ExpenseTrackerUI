@@ -33,6 +33,23 @@ class MainHomeView: NSView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func reloadBudgetView() {
+        budgetView.removeFromSuperview()
+        configureBudgetView()
+    }
+    
+    func calculateSpent(transactionAmount: Int) {
+        spent.currentSpentUpdate(transationAmount: transactionAmount)
+    }
+    
+    func calculateIncome(transactionAmount: Int) {
+        income.currentIncomeUpdate(TransactionAmount: transactionAmount)
+    }
+    
+    func calculatedBalance(transactionAmount: Int) {
+        balance.currentBalanceUpdate(transactionAmount: transactionAmount)
+    }
+    
     func configureExpenseViews() {
         
         let thisMonthText = CustomText.customHeaderStringLabel(label: "This month", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
@@ -113,6 +130,10 @@ class MainHomeView: NSView {
     
     func addTransactionWithAnimation(transaction: Transaction) {
         recentTransactionsView.insertNewTransaction(transation: transaction)
+    }
+    
+    func loadBudgetWithAnimation(spent: Int) {
+        budgetView.loadBudgetWithAnimation(spent: spent)
     }
     
 }

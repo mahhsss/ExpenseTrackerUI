@@ -11,7 +11,6 @@ import ExpenseTrackerBackend
 class AddTransactionPresenter {
    
     weak var view: AddNewTransactionContract?
-    weak var router: Router?
     weak var reloader: ToolBar?
     weak var windowController: AddFloatingWindow?
     var newTransaction: AddNewTransaction

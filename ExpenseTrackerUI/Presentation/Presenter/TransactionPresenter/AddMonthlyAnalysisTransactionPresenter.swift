@@ -23,10 +23,10 @@ extension AddMonthlyAnalysisTransactionPresenter: AddMonthlyAnalysisPresenterCon
     
     func viewLoadTransaction(user: User, transaction: Transaction) {
         let request = AddMonthlyAnalysisTransactionRequest(userId: user.userId, transaction: transaction)
-        self.AddMonthlyAnalysisTransaction.execute(request: request) { response in
-            self.view?.load(success: response)
-        } onFailure: { error in
-            self.view?.failure(error: error)
+        self.AddMonthlyAnalysisTransaction.execute(request: request) { [weak self] response in
+            self?.view?.load(success: response.message)
+        } onFailure: { [weak self] error in
+            self?.view?.failure(error: error.error.localizedDescription)
         }
     }
 }

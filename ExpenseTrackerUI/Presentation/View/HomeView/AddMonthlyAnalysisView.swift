@@ -39,11 +39,11 @@ class AddMonthlyAnalysisView: NSView {
 
 extension AddMonthlyAnalysisView: AddMonthlyAnalysisViewContract {
     
-    func load(success: AddMonthlyAnalysisTransactionResponse) {
-        print("\n\(success.message)\n")
+    func load(success: String) {
+        print("\n\(success)\n")
     }
     
-    func failure(error: AddMonthlyAnalysisTransactionError) {
-        print("\n\(error.error)\n")
+    func failure(error: String) {
+        print("\n\(error)\n")
     }
 }
