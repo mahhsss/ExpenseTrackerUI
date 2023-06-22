@@ -158,7 +158,9 @@ class ToolBar: NSView {
     
     @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
         
-        Assembler.addBudget(user: user, router: router)
+        if let homePageReloader = homePageReloader {
+            Assembler.addBudget(user: user, budgetViewReloader: homePageReloader)
+        }
     }
     
     func reload(transaction: Transaction) {

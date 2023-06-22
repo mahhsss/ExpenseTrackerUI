@@ -76,16 +76,20 @@ class GetBudgetView: NSView {
         presenter.viewLoadBudget(user: user, month: formattedStartDate)
     }
     
-    func loadBudgetWithAnimation(spent: Int) {
+    func loadBudgetAfterUpdating(budget: Int) {
         
-        thisMonthSpent += spent
+        thisMonthBudget = budget
+        thisMonthBudgetText.stringValue = "This month budget is \(thisMonthBudget)"
         var targetColor: NSColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
         print(currentWidth)
         let widthvalue = self.frame.width
         
         innerWidth = Float((thisMonthSpent)) / Float((thisMonthBudget))
         var targetWidth = Float(widthvalue) * 0.80 * innerWidth
-        print(targetWidth)
+        
+        let restToSpent = thisMonthBudget - thisMonthSpent
+        
+        budgetString = "\(thisMonthSpent) spent already. \(restToSpent) is left to reach the budget"
         
         if Float((thisMonthSpent)) == (Float(thisMonthBudget)) {
             targetColor = NSColor.systemRed
@@ -96,6 +100,7 @@ class GetBudgetView: NSView {
             targetColor = NSColor.systemRed
             targetWidth = Float(self.frame.width * 0.80)
             innerWidth = 1
+            budgetString = "\(thisMonthSpent) spent already. \(thisMonthSpent - thisMonthBudget) spent beyond the budget"
         }
         else if  Float((thisMonthSpent)) > (Float(thisMonthBudget) / 2) {
             print("in orange")
@@ -122,11 +127,69 @@ class GetBudgetView: NSView {
         
         innerBar.layer?.add(animationGroup, forKey: "widthAndColorAnimation")
         
-        var restToSpent = thisMonthBudget - thisMonthSpent
-        if restToSpent < 0 {
-            restToSpent = 0
+        balanceBudgetText.stringValue = budgetString
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationGroup.duration - 0.25) {
+            self.innerBar.frame.size.width = CGFloat(targetWidth)
+            self.innerBar.layer?.backgroundColor = targetColor.cgColor
+            self.currentWidth = targetWidth
+            self.currentColor = targetColor
         }
+    }
+    
+    func loadBudgetWithAnimation(spent: Int) {
+        
+        thisMonthSpent += spent
+        var targetColor: NSColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+        print(currentWidth)
+        let widthvalue = self.frame.width
+        
+        innerWidth = Float((thisMonthSpent)) / Float((thisMonthBudget))
+        var targetWidth = Float(widthvalue) * 0.80 * innerWidth
+        print(targetWidth)
+        
+        let restToSpent = thisMonthBudget - thisMonthSpent
+        
         budgetString = "\(thisMonthSpent) spent already. \(restToSpent) is left to reach the budget"
+
+        
+        if Float((thisMonthSpent)) == (Float(thisMonthBudget)) {
+            targetColor = NSColor.systemRed
+            targetWidth = Float(self.frame.width * 0.80)
+            innerWidth = 1
+        }
+        else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
+            targetColor = NSColor.systemRed
+            targetWidth = Float(self.frame.width * 0.80)
+            innerWidth = 1
+            budgetString = "\(thisMonthSpent) spent already. \(thisMonthSpent - thisMonthBudget) spent beyond the budget"
+        }
+        else if  Float((thisMonthSpent)) > (Float(thisMonthBudget) / 2) {
+            print("in orange")
+            targetColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
+        }
+        
+        
+        let widthAnimation = CABasicAnimation(keyPath: "bounds.size.width")
+        widthAnimation.fromValue = currentWidth
+        widthAnimation.toValue = targetWidth
+        widthAnimation.duration = 1.0
+        widthAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        
+        let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        colorAnimation.fromValue = currentColor
+        colorAnimation.toValue = targetColor.cgColor
+        colorAnimation.duration = 1.0
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.animations = [widthAnimation, colorAnimation]
+        animationGroup.duration = 1.0
+        
+        innerBar.layer?.add(animationGroup, forKey: "widthAndColorAnimation")
+        
         balanceBudgetText.stringValue = budgetString
         
         DispatchQueue.main.asyncAfter(deadline: .now() + animationGroup.duration - 0.25) {

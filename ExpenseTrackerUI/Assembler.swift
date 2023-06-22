@@ -168,14 +168,14 @@ extension Assembler {
 //------------------------- Budget Assembler --------------------------
 extension Assembler {
     
-    static func addBudget(user: User, router: Router) -> AddBudgetView {
+    static func addBudget(user: User, budgetViewReloader: HomePageViewController) -> AddBudgetView {
         let database = AddBudgetDatabaseService()
         let dataManager = AddBudgetDataManager(database: database)
         let usecase = AddBudget(dataManager: dataManager)
         let presenter = AddBudgetPresenter(addBudget: usecase)
         let view = AddBudgetView(user: user, presenter: presenter)
         presenter.view = view
-        presenter.router = router
+        presenter.budgetViewReloader = budgetViewReloader
         return view
     }
     

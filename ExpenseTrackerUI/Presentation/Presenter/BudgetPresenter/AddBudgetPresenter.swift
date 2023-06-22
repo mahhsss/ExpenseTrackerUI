@@ -10,8 +10,8 @@ import ExpenseTrackerBackend
 
 class AddBudgetPresenter {
     
-    weak var view: AddBudgetViewContract?
-    weak var router: AddBudgetRouterContract?
+    var view: AddBudgetViewContract?
+    weak var budgetViewReloader: HomePageViewController?
     var addBudget: AddBudget
     
     init(addBudget: AddBudget) {
@@ -24,10 +24,9 @@ extension AddBudgetPresenter: AddBudgetPresenterContract {
         let request = AddBudgetRequest(userId: user.userId, budget: budget)
         self.addBudget.execute(request: request) { [weak self] response in
             self?.view?.load(success: response.message)
-            self?.router?.reloadHomePage(user: user)
+            self?.budgetViewReloader?.loadBudgetAfterUpdating(budget: budget.budget)
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error.error.localizedDescription)
-            self?.router?.reloadHomePage(user: user)
         }
     }
 }

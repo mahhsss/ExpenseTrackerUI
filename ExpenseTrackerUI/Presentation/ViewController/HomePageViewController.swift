@@ -199,6 +199,11 @@ class HomePageViewController: NSViewController {
         leftMenuBar.homeButton.image = leftMenuBar.homeButton.image?.tint(color: #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1))
     }
     
+    func loadBudgetAfterUpdating(budget: Int) {
+        
+        mainView.loadBudgetAfterUpdating(budget: budget)
+    }
+    
     func reloadAfterAtransaction(transaction: Transaction) {
         
         if currentPage == .transactionPage {

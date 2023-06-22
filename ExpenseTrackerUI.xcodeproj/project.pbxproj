@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		02BF3FB7A46291778A7A74BA /* Pods_ExpenseTrackerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */; };
 		2A030E5329ACDE560096587B /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A030E5229ACDE560096587B /* UserSignUpView.swift */; };
-		2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16147B29B75468005E999E /* AddCategoryView.swift */; };
 		2A16148229B7AC3C005E999E /* AddCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16148129B7AC3C005E999E /* AddCategoryPresenter.swift */; };
-		2A16148429B852F2005E999E /* GetCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16148329B852F2005E999E /* GetCategoryView.swift */; };
 		2A16148629B89F64005E999E /* GetTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16148529B89F64005E999E /* GetTransactionView.swift */; };
 		2A16148829B8A559005E999E /* GetTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16148729B8A559005E999E /* GetTransactionPresenter.swift */; };
 		2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149829BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift */; };
@@ -86,9 +84,7 @@
 /* Begin PBXFileReference section */
 		201BA1BEF5A874BD96695921 /* Pods-ExpenseTrackerUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTrackerUI.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTrackerUI/Pods-ExpenseTrackerUI.release.xcconfig"; sourceTree = "<group>"; };
 		2A030E5229ACDE560096587B /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
-		2A16147B29B75468005E999E /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		2A16148129B7AC3C005E999E /* AddCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryPresenter.swift; sourceTree = "<group>"; };
-		2A16148329B852F2005E999E /* GetCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoryView.swift; sourceTree = "<group>"; };
 		2A16148529B89F64005E999E /* GetTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionView.swift; sourceTree = "<group>"; };
 		2A16148729B8A559005E999E /* GetTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionPresenter.swift; sourceTree = "<group>"; };
 		2A16149829BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMonthlyTransactionAnalysisView.swift; sourceTree = "<group>"; };
@@ -169,15 +165,6 @@
 				80CE9EB30407BED21CA558E2 /* Pods_ExpenseTrackerUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2A16147A29B714C4005E999E /* CategoryVIew */ = {
-			isa = PBXGroup;
-			children = (
-				2A16147B29B75468005E999E /* AddCategoryView.swift */,
-				2A16148329B852F2005E999E /* GetCategoryView.swift */,
-			);
-			path = CategoryVIew;
 			sourceTree = "<group>";
 		};
 		2A16149A29BB23C3005E999E /* AnalysisPresenter */ = {
@@ -304,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				2AADAFFE29B5CF7F00F7962D /* AnalysisView */,
-				2A16147A29B714C4005E999E /* CategoryVIew */,
 				2AADAFE829B07B8B00F7962D /* HomeView */,
 				2AADAFE729B06EDC00F7962D /* AuthenticationView */,
 			);
@@ -524,8 +510,6 @@
 			files = (
 				2A5DCE112A20DA20007586CF /* GetMonthlyIncomePresenter.swift in Sources */,
 				2A5DCE1D2A2202A2007586CF /* GetMonthlyBalanceView.swift in Sources */,
-				2A16148429B852F2005E999E /* GetCategoryView.swift in Sources */,
-				2A16147C29B75468005E999E /* AddCategoryView.swift in Sources */,
 				2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */,
 				2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */,
 				2A7B9F5B29C083F300A9BFAE /* UpdateUserPresenter.swift in Sources */,

@@ -136,4 +136,8 @@ class MainHomeView: NSView {
         budgetView.loadBudgetWithAnimation(spent: spent)
     }
     
+    func loadBudgetAfterUpdating(budget: Int) {
+        budgetView.loadBudgetAfterUpdating(budget: budget)
+    }
+    
 }
