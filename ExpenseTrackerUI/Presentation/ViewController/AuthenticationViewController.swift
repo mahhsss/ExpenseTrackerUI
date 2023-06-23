@@ -17,7 +17,7 @@ class AuthenticationViewController: NSViewController {
     
     init(router: Router) {
         
-//        self.router = router
+        self.router = router
         self.loginView = Assembler.userLoginView(router: router)
         super.init(nibName: nil, bundle: nil)
     }

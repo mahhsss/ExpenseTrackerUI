@@ -62,11 +62,10 @@ class GetAllTransactionView: NSView {
 
 extension GetAllTransactionView: GetAllTransactionViewContract {
     
-    func load(success: GetAllTransactionResponse) {
+    func load(transaction: [Transaction]) {
         
-        transactions = success.transactions
+        transactions = transaction
         let scrollView = NSScrollView()
-        transactions = success.transactions
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder
         scrollView.scrollerKnobStyle = .light
@@ -96,7 +95,7 @@ extension GetAllTransactionView: GetAllTransactionViewContract {
         ])
     }
     
-    func failure(error: GetAllTransactionError) {
+    func failure(error: String) {
 
         let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded", fontSize: 13, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         let addTransactionLable = CustomText.customHeaderStringLabel(label: "Add transaction to keep a track on your expendature and income", fontSize: 13, fontStyle: "Trap-Medium")

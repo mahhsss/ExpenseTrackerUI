@@ -92,7 +92,7 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         ])
     }
     
-    func failure(error: GetRecentTransactionError) {
+    func failure(error: String) {
         
         let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")

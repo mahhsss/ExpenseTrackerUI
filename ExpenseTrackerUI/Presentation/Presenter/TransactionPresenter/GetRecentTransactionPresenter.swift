@@ -25,7 +25,7 @@ extension GetRecentTranasactionPresenter: GetRecentTransactionPresenterContract 
         getRecentTransaction.execute(request: request) { [weak self] response in
             self?.view?.load(transaction: response.transactions)
         } onFailure: { [weak self] error in
-            self?.view?.failure(error: error)
+            self?.view?.failure(error: error.error.localizedDescription)
         }
     }
 }

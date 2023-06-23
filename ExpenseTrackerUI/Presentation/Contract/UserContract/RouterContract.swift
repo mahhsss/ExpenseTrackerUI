@@ -8,11 +8,6 @@
 import Foundation
 import ExpenseTrackerBackend
 
-protocol GetBudgetRouterContract: AnyObject {
-    
-    func reloadHomePage(user: User)
-}
-
 protocol AddBudgetRouterContract: AnyObject {
     
     func reloadHomePage(user: User)
@@ -21,4 +16,16 @@ protocol AddBudgetRouterContract: AnyObject {
 protocol LogOutRouterContract: AnyObject {
     
     func logout()
+}
+
+
+protocol LoginRouterContract: AnyObject {
+    
+    func homePage(user: User)
+    func loginPage()
+}
+
+
+protocol SignupRouterContract: AnyObject {
+    
 }

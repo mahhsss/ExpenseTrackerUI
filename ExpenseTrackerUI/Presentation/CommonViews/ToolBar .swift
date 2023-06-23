@@ -20,6 +20,7 @@ class ToolBar: NSView {
     var router: Router!
     var floatingWindow: AddFloatingWindow!
     static var windowExist = false
+    var addBudgetView: AddBudgetView!
     
     weak var homePageReloader: HomePageViewController?
     
@@ -159,7 +160,7 @@ class ToolBar: NSView {
     @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
         
         if let homePageReloader = homePageReloader {
-            Assembler.addBudget(user: user, budgetViewReloader: homePageReloader)
+            addBudgetView = Assembler.addBudget(user: user, budgetViewReloader: homePageReloader)
         }
     }
     

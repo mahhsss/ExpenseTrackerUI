@@ -11,7 +11,6 @@ import ExpenseTrackerBackend
 class GetWeeklyTransactionAnalysisPresenter {
     
     weak var view: GetWeeklyTransactionAnalysisViewContract?
-    weak var router: Router?
     var getWeeklyTransactionAnalysis: GetTransactionAnalysis
    
     init(getWeeklyTransactionAnalysis: GetTransactionAnalysis) {

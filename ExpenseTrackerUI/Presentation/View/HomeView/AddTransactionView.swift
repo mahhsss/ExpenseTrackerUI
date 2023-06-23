@@ -299,12 +299,12 @@ extension AddTransactionView {
 }
 
 extension AddTransactionView: AddNewTransactionContract {
-    func load(success: AddNewTransactionResponse) {
-        print("\n\(success.message)")
+    func load(success: String) {
+        print("\n\(success)")
     }
     
-    func failure(error: AddNewTransactionError) {
-        print("\n\(error.error)")
+    func failure(error: String) {
+        print("\n\(error)")
     }
     
     

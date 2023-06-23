@@ -10,7 +10,7 @@ import ExpenseTrackerBackend
 
 class AddBudgetPresenter {
     
-    var view: AddBudgetViewContract?
+    weak var view: AddBudgetViewContract?
     weak var budgetViewReloader: HomePageViewController?
     var addBudget: AddBudget
     

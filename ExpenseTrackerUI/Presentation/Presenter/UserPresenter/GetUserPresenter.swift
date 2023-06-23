@@ -11,7 +11,7 @@ import ExpenseTrackerBackend
 class GetUserPresenter {
     
     weak var view: GetUserViewontract?
-    weak var router: Router?
+    weak var router: LoginRouterContract?
     var userLogin: UserLogin
     
     init(userLogin: UserLogin) {
@@ -25,11 +25,12 @@ extension GetUserPresenter: UserLoginPresenterContract {
         let request = UserLoginRequest(emailId: emailId, password: password)
         userLogin.execute(request: request) { [weak self] response in
             self?.view?.load(success: response.user)
-            self?.router?.home(user: response.user)
+            self?.router?.homePage(user: response.user)
+//            self?.router?.home(user: response.user)
 //            self.router?.addTransaction(user: response.user)
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error)
-            self?.router?.launch()
+            self?.router?.loginPage()
         }
     }
   

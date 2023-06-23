@@ -56,7 +56,7 @@ extension Assembler {
         let presenter = UpdateUserPresenter(updateUser: usecase)
         let view = UpdateUserView(user: user, presenter: presenter)
         presenter.view = view
-        presenter.router = router
+//        presenter.router = router
         return view
     }
 }
@@ -185,7 +185,7 @@ extension Assembler {
         let usecase = GetBudget(dataManager: dataManager)
         let presenter = GetBudgetPresenter(getBudget: usecase)
         let view = GetBudgetView(presenter: presenter, user: user)
-        presenter.router = router
+//        presenter.router = router
         presenter.view = view
         return view
     }
@@ -209,7 +209,7 @@ extension Assembler {
         let presenter = GetMonthlyTransactionAnalysisPresenter(getMonthlyTransactionAnalysis: usecase)
         let view = GetMonthlyTransactionAnalysisView(presenter: presenter, user: user)
         presenter.view = view
-        presenter.router = router
+//        presenter.router = router
         return view
     }
 }
@@ -223,7 +223,7 @@ extension Assembler {
         let presenter = GetYearlyTransactionAnalysisPresenter(getYearlyTransactionAnalysis: usecase)
         let view = GetYearlyTransactionAnalysisView(presenter: presenter, user: user)
         presenter.view = view
-        presenter.router = router
+//        presenter.router = router
         return view
     }
 }
@@ -237,7 +237,7 @@ extension Assembler {
         let presenter = GetWeeklyTransactionAnalysisPresenter(getWeeklyTransactionAnalysis: usecase)
         let view = GetWeeklyTransactionAnalysisView(presenter: presenter, user: user)
         presenter.view = view
-        presenter.router = router
+//        presenter.router = router 
         return view
     }
 }

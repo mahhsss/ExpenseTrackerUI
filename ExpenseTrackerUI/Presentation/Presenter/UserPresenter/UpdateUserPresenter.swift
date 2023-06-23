@@ -12,7 +12,6 @@ import ExpenseTrackerBackend
 class UpdateUserPresenter {
     
     weak var view: UpdateUserViewContract?
-    weak var router: Router?
     var updateUser: UpdateUser
     
     init(updateUser: UpdateUser) {

@@ -24,9 +24,9 @@ extension GetAllTransactionPresenter: GetAllTranasctionPresenterContract {
     func viewLoadTransaction(user: User) {
         let request = GetAllTransactionRequest(userId: user.userId)
         getAllTransaction.execute(request: request) { [weak self] response in
-            self?.view?.load(success: response)
+            self?.view?.load(transaction: response.transactions)
         } onFailure: { [weak self] error in
-            self?.view?.failure(error: error)
+            self?.view?.failure(error: error.error.localizedDescription)
         }
     }
 }

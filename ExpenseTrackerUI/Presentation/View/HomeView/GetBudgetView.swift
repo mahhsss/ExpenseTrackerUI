@@ -23,10 +23,10 @@ class GetBudgetView: NSView {
     var thisMonthBudget = 0
     var thisMonthSpent = 0
     var currentColor: NSColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
-    var thisMonthBudgetText: NSTextField!
-    var budgetLabel: NSTextField!
-    var balanceBudgetText: NSTextField!
-    var budgetStack: NSStackView!
+    var thisMonthBudgetText =  CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
+    var budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
+    var balanceBudgetText = CustomText.customStringLabel(label: "", fontSize: 15, fontStyle: "Trap-Medium")
+    var budgetStack: NSStackView?
     var budgetString = ""
 
     
@@ -204,7 +204,7 @@ class GetBudgetView: NSView {
 
 extension GetBudgetView: GetBudgetViewContract {
     
-    func load(success: ExpenseTrackerBackend.GetBudgetResponse) {
+    func load(success: GetBudgetResponse) {
         
         thisMonthBudget = success.budget
         thisMonthSpent = success.spent
@@ -229,21 +229,30 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
         }
         
-        budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
         thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
         balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 15, fontStyle: "Trap-Medium")
         budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
         
         budgetLabel.translatesAutoresizingMaskIntoConstraints = false
-        budgetStack.translatesAutoresizingMaskIntoConstraints = false
-        budgetStack.wantsLayer = true
-        budgetStack.orientation = .vertical
-        budgetStack.alignment = .centerX
-        budgetStack.spacing = 35
+        budgetStack?.translatesAutoresizingMaskIntoConstraints = false
+        budgetStack?.wantsLayer = true
+        budgetStack?.orientation = .vertical
+        budgetStack?.alignment = .centerX
+        budgetStack?.spacing = 35
         
         addSubview(budgetLabel)
-        addSubview(budgetStack)
-        var widthvalue = self.frame.width
+        if let budgetStack = budgetStack {
+            addSubview(budgetStack)
+            
+            NSLayoutConstraint.activate([
+                budgetStack.centerXAnchor.constraint(equalTo: centerXAnchor),
+                budgetStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
+                budgetStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
+                budgetStack.widthAnchor.constraint(equalTo: widthAnchor)
+            ])
+        }
+        
+        let widthvalue = self.frame.width
         currentWidth = Float(widthvalue) * 0.80 * innerWidth
         
         innerBar.frame.size.width = widthvalue * 0.80 * CGFloat(innerWidth)
@@ -260,18 +269,13 @@ extension GetBudgetView: GetBudgetViewContract {
 //            innerBar.widthAnchor.constraint(equalTo: outterBar.widthAnchor, multiplier: CGFloat(innerWidth)),
 //            innerBar.widthAnchor.constraint(equalToConstant: CGFloat((Float(widthvalue) * 0.80 * innerWidth))),
             budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
-            budgetStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            budgetStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
-            budgetStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
-            budgetStack.widthAnchor.constraint(equalTo: widthAnchor)
+            budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52)
         ])
     }
     
     
-    func failure(error: ExpenseTrackerBackend.GetBudgetError) {
+    func failure(error: GetBudgetError) {
         
-        let budgetLabel = CustomText.customHeaderStringLabel(label: "Monthly budget", fontSize: 18, fontColor: .white, fontStyle: "Trap-SemiBold")
         let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 13, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         let setBudgetText = CustomText.customHeaderStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 13, fontStyle: "Trap-Medium")
         let textStack = NSStackView(views: [noBudgetText, setBudgetText])

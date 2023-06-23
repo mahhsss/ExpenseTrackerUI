@@ -19,20 +19,20 @@ class Router {
     func launch() {
         self.window.contentViewController = Assembler.AuthenticationView(router: self)
     }
-    
-    func home(user: User) {
-        self.window.contentViewController = Assembler.HomeView(user: user, router: self)
-    }
-    
+//
+//    func home(user: User) {
+//        self.window.contentViewController = Assembler.HomeView(user: user, router: self)
+//    }
+//
     
 //--------------------------------- Authentication ------------------------------------------
-    func userSignUp() {
-        self.window.contentView = Assembler.addUserView(router: self)
-    }
-    
-    func userLogIn() {
-        self.window.contentView = Assembler.userLoginView(router: self)
-    }
+//    func userSignUp() {
+//        self.window.contentView = Assembler.addUserView(router: self)
+//    }
+//    
+//    func userLogIn() {
+//        self.window.contentView = Assembler.userLoginView(router: self)
+//    }
     
 //-------------------------------------------------------------------------------------------
     
@@ -99,13 +99,6 @@ class Router {
 //    }
 }
 
-extension Router: GetBudgetRouterContract, AddBudgetRouterContract {
-    
-    func reloadHomePage(user: User) {
-        self.window.contentViewController = Assembler.HomeView(user: user, router: self)
-    }
-}
-
 extension Router: LogOutRouterContract {
     
     func logout() {
@@ -113,3 +106,13 @@ extension Router: LogOutRouterContract {
     }
 }
 
+extension Router: LoginRouterContract {
+    
+    func loginPage() {
+        self.window.contentViewController = Assembler.AuthenticationView(router: self)
+    }
+      
+    func homePage(user: User) {
+        self.window.contentViewController = Assembler.HomeView(user: user, router: self)
+    }
+}

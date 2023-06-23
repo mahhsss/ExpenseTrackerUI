@@ -9,7 +9,7 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class AddBudgetView: NSAlert {
+class AddBudgetView: NSView {
     
     var user: User
     var presenter: AddBudgetPresenterContract
@@ -17,7 +17,7 @@ class AddBudgetView: NSAlert {
     init(user: User, presenter: AddBudgetPresenterContract) {
         self.user = user
         self.presenter = presenter
-        super.init()
+        super.init(frame: NSZeroRect)
         addBudget()
     }
     
@@ -27,8 +27,9 @@ class AddBudgetView: NSAlert {
     
     func addBudget() {
         
-        self.alertStyle = .informational
-        self.messageText = "Set Budget to have an awareness on your spending"
+        var alert = NSAlert()
+        alert.alertStyle = .informational
+        alert.messageText = "Set Budget to have an awareness on your spending"
         let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
         textField.translatesAutoresizingMaskIntoConstraints =  false
         textField.isEditable = true
@@ -41,11 +42,11 @@ class AddBudgetView: NSAlert {
         textField.wantsLayer = true
         textField.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.1)
         textField.formatter = numberFormatter
-        self.accessoryView = textField
-        self.addButton(withTitle: "Yes")
-        self.addButton(withTitle: "No")
-        self.icon = NSImage(named: "rupee")
-        let response = self.runModal()
+        alert.accessoryView = textField
+        alert.addButton(withTitle: "Yes")
+        alert.addButton(withTitle: "No")
+        alert.icon = NSImage(named: "rupee")
+        let response = alert.runModal()
         
         let currentDate = Date()
         let calendar = Calendar.current
@@ -56,6 +57,7 @@ class AddBudgetView: NSAlert {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
         let formattedStartDate = dateFormatter.string(from: startDate!)
+        
         
         if response == .alertFirstButtonReturn {
             if textField.stringValue.count > 0 {

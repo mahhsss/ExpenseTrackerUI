@@ -52,8 +52,8 @@ protocol AddTransactionContract: AnyObject {
 }
 
 protocol AddNewTransactionContract: AnyObject {
-    func load(success: AddNewTransactionResponse)
-    func failure(error: AddNewTransactionError)
+    func load(success: String)
+    func failure(error: String)
 }
 //------------------------------------------------------------------------------
 
@@ -68,7 +68,6 @@ protocol AddBudgetViewContract: AnyObject {
 //------------------------ GetBudget Contracts ---------------------------------
 protocol GetBudgetPresenterContract: AnyObject {
     func viewLoadBudget(user: User, month: String)
-    func reload(user: User)
 }
 protocol GetBudgetViewContract: AnyObject {
     func load(success: GetBudgetResponse)
@@ -93,8 +92,8 @@ protocol GetAllTranasctionPresenterContract: AnyObject {
 }
 
 protocol GetAllTransactionViewContract: AnyObject {
-    func load(success: GetAllTransactionResponse)
-    func failure(error: GetAllTransactionError)
+    func load(transaction: [Transaction])
+    func failure(error: String)
 }
 //------------------------ GetRecentTransaction Contracts ----------------------------
 protocol GetRecentTransactionPresenterContract: AnyObject {
@@ -102,7 +101,7 @@ protocol GetRecentTransactionPresenterContract: AnyObject {
 }
 protocol GetRecentTransactionViewContract: AnyObject {
     func load(transaction: [Transaction])
-    func failure(error: GetRecentTransactionError)
+    func failure(error: String)
 }
 //------------------------------------------------------------------------------
 

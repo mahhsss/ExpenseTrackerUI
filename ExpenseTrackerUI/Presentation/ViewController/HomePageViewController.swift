@@ -82,10 +82,10 @@ class HomePageViewController: NSViewController {
         view.layer?.backgroundColor = .black
         leftMenuBar.wantsLayer = true
         toolBarLine.layer?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        leftMenuBar.layer?.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        leftMenuBar.layer?.borderColor = #colorLiteral(red: 0.187238276, green: 0.187238276, blue: 0.187238276, alpha: 1)
         leftMenuBar.layer?.borderWidth = 1
         leftMenuBar.layer?.cornerRadius = 30
-        leftMenuBar.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        leftMenuBar.layer?.backgroundColor = #colorLiteral(red: 0.07850127667, green: 0.07850127667, blue: 0.07850127667, alpha: 1)
         leftMenuBar.homeButton.action = #selector(buttonClicked(_:))
         leftMenuBar.homeButton.target = self
         leftMenuBar.transactionButton.action = #selector(buttonClicked(_:))
@@ -96,12 +96,12 @@ class HomePageViewController: NSViewController {
         
         mainView.wantsLayer = true
         mainView.isHidden = true
-        mainView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        mainView.layer?.backgroundColor = #colorLiteral(red: 0.07850127667, green: 0.07850127667, blue: 0.07850127667, alpha: 1)
         mainView.layer?.cornerRadius = 20
         
         transactionView.wantsLayer = true
         transactionView.isHidden = true
-        transactionView.layer?.backgroundColor = #colorLiteral(red: 0.1146241203, green: 0.1146241203, blue: 0.1146241203, alpha: 1)
+        transactionView.layer?.backgroundColor = #colorLiteral(red: 0.07850127667, green: 0.07850127667, blue: 0.07850127667, alpha: 1)
         transactionView.layer?.cornerRadius = 20
         
         view.addSubview(mainView)

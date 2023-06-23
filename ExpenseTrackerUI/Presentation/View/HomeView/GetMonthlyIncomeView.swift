@@ -52,7 +52,7 @@ class GetMonthlyIncomeView: NSView {
 
 extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
     
-    func load(success: ExpenseTrackerBackend.GetMonthlyIncomeResponse) {
+    func load(success: GetMonthlyIncomeResponse) {
         
         currentIncome = success.income
         let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
@@ -80,7 +80,7 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
         ])
     }
     
-    func failure(error: ExpenseTrackerBackend.GetMonthlyIncomeError) {
+    func failure(error: GetMonthlyIncomeError) {
         
         let incomeLable = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
         incomeValue = CustomText.customStringLabel(label: "0.00", fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")

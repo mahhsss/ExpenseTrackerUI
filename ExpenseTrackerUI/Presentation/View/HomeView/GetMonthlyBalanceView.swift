@@ -52,7 +52,7 @@ class GetMonthlyBalanceView: NSView {
 
 extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
     
-    func load(success: ExpenseTrackerBackend.GetMonthlyBalanceResponse) {
+    func load(success: GetMonthlyBalanceResponse) {
             
         currentBalance = success.balance
         let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
@@ -80,7 +80,7 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
         ])
     }
     
-    func failure(error: ExpenseTrackerBackend.GetMonthlyBalanceError) {
+    func failure(error: GetMonthlyBalanceError) {
         let balanceLabel = CustomText.customStringLabel(label: "Balance", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
         balanceValue = CustomText.customStringLabel(label: "0.00", fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
         let balanceStack = NSStackView(views: [balanceLabel, balanceValue])
