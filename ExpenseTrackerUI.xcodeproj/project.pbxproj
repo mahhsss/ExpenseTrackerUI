@@ -58,7 +58,6 @@
 		2AA2455C29A8A4B8007BBE2D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455B29A8A4B8007BBE2D /* Router.swift */; };
 		2AA2455E29A8A4C6007BBE2D /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455D29A8A4C6007BBE2D /* Assembler.swift */; };
 		2AA2456029A8A51A007BBE2D /* AddUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */; };
-		2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */; };
 		2AADAFDF29AF2FD800F7962D /* UserLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */; };
 		2AADAFE629AF806C00F7962D /* GetUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */; };
 		2AADAFEC29B0996500F7962D /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AADAFEB29B0996500F7962D /* AddTransactionView.swift */; };
@@ -132,7 +131,6 @@
 		2AA2455B29A8A4B8007BBE2D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2AA2455D29A8A4C6007BBE2D /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		2AA2455F29A8A51A007BBE2D /* AddUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPresenter.swift; sourceTree = "<group>"; };
-		2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticationView.swift; sourceTree = "<group>"; };
 		2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginView.swift; sourceTree = "<group>"; };
 		2AADAFE529AF806C00F7962D /* GetUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserPresenter.swift; sourceTree = "<group>"; };
 		2AADAFEB29B0996500F7962D /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 		2AADAFE729B06EDC00F7962D /* AuthenticationView */ = {
 			isa = PBXGroup;
 			children = (
-				2AA2456229A8A550007BBE2D /* UserAuthenticationView.swift */,
 				2AADAFDE29AF2FD800F7962D /* UserLoginView.swift */,
 				2A030E5229ACDE560096587B /* UserSignUpView.swift */,
 				2A7B9F5229C0678200A9BFAE /* UpdateUserView.swift */,
@@ -513,7 +510,6 @@
 				2A16148629B89F64005E999E /* GetTransactionView.swift in Sources */,
 				2A16149C29BB23E0005E999E /* GetMonthlyTransactionAnalysisPresenter.swift in Sources */,
 				2A5E3B8E2A3762530044C8F8 /* AllTransactionView.swift in Sources */,
-				2AA2456329A8A550007BBE2D /* UserAuthenticationView.swift in Sources */,
 				2AA2455A29A8A49C007BBE2D /* UserContract.swift in Sources */,
 				2AADAFF929B2136E00F7962D /* AddTransactionPresenter.swift in Sources */,
 				2A16148829B8A559005E999E /* GetTransactionPresenter.swift in Sources */,

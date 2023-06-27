@@ -13,7 +13,7 @@ class AuthenticationViewController: NSViewController {
     
     var loginView: UserLoginPageView
     var signupView: UserSignUpPageView!
-    weak var router: Router!
+    weak var router: Router?
     
     init(router: Router) {
         
@@ -91,12 +91,15 @@ class AuthenticationViewController: NSViewController {
     
     @objc func moveToSignUp(sender: NSClickGestureRecognizer) {
         
-        self.signupView = Assembler.addUserView(router: router)
-        view.addSubview(signupView)
-        loginView.isHidden = true
-        signupView.isHidden = false
-        configureSignupView()
-        view.window?.makeFirstResponder(signupView.nameTextField)
+        if let router = router {
+            
+            self.signupView = Assembler.addUserView(router: router)
+            view.addSubview(signupView)
+            loginView.isHidden = true
+            signupView.isHidden = false
+            configureSignupView()
+            view.window?.makeFirstResponder(signupView.nameTextField)
+        }
     }
     
     @objc func moveToLogin(sender: NSClickGestureRecognizer) {

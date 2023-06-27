@@ -50,33 +50,46 @@ class HomePageViewController: NSViewController {
     }
     
     override func viewWillLayout() {
-        
-        view.window!.standardWindowButton(.closeButton)?.frame.origin.x = 8.0
-        view.window!.standardWindowButton(.closeButton)?.frame.origin.y = -2.0
-        view.window!.standardWindowButton(.miniaturizeButton)?.frame.origin.x = 30.0
-        view.window!.standardWindowButton(.miniaturizeButton)?.frame.origin.y = -2.0
-        view.window!.standardWindowButton(.zoomButton)?.frame.origin.x = 52.0
-        view.window!.standardWindowButton(.zoomButton)?.frame.origin.y = -2.0
-        
-        if AppDelegate.isFullScreen {
-            toolBar.leftPoint.constant = 20
+    
+        view.wantsLayer = true
+        view.layer?.backgroundColor = .black
+        view.window?.toolbar = toolBar
+        if let window = view.window {
+            window.titleVisibility = .hidden
+            window.titlebarAppearsTransparent = true
+            window.isMovableByWindowBackground = true
+            window.title = "EXPENZO"
+            print("in window")
         }
-        else {
-            toolBar.leftPoint.constant = 84
-        }
+//        view.window!.standardWindowButton(.closeButton)?.frame.origin.x = 8.0
+//        view.window!.standardWindowButton(.closeButton)?.frame.origin.y = -2.0
+//        view.window!.standardWindowButton(.miniaturizeButton)?.frame.origin.x = 30.0
+//        view.window!.standardWindowButton(.miniaturizeButton)?.frame.origin.y = -2.0
+//        view.window!.standardWindowButton(.zoomButton)?.frame.origin.x = 52.0
+//        view.window!.standardWindowButton(.zoomButton)?.frame.origin.y = -2.0
+        
+//        if AppDelegate.isFullScreen {
+//            toolBar.leftPoint.constant = 20
+//        }
+//        else {
+//            toolBar.leftPoint.constant = 84
+//        }
         
     }
     
     override func viewDidLoad() {
         
+        
+
+        
         let toolBarLine = NSView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
         transactionView.translatesAutoresizingMaskIntoConstraints = false
         leftMenuBar.translatesAutoresizingMaskIntoConstraints = false
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
+//        toolBar.translatesAutoresizingMaskIntoConstraints = false
         toolBarLine.translatesAutoresizingMaskIntoConstraints = false
         toolBarLine.wantsLayer = true
-        toolBar.wantsLayer = true
+//        toolBar.wantsLayer = true
         mainView.wantsLayer = true
         view.wantsLayer = true
         view.layer?.backgroundColor = .black
@@ -107,7 +120,7 @@ class HomePageViewController: NSViewController {
         view.addSubview(mainView)
         view.addSubview(transactionView)
         view.addSubview(leftMenuBar)
-        view.addSubview(toolBar)
+//        view.addSubview(toolBar)
 //        view.addSubview(toolBarLine)
         
         NSLayoutConstraint.activate([
@@ -124,12 +137,12 @@ class HomePageViewController: NSViewController {
             leftMenuBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.05)
         ])
         
-        NSLayoutConstraint.activate([
-            toolBar.heightAnchor.constraint(equalToConstant: 50),
-            toolBar.topAnchor.constraint(equalTo: view.topAnchor),
-            toolBar.leftAnchor.constraint(equalTo: view.leftAnchor),
-            toolBar.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            toolBar.heightAnchor.constraint(equalToConstant: 50),
+//            toolBar.topAnchor.constraint(equalTo: view.topAnchor),
+//            toolBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+//            toolBar.rightAnchor.constraint(equalTo: view.rightAnchor)
+//        ])
         
         NSLayoutConstraint.activate([
             transactionView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 50),
