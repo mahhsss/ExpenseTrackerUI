@@ -166,6 +166,19 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
         }
         return cell
     }
+    
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+        if edge == .trailing {
+            return [] }
+
+        let deleteAction = NSTableViewRowAction(style: .destructive, title: "Delete") { _,_ in
+            tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
+        }
+        
+        deleteAction.backgroundColor = .systemRed
+    
+        return [deleteAction]
+    }
 }
 
 

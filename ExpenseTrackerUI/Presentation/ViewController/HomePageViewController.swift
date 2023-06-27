@@ -219,20 +219,18 @@ class HomePageViewController: NSViewController {
     
     func reloadAfterAtransaction(transaction: Transaction) {
         
-        if currentPage == .transactionPage {
-            transactionView.insertNewTransaction(transaction: transaction)
-        }
+        //transactionView
+        transactionView.insertNewTransaction(transaction: transaction)
         
-        else if currentPage == .homePage {
-            mainView.addTransactionWithAnimation(transaction: transaction)
-            mainView.calculatedBalance(transactionAmount: transaction.amount)
-            if transaction.transactionType == .spending {
-                mainView.loadBudgetWithAnimation(spent: transaction.amount)
-                mainView.calculateSpent(transactionAmount: transaction.amount)
-            }
-            else {
-                mainView.calculateIncome(transactionAmount: transaction.amount)
-            }
+        //mainView
+        mainView.addTransactionWithAnimation(transaction: transaction)
+        mainView.calculatedBalance(transactionAmount: transaction.amount)
+        if transaction.transactionType == .spending {
+            mainView.loadBudgetWithAnimation(spent: transaction.amount)
+            mainView.calculateSpent(transactionAmount: transaction.amount)
+        }
+        else {
+            mainView.calculateIncome(transactionAmount: transaction.amount)
         }
     }
 }

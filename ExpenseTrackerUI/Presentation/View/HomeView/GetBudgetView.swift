@@ -97,6 +97,7 @@ class GetBudgetView: NSView {
             innerWidth = 1
         }
         else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
+            
             targetColor = NSColor.systemRed
             targetWidth = Float(self.frame.width * 0.80)
             innerWidth = 1
@@ -160,6 +161,12 @@ class GetBudgetView: NSView {
             innerWidth = 1
         }
         else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
+            
+            let logoutAlert = NSAlert()
+            logoutAlert.messageText = "\(thisMonthSpent - thisMonthBudget) spent beyond the budget"
+            logoutAlert.addButton(withTitle: "Ok")
+            logoutAlert.icon = NSImage(named: "warning")
+            let response = logoutAlert.runModal()
             targetColor = NSColor.systemRed
             targetWidth = Float(self.frame.width * 0.80)
             innerWidth = 1
