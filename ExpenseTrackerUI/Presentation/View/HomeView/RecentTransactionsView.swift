@@ -16,11 +16,16 @@ class RecentTransactionsView: NSView {
     var user: User
     var transactions: [Transaction] = []
     let tableView = NSTableView()
+    weak var homeViewController: HomePageViewController?
     
     init(user: User, presenter: GetRecentTransactionPresenterContract) {
         self.presenter = presenter
         self.user = user
         super.init(frame: NSRect())
+    }
+    
+    override func viewDidMoveToSuperview() {
+        
         configureTransactionView()
     }
     

@@ -290,7 +290,7 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
     }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [.flexibleSpace, NSToolbarItem.Identifier("addTransactionButton"), .flexibleSpace, NSToolbarItem.Identifier("setBudget"), .flexibleSpace, NSToolbarItem.Identifier("profileView")]
+        return [NSToolbarItem.Identifier("addTransactionButton"), NSToolbarItem.Identifier("setBudget"), .flexibleSpace,  NSToolbarItem.Identifier("profileView")]
     }
     
     func configurePopOver() {

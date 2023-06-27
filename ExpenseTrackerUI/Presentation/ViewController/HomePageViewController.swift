@@ -217,6 +217,10 @@ class HomePageViewController: NSViewController {
         mainView.loadBudgetAfterUpdating(budget: budget)
     }
     
+    func afterTransactionTeletion(transactionId: Int) {
+        
+    }
+    
     func reloadAfterAtransaction(transaction: Transaction) {
         
         //transactionView
