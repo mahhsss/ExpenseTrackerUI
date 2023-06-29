@@ -165,7 +165,7 @@ import ExpenseTrackerBackend
 //    }
 //
 //    func reload(transaction: Transaction) {
-//        homePageReloader?.reloadAfterAtransaction(transaction: transaction)
+//        homePageReloader?.reloadAfterNewtransaction(transaction: transaction)
 //    }
 //}
 
@@ -233,7 +233,7 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
             toolbarItem.isBordered = false
             toolbarItem.isNavigational = true
             setBudgetTransaction = customSetButton(button: setBudgetTransaction)
-            setBudgetTransaction.title = "setBudget"
+            setBudgetTransaction.title = "Set budget"
             setBudgetTransaction.bezelStyle = .texturedRounded
             setBudgetTransaction.controlSize = .large
             setBudgetTransaction.action = #selector(setBudgetTransactionButtonClicked(_:))
@@ -331,7 +331,7 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
     
     
     func reload(transaction: Transaction) {
-        homePageReloader?.reloadAfterAtransaction(transaction: transaction)
+        homePageReloader?.reloadAfterNewtransaction(transaction: transaction)
     }
 
 }

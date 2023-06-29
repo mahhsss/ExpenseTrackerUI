@@ -20,8 +20,8 @@ class DeleteTransactionPresenter {
 
 extension DeleteTransactionPresenter: DeleteTransactionPresenterContract {
    
-    func viewLoad(user: ExpenseTrackerBackend.User, transaction: ExpenseTrackerBackend.Transaction, columnName: String, columnValue: Any) {
-        let request = DeleteTransactionRequest(userId: user.userId, transaction: transaction, columnName: columnName, columnValue: columnValue)
+    func viewLoad(transactionId: Int) {
+        let request = DeleteTransactionRequest(transactionId: transactionId)
         self.deleteTransaction.execute(request: request) { [weak self] response in
             self?.view?.load(success: response.message)
         } onFailure: { [weak self] error in

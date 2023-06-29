@@ -28,8 +28,14 @@ public class GetMonthlySpentView: NSView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func currentSpentUpdate(transationAmount: Int) {
-        spentValue.stringValue = String(transationAmount + currentSpent)
+    func currentSpentUpdateAfterNewTransaction(transationAmount: Int) {
+        currentSpent += transationAmount
+        spentValue.stringValue = String(currentSpent)
+    }
+    
+    func currentSpentAfterDeletingTransaction(transactionAmount: Int) {
+        currentSpent -= transactionAmount
+        spentValue.stringValue = String(currentSpent)
     }
     
     func configureSpentView() {

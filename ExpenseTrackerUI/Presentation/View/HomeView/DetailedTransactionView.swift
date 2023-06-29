@@ -24,6 +24,7 @@ class DetailTransactionView: NSView {
     let currencyLable = CustomText.customStringLabel(label: "CurrencyType :", fontSize: 15, fontStyle: "Trap-Medium")
     let dateLabel = CustomText.customStringLabel(label: "Date :", fontSize: 15, fontStyle: "Trap-Medium")
     let noteLable = CustomText.customStringLabel(label: "Note :", fontSize: 15, fontStyle: "Trap-Medium")
+    var stack: NSStackView?
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -43,6 +44,10 @@ class DetailTransactionView: NSView {
             detailsLable.topAnchor.constraint(equalTo: topAnchor, constant: 25),
             detailsLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52)
         ])
+    }
+    
+    func afterDeletingCurrentDisplayedTransaction() {
+        stack?.removeFromSuperview()
     }
     
     func displayTransactionDetails(transaction: Transaction) {
@@ -67,7 +72,7 @@ class DetailTransactionView: NSView {
         let currencyStack = NSStackView(views: [currencyLable, currencyType])
         let dateStack = NSStackView(views: [dateLabel, date])
         let noteStack = NSStackView(views: [noteLable, note])
-        let stack = NSStackView(views: [amountStack, categoryStack, transactionstack, currencyStack, dateStack, noteStack])
+        stack = NSStackView(views: [amountStack, categoryStack, transactionstack, currencyStack, dateStack, noteStack])
         
         amount.stringValue = "" + formattedAmount!
         category.stringValue = "" + (transaction.category ?? "-")
@@ -98,18 +103,20 @@ class DetailTransactionView: NSView {
         noteStack.spacing = 10
         noteStack.alignment = .left
         
-        stack.orientation = .vertical
-        stack.spacing = 30
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.alignment = .left
+        stack?.orientation = .vertical
+        stack?.spacing = 30
+        stack?.translatesAutoresizingMaskIntoConstraints = false
+        stack?.alignment = .left
         
-        addSubview(stack)
-        
-        NSLayoutConstraint.activate([
-//            stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stack.leftAnchor.constraint(equalTo: leftAnchor, constant: 65),
-            stack.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
+        if let stack = stack {
+            addSubview(stack)
+            NSLayoutConstraint.activate([
+    //            stack.centerXAnchor.constraint(equalTo: centerXAnchor),
+                stack.leftAnchor.constraint(equalTo: leftAnchor, constant: 65),
+                stack.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
+        }
+       
     }
     
 }

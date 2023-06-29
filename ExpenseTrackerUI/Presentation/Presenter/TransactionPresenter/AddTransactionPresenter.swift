@@ -25,8 +25,10 @@ extension AddTransactionPresenter: AddTransactionContract {
     func viewDidLoadExpense(user: User, transaction: Transaction) {
         let request =  AddNewTransactionRequest(userId: user.userId, transaction: transaction)
         newTransaction.execute(request: request) { [weak self] response in
-            self?.view?.load(success: response.message)
-            self?.reloader?.reload(transaction: transaction)
+            self?.view?.load(success: "transaction added successfully")
+            var transaction2 = transaction
+            transaction2.transactionId = response.transactionId
+            self?.reloader?.reload(transaction: transaction2)
             self?.windowController?.close()
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error.error.localizedDescription)

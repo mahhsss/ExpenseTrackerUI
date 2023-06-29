@@ -63,12 +63,12 @@ extension Assembler {
 
 extension Assembler {
     
-    static func deleteTransaction(user: User, transaction: Transaction, router: Router) -> DeleteTransactionView {
+    static func deleteTransaction(transactionId: Int) -> DeleteTransactionView {
         let database = DeleteTransactionDatabaseService()
         let dataManager = DeleteTransactionDataManager(database: database)
         let usecase = DeleteTransaction(dataManager: dataManager)
         let presenter = DeleteTransactionPresenter(deleteTransaction: usecase)
-        let view = DeleteTransactionView(user: user, presenter: presenter, transaction: transaction)
+        let view = DeleteTransactionView(presenter: presenter, transactionId: transactionId)
         presenter.view = view
         return view
     }

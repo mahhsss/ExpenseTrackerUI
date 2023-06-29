@@ -30,11 +30,8 @@ class AllTransactionView: NSView {
         detailedTransactionView.displayTransactionDetails(transaction: transaction)
     }
     
-    func insertNewTransaction(transaction: Transaction) {
-        
-        if transactionTableView != nil {
-            transactionTableView.insertNewTransaction(transation: transaction)
-        }
+    func afterDeletingCurrentDisplayedTransaction() {
+        detailedTransactionView.afterDeletingCurrentDisplayedTransaction()
     }
     
     func configureTransactionTableView() {

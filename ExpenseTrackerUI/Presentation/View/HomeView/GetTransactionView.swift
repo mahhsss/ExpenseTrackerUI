@@ -17,12 +17,13 @@ class GetAllTransactionView: NSView {
     let tableView = NSTableView()
     var transactionView: AllTransactionView!
     let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
+    var selectedRow: Int?
     
     init(user: User, presenter: GetAllTranasctionPresenterContract) {
         self.user = user
         self.presenter = presenter
         super.init(frame: NSRect())
-        customizeTransactionView()
+        configureTransactionView()
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +40,7 @@ class GetAllTransactionView: NSView {
         presenter.viewLoadTransaction(user: user)
     }
     
-    func customizeTransactionView() {
+    func configureTransactionView() {
         
         transactionLable.translatesAutoresizingMaskIntoConstraints = false
         addSubview(transactionLable)
@@ -50,12 +51,30 @@ class GetAllTransactionView: NSView {
         ])
     }
     
-    func insertNewTransaction(transation: Transaction) {
+    func insertNewTransaction(transaction: Transaction) {
         
-        transactions.insert(transation, at: 0)
-        let indexSet = IndexSet(integer: 0)
-        tableView.insertRows(at: indexSet, withAnimation: .slideLeft)
+        if transactions.isEmpty {
+            load(transaction: [transaction])
+            tableView.reloadData()
+        }
+        else {
+            tableView.beginUpdates()
+            transactions.insert(transaction, at: 0)
+            let indexSet = IndexSet(integer: 0)
+            tableView.insertRows(at: indexSet, withAnimation: .slideLeft)
+            tableView.endUpdates()
+        }
         
+    }
+    
+    func reloadAfterDeletingTransaction(transactions: [Transaction], index: Int) {
+        
+        self.transactions = transactions
+        self.transactions.remove(at: index)
+        tableView.reloadData()
+        if selectedRow == index {
+            transactionView.afterDeletingCurrentDisplayedTransaction()
+        }
     }
 }
 
@@ -168,6 +187,9 @@ extension GetAllTransactionView: NSTableViewDelegate, NSTableViewDataSource   {
         if transactions[row].transactionType.rawValue == "Income" {
             cell.image.image = NSImage(named: "rupee")
         }
+        else {
+            cell.image.image = NSImage(named: transactions[row].category!)
+        }
         return cell
     }
     
@@ -176,7 +198,9 @@ extension GetAllTransactionView: NSTableViewDelegate, NSTableViewDataSource   {
         guard let tableView = notification.object as? NSTableView else {
             return
         }
-        let selectedRow = tableView.selectedRow
-        transactionView.displayDetails(transaction: transactions[selectedRow])
+        selectedRow = tableView.selectedRow
+        if let selectedRow = selectedRow {
+            transactionView.displayDetails(transaction: transactions[selectedRow])
+        }
     }
 }

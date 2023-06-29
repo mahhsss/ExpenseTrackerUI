@@ -38,18 +38,6 @@ class MainHomeView: NSView {
         configureBudgetView()
     }
     
-    func calculateSpent(transactionAmount: Int) {
-        spent.currentSpentUpdate(transationAmount: transactionAmount)
-    }
-    
-    func calculateIncome(transactionAmount: Int) {
-        income.currentIncomeUpdate(TransactionAmount: transactionAmount)
-    }
-    
-    func calculatedBalance(transactionAmount: Int) {
-        balance.currentBalanceUpdate(transactionAmount: transactionAmount)
-    }
-    
     func configureExpenseViews() {
         
         let thisMonthText = CustomText.customHeaderStringLabel(label: "This month", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
@@ -126,18 +114,6 @@ class MainHomeView: NSView {
             budgetView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.40),
             budgetView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.48)
         ])
-    }
-    
-    func addTransactionWithAnimation(transaction: Transaction) {
-        recentTransactionsView.insertNewTransaction(transation: transaction)
-    }
-    
-    func loadBudgetWithAnimation(spent: Int) {
-        budgetView.loadBudgetWithAnimation(spent: spent)
-    }
-    
-    func loadBudgetAfterUpdating(budget: Int) {
-        budgetView.loadBudgetAfterUpdating(budget: budget)
     }
     
 }

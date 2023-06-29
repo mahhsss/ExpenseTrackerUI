@@ -97,10 +97,6 @@ extension AddTransactionView {
             
         ])
         
-        
-        
-        
-        
     }
     
     @objc func checkTransaction(_ sender: NSPopUpButton) {
@@ -110,7 +106,6 @@ extension AddTransactionView {
         transition.type = .fade
         
         if sender.title == "Income" {
-//            category.isHidden = true
             categoryLable.textColor = #colorLiteral(red: 0.6575580835, green: 0.6575580835, blue: 0.6575580835, alpha: 1)
             categoryBox.layer?.backgroundColor = #colorLiteral(red: 0.09780230373, green: 0.09780230373, blue: 0.09780230373, alpha: 1)
             categoryLable.layer?.add(transition, forKey: "colorChangeAnimation")
@@ -118,18 +113,15 @@ extension AddTransactionView {
             category.isHighlighted = false
             category.isEnabled = false
             category.pullsDown = true
-//            category.addItem(withTitle: "-")
             category.title = "-"
         }
         else {
-//            category.isHidden = false
             categoryLable.textColor = .white
             categoryBox.layer?.backgroundColor = .black
             categoryLable.layer?.add(transition, forKey: "colorChangeAnimation")
             categoryBox.layer?.add(transition, forKey: "colorChangeAnimation")
             category.isHighlighted = true
             category.isEnabled = true
-//            category.removeItem(withTitle: "-")
             category.title = "Food"
             category.pullsDown = false
             
@@ -138,7 +130,7 @@ extension AddTransactionView {
     
     @objc func addTransaction(_ sender: NSButton) {
         
-        if amount.stringValue == "" || Int(amount.stringValue)! < 1 {
+        if amount.stringValue.isEmpty || Int(amount.stringValue)! < 1 {
             
             var enterAmountText = CustomText.customStringLabel(label: "Enter the transaction amount", fontSize: 12, fontColor: NSColor.red)
             
@@ -300,7 +292,7 @@ extension AddTransactionView {
 
 extension AddTransactionView: AddNewTransactionContract {
     func load(success: String) {
-        print("\n\(success)")
+//        print("\n\(success)")
     }
     
     func failure(error: String) {

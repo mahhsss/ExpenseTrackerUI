@@ -11,9 +11,10 @@ import AppKit
 
 class GetMonthlyIncomeView: NSView {
     
+    let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
     var presenter: GetMonthlyIncomePresenterContract?
     var user: User
-    var incomeValue: NSTextField!
+    var incomeValue: NSTextField?
     var currentIncome = 0
     
     public init(presenter: GetMonthlyIncomePresenterContract, user: User) {
@@ -27,9 +28,14 @@ class GetMonthlyIncomeView: NSView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func currentIncomeUpdate(TransactionAmount: Int) {
-        
-        incomeValue.stringValue = String(TransactionAmount + currentIncome)
+    func currentIncomeUpdateAfterNewTransation(TransactionAmount: Int) {
+        currentIncome += TransactionAmount
+        incomeValue?.stringValue = String(currentIncome)
+    }
+    
+    func currentIncomeAfterDeletingTransaction(TransactionAmount: Int) {
+        currentIncome -= TransactionAmount
+        incomeValue?.stringValue = String(currentIncome)
     }
     
     func configureIncomeView() {
@@ -55,36 +61,17 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
     func load(success: GetMonthlyIncomeResponse) {
         
         currentIncome = success.income
-        let incomeLabel = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        incomeValue = CustomText.customStringLabel(label: String(success.income), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
-        let incomeStack = NSStackView(views: [incomeLabel, incomeValue])
-        
-        self.wantsLayer = true
-        incomeStack.wantsLayer = true
-        incomeStack.translatesAutoresizingMaskIntoConstraints = false
-        incomeStack.orientation = .vertical
-        incomeStack.spacing = 15
-        self.layer?.backgroundColor = #colorLiteral(red: 0.626486361, green: 0.9017811418, blue: 0.3185373545, alpha: 1)
-        self.layer?.cornerRadius = 20
-        
-        addSubview(incomeStack)
-        
-        NSLayoutConstraint.activate([
-            
-            incomeStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            incomeStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
-            incomeStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
-            incomeStack.widthAnchor.constraint(equalToConstant: 400),
-//            self.heightAnchor.constraint(equalToConstant: 120),
-//            self.widthAnchor.constraint(equalToConstant: 320)
-        ])
+        displayIncome(incomeAmount: success.income)
     }
     
     func failure(error: GetMonthlyIncomeError) {
+        displayIncome(incomeAmount: 0)
+    }
+    
+    func displayIncome(incomeAmount: Int) {
         
-        let incomeLable = CustomText.customStringLabel(label: "Income", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
-        incomeValue = CustomText.customStringLabel(label: "0.00", fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
-        let incomeStack = NSStackView(views: [incomeLable, incomeValue])
+        incomeValue = CustomText.customStringLabel(label: String(incomeAmount), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        let incomeStack = NSStackView(views: [incomeLabel, incomeValue!])
         
         self.wantsLayer = true
         incomeStack.wantsLayer = true

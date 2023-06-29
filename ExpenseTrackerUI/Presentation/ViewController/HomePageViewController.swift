@@ -14,7 +14,7 @@ class HomePageViewController: NSViewController {
     var mainView: MainHomeView
     var transactionView = AllTransactionView()
     var leftMenuBar = LeftMenuBar()
-    var toolBar: ToolBar!
+    var toolBar: ToolBar?
     var currentPage = CurrentPage.homePage
     
     init(user: User, router: Router) {
@@ -27,8 +27,8 @@ class HomePageViewController: NSViewController {
         let allTransactions = Assembler.getAllTransactionView(user: user)
         mainView = MainHomeView()
         toolBar = ToolBar()
-        toolBar.user = user
-        toolBar.router = router
+        toolBar?.user = user
+        toolBar?.router = router
         mainView.spent = spentView
         mainView.income = incomeView
         mainView.balance = balanceView
@@ -37,7 +37,8 @@ class HomePageViewController: NSViewController {
         transactionView.transactionTableView = allTransactions
         transactionView.transactionTableView.transactionView = transactionView
         super.init(nibName: nil, bundle: nil)
-        toolBar.homePageReloader = self
+        toolBar?.homePageReloader = self
+        recentTransaction.homeViewController = self
     }
     
     required init?(coder: NSCoder) {
@@ -120,8 +121,6 @@ class HomePageViewController: NSViewController {
         view.addSubview(mainView)
         view.addSubview(transactionView)
         view.addSubview(leftMenuBar)
-//        view.addSubview(toolBar)
-//        view.addSubview(toolBarLine)
         
         NSLayoutConstraint.activate([
             mainView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 50),
@@ -137,13 +136,6 @@ class HomePageViewController: NSViewController {
             leftMenuBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.05)
         ])
         
-//        NSLayoutConstraint.activate([
-//            toolBar.heightAnchor.constraint(equalToConstant: 50),
-//            toolBar.topAnchor.constraint(equalTo: view.topAnchor),
-//            toolBar.leftAnchor.constraint(equalTo: view.leftAnchor),
-//            toolBar.rightAnchor.constraint(equalTo: view.rightAnchor)
-//        ])
-        
         NSLayoutConstraint.activate([
             transactionView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 50),
             transactionView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 27),
@@ -151,11 +143,6 @@ class HomePageViewController: NSViewController {
             transactionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.91)
         ])
         
-//        NSLayoutConstraint.activate([
-//            toolBarLine.topAnchor.constraint(equalTo: toolBar.bottomAnchor),
-//            toolBarLine.widthAnchor.constraint(equalTo: toolBar.widthAnchor),
-//            toolBarLine.heightAnchor.constraint(equalToConstant: 0.27)
-//        ])
         displayView()
     }
     
@@ -214,28 +201,38 @@ class HomePageViewController: NSViewController {
     
     func loadBudgetAfterUpdating(budget: Int) {
         
-        mainView.loadBudgetAfterUpdating(budget: budget)
+        mainView.budgetView.loadBudgetAfterUpdating(budget: budget)
     }
     
-    func afterTransactionTeletion(transactionId: Int) {
+    func afterTransactionDeletion(transactions: [Transaction], index: Int) {
         
-    }
-    
-    func reloadAfterAtransaction(transaction: Transaction) {
-        
-        //transactionView
-        transactionView.insertNewTransaction(transaction: transaction)
-        
-        //mainView
-        mainView.addTransactionWithAnimation(transaction: transaction)
-        mainView.calculatedBalance(transactionAmount: transaction.amount)
-        if transaction.transactionType == .spending {
-            mainView.loadBudgetWithAnimation(spent: transaction.amount)
-            mainView.calculateSpent(transactionAmount: transaction.amount)
+        transactionView.transactionTableView.reloadAfterDeletingTransaction(transactions: transactions, index: index)
+        if transactions[index].transactionType == .spending {
+            mainView.spent.currentSpentAfterDeletingTransaction(transactionAmount: transactions[index].amount)
+            mainView.budgetView.loadBudgetAfterDeletingTransactionWithAnimation(spent: transactions[index].amount)
         }
         else {
-            mainView.calculateIncome(transactionAmount: transaction.amount)
+            mainView.income.currentIncomeAfterDeletingTransaction(TransactionAmount: transactions[index].amount)
         }
+        mainView.balance.currentBalanceAfterDeletingTransaction(thisMonthIncome: mainView.income.currentIncome, thisMonthSpent: mainView.spent.currentSpent)
+    }
+    
+    func reloadAfterNewtransaction(transaction: Transaction) {
+        
+        //transactionView
+        transactionView.transactionTableView.insertNewTransaction(transaction: transaction)
+        
+        //mainView
+        mainView.recentTransactionsView.insertNewTransaction(transaction: transaction)
+        if transaction.transactionType == .spending {
+            mainView.budgetView.loadBudgetAfterNewTransactionWithAnimation(spent: transaction.amount)
+            mainView.spent.currentSpentUpdateAfterNewTransaction(transationAmount: transaction.amount)
+        }
+        else {
+            mainView.income.currentIncomeUpdateAfterNewTransation(TransactionAmount: transaction.amount)
+        }
+        
+        mainView.balance.currentBalanceUpdateAfterNewTransaction(thisMonthIncome: mainView.income.currentIncome, thisMonthSpent: mainView.spent.currentSpent)
     }
 }
 

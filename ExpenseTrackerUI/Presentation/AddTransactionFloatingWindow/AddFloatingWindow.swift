@@ -15,7 +15,7 @@ class AddFloatingWindow: NSWindowController {
     var user: User
     init(user: User, reloader: ToolBar) {
         self.user = user
-        let window = NSWindow(contentRect: NSRect(x: 415, y: 50, width: 400, height: 300),
+        let window = NSWindow(contentRect: NSRect(x: 415, y: 200, width: 400, height: 300),
                               styleMask: [.titled, .closable, .fullSizeContentView],
                                 backing: .buffered,
                                 defer: false)

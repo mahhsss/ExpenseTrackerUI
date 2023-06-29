@@ -107,7 +107,7 @@ protocol GetRecentTransactionViewContract: AnyObject {
 
 //------------------------ DeleteTransaction Contracts -------------------------
 protocol DeleteTransactionPresenterContract: AnyObject {
-    func viewLoad(user: User, transaction: Transaction, columnName: String, columnValue: Any)
+    func viewLoad(transactionId: Int)
 }
 
 protocol DeleteTransactionViewContract: AnyObject {

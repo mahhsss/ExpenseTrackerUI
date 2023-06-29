@@ -15,8 +15,11 @@ class RecentTransactionsView: NSView {
     var presenter: GetRecentTransactionPresenterContract
     var user: User
     var transactions: [Transaction] = []
+    let scrollView = NSScrollView()
     let tableView = NSTableView()
+    var deleteTransactionView: DeleteTransactionView?
     weak var homeViewController: HomePageViewController?
+    var transactionStack: NSStackView?
     
     init(user: User, presenter: GetRecentTransactionPresenterContract) {
         self.presenter = presenter
@@ -47,11 +50,21 @@ class RecentTransactionsView: NSView {
         self.presenter.viewLoadTransaction(user: user, month: formattedStartDate)
     }
     
-    func insertNewTransaction(transation: Transaction) {
+    func insertNewTransaction(transaction: Transaction) {
         
-        transactions.insert(transation, at: 0)
-        let indexSet = IndexSet(integer: 0)
-        tableView.insertRows(at: indexSet, withAnimation: .slideLeft)
+        if transactions.isEmpty {
+            transactionStack?.removeFromSuperview()
+            load(transaction: [transaction])
+            tableView.reloadData()
+        }
+        else {
+            tableView.beginUpdates()
+            transactions.insert(transaction, at: 0)
+            let indexSet = IndexSet(integer: 0)
+            tableView.insertRows(at: indexSet, withAnimation: .slideLeft)
+            tableView.endUpdates()
+        }
+        
         
     }
 }
@@ -61,7 +74,6 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
     func load(transaction: [Transaction]) {
         
         let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
-        let scrollView = NSScrollView()
         transactions = transaction
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder
@@ -101,21 +113,21 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         
         let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
-        let transactionStack = NSStackView(views: [noTransactionLable])
-        transactionStack.spacing = 30
+        transactionStack = NSStackView(views: [noTransactionLable])
+        transactionStack!.spacing = 30
         
         transactionLable.translatesAutoresizingMaskIntoConstraints = false
-        transactionStack.translatesAutoresizingMaskIntoConstraints = false
-        transactionStack.orientation = .vertical
+        transactionStack!.translatesAutoresizingMaskIntoConstraints = false
+        transactionStack!.orientation = .vertical
         
-        addSubview(transactionStack)
+        addSubview(transactionStack!)
         addSubview(transactionLable)
         
         NSLayoutConstraint.activate([
             transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
-            transactionStack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+            transactionStack!.centerXAnchor.constraint(equalTo: centerXAnchor),
+            transactionStack!.centerYAnchor.constraint(equalTo: centerYAnchor),
 //            transactionStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
 //            transactionStack.widthAnchor.constraint(equalTo: widthAnchor)
         ])
@@ -165,9 +177,11 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
         cell.date.stringValue = String(outputDateString)
         cell.mode.stringValue = transactions[row].currencyType.rawValue
         cell.type.stringValue = transactions[row].transactionType.rawValue
-        cell.image.image = NSImage(named: transactions[row].category!)
         if transactions[row].transactionType.rawValue == "Income" {
             cell.image.image = NSImage(named: "rupee")
+        }
+        else {
+            cell.image.image = NSImage(named: transactions[row].category!)
         }
         return cell
     }
@@ -177,7 +191,31 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
             return [] }
 
         let deleteAction = NSTableViewRowAction(style: .destructive, title: "Delete") { _,_ in
-            tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
+            
+            let logoutAlert = NSAlert()
+            logoutAlert.messageText = "Are you sure you want to delete?"
+            logoutAlert.addButton(withTitle: "Yes")
+            logoutAlert.addButton(withTitle: "No")
+            logoutAlert.icon = NSImage(named: "warning")
+            let response = logoutAlert.runModal()
+            if response == .alertFirstButtonReturn {
+                self.homeViewController?.afterTransactionDeletion(transactions: self.transactions, index: row)
+                print("\(self.transactions[row].amount    )")
+                tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
+                self.deleteTransactionView = Assembler.deleteTransaction(transactionId: self.transactions[row].transactionId)
+                self.transactions.remove(at: row)
+//                print("\(self.transactions[row].amount    )")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    tableView.reloadData()
+                    if self.transactions.isEmpty {
+                        self.scrollView.removeFromSuperview()
+                        self.failure(error: "no transactions left")
+                    }
+                }
+            }
+            else if response == .alertSecondButtonReturn {
+                return
+            }
         }
         
         deleteAction.backgroundColor = .systemRed

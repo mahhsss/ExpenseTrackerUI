@@ -11,34 +11,27 @@ import AppKit
 
 class DeleteTransactionView: NSView {
     
-    var user: User
     var presenter: DeleteTransactionPresenterContract
-    var transaction: Transaction
-    init(user: User, presenter: DeleteTransactionPresenterContract, transaction: Transaction) {
-        self.user = user
+    var transactionId: Int
+    init(presenter: DeleteTransactionPresenterContract, transactionId: Int) {
         self.presenter = presenter
-        self.transaction = transaction
+        self.transactionId = transactionId
         super.init(frame: NSRect())
+        deleteTransaction()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidMoveToSuperview() {
-        if superview != nil {
-            deleteTransaction()
-        }
-    }
-    
     func deleteTransaction() {
-        presenter.viewLoad(user: user, transaction: transaction, columnName: "transactionId", columnValue: 1)
+        presenter.viewLoad(transactionId: transactionId)
     }
 }
 extension DeleteTransactionView: DeleteTransactionViewContract {
     
     func load(success: String) {
-        print("\n\(success)\n")
+//        print("\n\(success)\n")
     }
     
     func failure(error: String) {
