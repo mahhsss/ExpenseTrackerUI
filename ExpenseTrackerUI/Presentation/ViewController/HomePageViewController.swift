@@ -60,7 +60,6 @@ class HomePageViewController: NSViewController {
             window.titlebarAppearsTransparent = true
             window.isMovableByWindowBackground = true
             window.title = "EXPENZO"
-            print("in window")
         }
 //        view.window!.standardWindowButton(.closeButton)?.frame.origin.x = 8.0
 //        view.window!.standardWindowButton(.closeButton)?.frame.origin.y = -2.0
@@ -201,7 +200,7 @@ class HomePageViewController: NSViewController {
     
     func loadBudgetAfterUpdating(budget: Int) {
         
-        mainView.budgetView.loadBudgetAfterUpdating(budget: budget)
+        mainView.budgetView.loadBudgetAfterUpdating(budget: budget, spent: mainView.spent.currentSpent)
     }
     
     func afterTransactionDeletion(transactions: [Transaction], index: Int) {
