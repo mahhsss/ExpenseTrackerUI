@@ -178,11 +178,11 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
     var profileImageButton = NSButton()
     var leftPoint: NSLayoutConstraint!
     var profilePopOver = NSPopover()
-    var user: User!
-    var router: Router!
-    var floatingWindow: AddFloatingWindow!
+    var user: User?
+    var router: LogOutRouterContract?
+    var floatingWindow: AddFloatingWindow?
     static var windowExist = false
-    var addBudgetView: AddBudgetView!
+    var addBudgetView: AddBudgetView?
     weak var homePageReloader: HomePageViewController?
     
     override init(identifier: NSToolbar.Identifier) {
@@ -298,8 +298,9 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
         profilePopOver = NSPopover()
         profilePopOver.behavior = .transient
         profilePopOver.contentSize = NSSize(width: 200, height: 200)
-        profilePopOver.contentViewController = PopoverContentViewController(user: user, router: router, toolbar: self)
-    
+        if let router = router {
+            profilePopOver.contentViewController = PopoverContentViewController(user: user!, router: router, toolbar: self)
+        }
     }
     
     @objc func profileButtonClicked(_ sender: NSButton) {
@@ -314,18 +315,18 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
     
     @objc func addTransactionButtonClicked(_ sender: NSButton) {
         if floatingWindow != nil {
-            floatingWindow.close()
+            floatingWindow?.close()
         }
         ToolBar.windowExist = true
-        floatingWindow = AddFloatingWindow(user: user, reloader: self)
-        floatingWindow.showWindow(self)
-        floatingWindow.window?.hidesOnDeactivate = true
+        floatingWindow = AddFloatingWindow(user: user!, reloader: self)
+        floatingWindow?.showWindow(self)
+        floatingWindow?.window?.hidesOnDeactivate = true
     }
     
     @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
         
         if let homePageReloader = homePageReloader {
-            addBudgetView = Assembler.addBudget(user: user, budgetViewReloader: homePageReloader)
+            addBudgetView = Assembler.addBudget(user: user!, budgetViewReloader: homePageReloader)
         }
     }
     
@@ -345,7 +346,7 @@ class PopoverContentViewController: NSViewController {
     weak var router: LogOutRouterContract?
     weak var toolbar: ToolBar?
     
-    init(user: User, router: Router, toolbar: ToolBar) {
+    init(user: User, router: LogOutRouterContract, toolbar: ToolBar) {
         self.user = user
         self.router = router
         self.toolbar = toolbar
@@ -415,7 +416,7 @@ class PopoverContentViewController: NSViewController {
         let response = logoutAlert.runModal()
         if response == .alertFirstButtonReturn {
             if ToolBar.windowExist == true {
-                toolbar?.floatingWindow.close()
+                toolbar?.floatingWindow?.close()
             }
             self.router?.logout()
         }
