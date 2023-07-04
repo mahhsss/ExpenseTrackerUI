@@ -43,6 +43,7 @@ class GetMonthlyBalanceView: NSView {
         let formattedStartDate = dateFormatter.string(from: startDate!)
         
         self.presenter.viewLoadMonthlyBalance(user: user, month: formattedStartDate)
+        displayBalance(balanceAmount: currentBalance)
     }
     
     func currentBalanceUpdateAfterNewTransaction(thisMonthIncome: Int, thisMonthSpent: Int) {
@@ -87,19 +88,20 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
     func load(success: GetMonthlyBalanceResponse) {
             
         currentBalance = success.balance
-        displayBalance(balanceAmount: success.balance)
+        balanceValue?.stringValue = String(currentBalance)
     }
     
     func failure(error: GetMonthlyBalanceError) {
         
-        displayBalance(balanceAmount: 0)
+        balanceValue?.stringValue = "0"
     }
     
     func displayBalance(balanceAmount: Int) {
         
         
         balanceValue = CustomText.customStringLabel(label: String(balanceAmount), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
-        let balanceStack = NSStackView(views: [balanceLabel, balanceValue!])
+        guard let balanceValue = balanceValue else { return }
+        let balanceStack = NSStackView(views: [balanceLabel, balanceValue])
         self.wantsLayer = true
         balanceStack.wantsLayer = true
         balanceStack.translatesAutoresizingMaskIntoConstraints = false
@@ -115,9 +117,7 @@ extension GetMonthlyBalanceView: GetMonthlyBalanceViewContract {
             balanceStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             balanceStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
             balanceStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
-            balanceStack.widthAnchor.constraint(equalToConstant: 400),
-//            self.heightAnchor.constraint(equalToConstant: 120),
-//            self.widthAnchor.constraint(equalToConstant: 320)
+            balanceStack.widthAnchor.constraint(equalToConstant: 400)
         ])
     }
 }

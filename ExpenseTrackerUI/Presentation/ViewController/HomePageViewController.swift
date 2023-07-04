@@ -55,6 +55,10 @@ class HomePageViewController: NSViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = .black
         view.window?.toolbar = toolBar
+        toolBar?.items[0].target = self
+        toolBar?.items[1].target = self
+        toolBar?.items[2].target = self
+        toolBar?.items[0].action = 
         if let window = view.window {
             window.titleVisibility = .hidden
             window.titlebarAppearsTransparent = true

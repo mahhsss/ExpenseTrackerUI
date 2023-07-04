@@ -76,6 +76,8 @@ class GetBudgetView: NSView {
         progressBar.addSubview(innerBar)
         
         presenter.viewLoadBudget(user: user, month: formattedStartDate)
+        
+        displayInitializedBudget()
     }
     
     func loadBudgetAfterUpdating(budget: Int, spent: Int) {
@@ -106,7 +108,7 @@ class GetBudgetView: NSView {
                 innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
             }
             
-            thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(thisMonthBudget)", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
+            thisMonthBudgetText.stringValue = "This month budget is \(thisMonthBudget)"
             balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 15, fontStyle: "Trap-Medium")
             budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
             
@@ -117,7 +119,6 @@ class GetBudgetView: NSView {
             budgetStack?.alignment = .centerX
             budgetStack?.spacing = 35
             
-            addSubview(budgetLabel)
             if let budgetStack = budgetStack {
                 addSubview(budgetStack)
                 
@@ -234,7 +235,7 @@ class GetBudgetView: NSView {
             targetWidth = Float(self.frame.width * 0.80)
             innerWidth = 1
         }
-        else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
+        else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) && budgetInitialized {
             
             let logoutAlert = NSAlert()
             logoutAlert.messageText = "\(thisMonthSpent - thisMonthBudget) spent beyond the budget"
@@ -347,36 +348,30 @@ class GetBudgetView: NSView {
         }
     }
     
-}
-
-extension GetBudgetView: GetBudgetViewContract {
-    
-    func load(success: GetBudgetResponse) {
+    func displayInitializedBudget() {
         
-        thisMonthBudget = success.budget
-        thisMonthSpent = success.spent
-        var restToSpent = success.budget - success.spent
+        var restToSpent = thisMonthBudget - thisMonthSpent
         if restToSpent < 0 {
             restToSpent = 0
         }
         
-        budgetString = "\(success.spent) spent already. \(restToSpent) is left to reach the budget"
-        innerWidth = Float((success.spent)) / Float((success.budget))
+        budgetString = "\(thisMonthSpent) spent already. \(restToSpent) is left to reach the budget"
+        innerWidth = Float((thisMonthSpent)) / Float((thisMonthBudget))
         
-        if Float((success.spent)) == (Float(success.budget)) {
+        if Float((thisMonthSpent)) == (Float(thisMonthBudget)) {
             innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
             innerWidth = 1
         }
-        else if Float((success.spent)) > (Float(success.budget)) {
+        else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
             innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
             innerWidth = 1
-            budgetString = "\(success.spent) spent already. \(success.spent - success.budget) spent beyond the budget"
+            budgetString = "\(thisMonthSpent) spent already. \(thisMonthSpent - thisMonthBudget) spent beyond the budget"
         }
-        else if  Float((success.spent)) > (Float(success.budget) / 2) {
+        else if  Float((thisMonthSpent)) > (Float(thisMonthBudget) / 2) {
             innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
         }
         
-        thisMonthBudgetText = CustomText.customStringLabel(label: "This month budget is \(success.budget)", fontSize: 15, fontColor: .systemBlue, fontStyle: "Trap-Medium")
+        thisMonthBudgetText.stringValue = "This month budget is \(thisMonthBudget)"
         balanceBudgetText =  CustomText.customStringLabel(label: budgetString, fontSize: 15, fontStyle: "Trap-Medium")
         budgetStack = NSStackView(views: [thisMonthBudgetText, progressBar, balanceBudgetText])
         
@@ -413,16 +408,47 @@ extension GetBudgetView: GetBudgetViewContract {
             innerBar.topAnchor.constraint(equalTo: outterBar.topAnchor),
             innerBar.leadingAnchor.constraint(equalTo: outterBar.leadingAnchor),
             innerBar.heightAnchor.constraint(equalTo: outterBar.heightAnchor),
-//            innerBar.widthAnchor.constraint(equalTo: outterBar.widthAnchor, multiplier: CGFloat(innerWidth)),
-//            innerBar.widthAnchor.constraint(equalToConstant: CGFloat((Float(widthvalue) * 0.80 * innerWidth))),
             budgetLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             budgetLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 52)
         ])
+
+    }
+    
+}
+
+extension GetBudgetView: GetBudgetViewContract {
+    
+    func load(success: GetBudgetResponse) {
+        
+        budgetInitialized = true
+        thisMonthBudget = success.budget
+        thisMonthSpent = success.spent
+        var restToSpent = success.budget - success.spent
+        if restToSpent < 0 {
+            restToSpent = 0
+        }
+        
+        budgetString = "\(success.spent) spent already. \(restToSpent) is left to reach the budget"
+        innerWidth = Float((success.spent)) / Float((success.budget))
+        
+        if Float((success.spent)) == (Float(success.budget)) {
+            innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
+            innerWidth = 1
+        }
+        else if Float((success.spent)) > (Float(success.budget)) {
+            innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
+            innerWidth = 1
+            budgetString = "\(success.spent) spent already. \(success.spent - success.budget) spent beyond the budget"
+        }
+        else if  Float((success.spent)) > (Float(success.budget) / 2) {
+            innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
+        }
     }
     
     
     func failure(error: GetBudgetError) {
         
+        budgetStack?.removeFromSuperview()
         let noBudgetText = CustomText.customStringLabel(label: "Budget has not set for this month", fontSize: 13, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         let setBudgetText = CustomText.customHeaderStringLabel(label: "Set up a budget to help you stay on track with your expenses.", fontSize: 13, fontStyle: "Trap-Medium")
         textStack = NSStackView(views: [noBudgetText, setBudgetText])
@@ -430,14 +456,11 @@ extension GetBudgetView: GetBudgetViewContract {
         textStack!.orientation = .vertical
         textStack!.alignment = .centerX
         textStack!.spacing = 20
-        
-        budgetLabel.translatesAutoresizingMaskIntoConstraints = false
         textStack!.translatesAutoresizingMaskIntoConstraints = false
         
         budgetLabel.wantsLayer = true
         textStack!.wantsLayer = true
         
-        addSubview(budgetLabel)
         addSubview(textStack!)
         
         NSLayoutConstraint.activate([
@@ -451,5 +474,3 @@ extension GetBudgetView: GetBudgetViewContract {
         
     }
 }
-
-

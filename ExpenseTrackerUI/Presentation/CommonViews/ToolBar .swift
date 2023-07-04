@@ -284,11 +284,6 @@ class ToolBar: NSToolbar, NSToolbarDelegate {
         return button
     }
     
-    @objc func customButtonClicked(_ sender: Any) {
-        // Handle custom button click event
-        print("Custom button clicked!")
-    }
-
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [NSToolbarItem.Identifier("addTransactionButton"), NSToolbarItem.Identifier("setBudget"), .flexibleSpace,  NSToolbarItem.Identifier("profileView")]
     }

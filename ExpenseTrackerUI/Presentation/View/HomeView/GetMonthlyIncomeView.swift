@@ -52,7 +52,7 @@ class GetMonthlyIncomeView: NSView {
         
         presenter?.viewLoadMonthlySpent(user: user, month: formattedStartDate)
         
-        
+        displayIncome(incomeAmount: currentIncome)
     }
 }
 
@@ -61,17 +61,18 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
     func load(success: GetMonthlyIncomeResponse) {
         
         currentIncome = success.income
-        displayIncome(incomeAmount: success.income)
+        incomeValue?.stringValue = String(currentIncome)
     }
     
     func failure(error: GetMonthlyIncomeError) {
-        displayIncome(incomeAmount: 0)
+        incomeValue?.stringValue = "0"
     }
     
     func displayIncome(incomeAmount: Int) {
         
         incomeValue = CustomText.customStringLabel(label: String(incomeAmount), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
-        let incomeStack = NSStackView(views: [incomeLabel, incomeValue!])
+        guard let incomeValue = incomeValue else { return }
+        let incomeStack = NSStackView(views: [incomeLabel, incomeValue])
         
         self.wantsLayer = true
         incomeStack.wantsLayer = true
@@ -88,9 +89,7 @@ extension GetMonthlyIncomeView: GetMonthlyIncomeViewContract {
             incomeStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             incomeStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
             incomeStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
-            incomeStack.widthAnchor.constraint(equalToConstant: 400),
-//            self.heightAnchor.constraint(equalToConstant: 120),
-//            self.widthAnchor.constraint(equalToConstant: 320)
+            incomeStack.widthAnchor.constraint(equalToConstant: 400)
         ])
     }
 }

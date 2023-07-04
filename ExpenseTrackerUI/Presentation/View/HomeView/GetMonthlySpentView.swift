@@ -14,7 +14,7 @@ public class GetMonthlySpentView: NSView {
     
     var presenter: GetMonthlySpentPresenterContract
     var user: User
-    var spentValue: NSTextField!
+    var spentValue: NSTextField?
     var currentSpent = 0
     
     init(presenter: GetMonthlySpentPresenterContract, user: User) {
@@ -30,12 +30,12 @@ public class GetMonthlySpentView: NSView {
     
     func currentSpentUpdateAfterNewTransaction(transationAmount: Int) {
         currentSpent += transationAmount
-        spentValue.stringValue = String(currentSpent)
+        spentValue?.stringValue = String(currentSpent)
     }
     
     func currentSpentAfterDeletingTransaction(transactionAmount: Int) {
         currentSpent -= transactionAmount
-        spentValue.stringValue = String(currentSpent)
+        spentValue?.stringValue = String(currentSpent)
     }
     
     func configureSpentView() {
@@ -52,6 +52,7 @@ public class GetMonthlySpentView: NSView {
         
         presenter.viewLoadMonthlySpent(user: user, month: formattedStartDate)
         
+        displayMonthlySpent(spent: currentSpent)
         
     }
 }
@@ -61,11 +62,11 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
     func load(spent: Int) {
         
         currentSpent = spent
-        displayMonthlySpent(spent: spent)
+        spentValue?.stringValue = String(currentSpent)
     }
     
     func failure(error: String) {
-        displayMonthlySpent(spent: 0)
+        spentValue?.stringValue = "0"
         print(error)
     }
     
@@ -73,6 +74,7 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
         
         let spentLabel = CustomText.customStringLabel(label: "Spent", fontSize: 20, fontColor: NSColor.black, fontStyle: "Trap-Medium")
         spentValue = CustomText.customStringLabel(label: String(spent), fontSize: 22, fontColor: NSColor.black, fontStyle: "Trap-Bold")
+        guard let spentValue = spentValue else { return }
         let spentStack = NSStackView(views: [spentLabel, spentValue])
         
         self.wantsLayer = true
@@ -90,9 +92,7 @@ extension GetMonthlySpentView: GetMonthlySpentViewContract {
             spentStack.centerXAnchor.constraint(equalTo: centerXAnchor),
             spentStack.centerYAnchor.constraint(equalTo: centerYAnchor,constant: 6),
             spentStack.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.85),
-            spentStack.widthAnchor.constraint(equalToConstant: 400),
-//            self.heightAnchor.constraint(equalToConstant: 120),
-//            self.widthAnchor.constraint(equalToConstant: 320)
+            spentStack.widthAnchor.constraint(equalToConstant: 400)
         ])
     }
     

@@ -18,6 +18,7 @@ class GetAllTransactionView: NSView {
     var transactionView: AllTransactionView!
     let transactionLable = CustomText.customStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
     var selectedRow: Int?
+    var scrollView: NSScrollView?
     
     init(user: User, presenter: GetAllTranasctionPresenterContract) {
         self.user = user
@@ -71,6 +72,11 @@ class GetAllTransactionView: NSView {
         
         self.transactions = transactions
         self.transactions.remove(at: index)
+        if self.transactions.isEmpty {
+            scrollView?.removeFromSuperview()
+            failure(error: "transactions is empty")
+            return
+        }
         tableView.reloadData()
         if selectedRow == index {
             transactionView.afterDeletingCurrentDisplayedTransaction()
@@ -84,33 +90,33 @@ extension GetAllTransactionView: GetAllTransactionViewContract {
     func load(transaction: [Transaction]) {
         
         transactions = transaction
-        let scrollView = NSScrollView()
-        scrollView.hasVerticalScroller = true
-        scrollView.borderType = .noBorder
-        scrollView.scrollerKnobStyle = .light
+        scrollView = NSScrollView()
+        scrollView?.hasVerticalScroller = true
+        scrollView?.borderType = .noBorder
+        scrollView?.scrollerKnobStyle = .light
 //        scrollView.horizontalScrollElasticity = .none
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.wantsLayer = true
-        scrollView.backgroundColor = .black
+        scrollView?.translatesAutoresizingMaskIntoConstraints = false
+        scrollView?.wantsLayer = true
+        scrollView?.backgroundColor = .black
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 65
         tableView.headerView = nil
 //        tableView.selectionHighlightStyle = .none
-        scrollView.documentView = tableView
+        scrollView?.documentView = tableView
         
         let column1 = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "Transaction"))
         
         tableView.addTableColumn(column1)
         
-        addSubview(scrollView)
+        addSubview(scrollView!)
         
         NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            scrollView.topAnchor.constraint(equalTo: transactionLable.bottomAnchor, constant: 5),
-            scrollView.heightAnchor.constraint(equalTo: heightAnchor, constant: -50),
-            scrollView.widthAnchor.constraint(equalTo: widthAnchor),
+            scrollView!.centerXAnchor.constraint(equalTo: centerXAnchor),
+            scrollView!.topAnchor.constraint(equalTo: transactionLable.bottomAnchor, constant: 5),
+            scrollView!.heightAnchor.constraint(equalTo: heightAnchor, constant: -50),
+            scrollView!.widthAnchor.constraint(equalTo: widthAnchor),
         ])
     }
     
@@ -183,7 +189,6 @@ extension GetAllTransactionView: NSTableViewDelegate, NSTableViewDataSource   {
         cell.date.stringValue = String(outputDateString)
         cell.mode.stringValue = transactions[row].currencyType.rawValue
         cell.type.stringValue = transactions[row].transactionType.rawValue
-        cell.image.image = NSImage(named: transactions[row].category!)
         if transactions[row].transactionType.rawValue == "Income" {
             cell.image.image = NSImage(named: "rupee")
         }

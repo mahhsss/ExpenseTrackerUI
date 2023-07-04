@@ -16,10 +16,11 @@ class RecentTransactionsView: NSView {
     var user: User
     var transactions: [Transaction] = []
     let scrollView = NSScrollView()
-    let tableView = NSTableView()
+    var tableView = NSTableView()
     var deleteTransactionView: DeleteTransactionView?
     weak var homeViewController: HomePageViewController?
     var transactionStack: NSStackView?
+    var transactionLable: NSTextField?
     
     init(user: User, presenter: GetRecentTransactionPresenterContract) {
         self.presenter = presenter
@@ -30,10 +31,27 @@ class RecentTransactionsView: NSView {
     override func viewDidMoveToSuperview() {
         
         configureTransactionView()
+        configureTransactionLable()
+        tableViewConfiguration()
     }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureTransactionLable() {
+        
+        transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
+        if let transactionLable = transactionLable {
+            transactionLable.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(transactionLable)
+            NSLayoutConstraint.activate([
+                transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+                transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52)
+            ])
+        }
     }
     
     func configureTransactionView() {
@@ -54,8 +72,11 @@ class RecentTransactionsView: NSView {
         
         if transactions.isEmpty {
             transactionStack?.removeFromSuperview()
-            load(transaction: [transaction])
+            tableView.beginUpdates()
+            transactionStack?.removeFromSuperview()
+            transactions.insert(transaction, at: 0)
             tableView.reloadData()
+            tableView.endUpdates()
         }
         else {
             tableView.beginUpdates()
@@ -72,14 +93,16 @@ class RecentTransactionsView: NSView {
 extension RecentTransactionsView: GetRecentTransactionViewContract {
    
     func load(transaction: [Transaction]) {
-        
-        let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         transactions = transaction
+        tableView.reloadData()
+    }
+    
+    func tableViewConfiguration() {
+        
         scrollView.hasVerticalScroller = true
         scrollView.borderType = .noBorder
         scrollView.scrollerKnobStyle = .light
 //        scrollView.horizontalScrollElasticity = .none
-        transactionLable.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.wantsLayer = true
         scrollView.backgroundColor = .black
@@ -97,11 +120,13 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
         tableView.addTableColumn(column1)
         
         addSubview(scrollView)
-        addSubview(transactionLable)
+        
+        guard let transactionLable = transactionLable else {
+            transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
+            return
+        }
         
         NSLayoutConstraint.activate([
-            transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
             scrollView.topAnchor.constraint(equalTo: transactionLable.bottomAnchor, constant: 5),
             scrollView.heightAnchor.constraint(equalTo: heightAnchor, constant: -50),
@@ -111,25 +136,17 @@ extension RecentTransactionsView: GetRecentTransactionViewContract {
     
     func failure(error: String) {
         
-        let transactionLable = CustomText.customHeaderStringLabel(label: "Transactions", fontSize: 20, fontColor: .white, fontStyle: "Trap-SemiBold")
         let noTransactionLable = CustomText.customStringLabel(label: "No transaction recorded this month!", fontSize: 14, fontColor: NSColor.systemRed, fontStyle: "Trap-Medium")
         transactionStack = NSStackView(views: [noTransactionLable])
         transactionStack!.spacing = 30
-        
-        transactionLable.translatesAutoresizingMaskIntoConstraints = false
         transactionStack!.translatesAutoresizingMaskIntoConstraints = false
         transactionStack!.orientation = .vertical
         
         addSubview(transactionStack!)
-        addSubview(transactionLable)
         
         NSLayoutConstraint.activate([
-            transactionLable.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            transactionLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 52),
             transactionStack!.centerXAnchor.constraint(equalTo: centerXAnchor),
             transactionStack!.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            transactionStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
-//            transactionStack.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
     
@@ -187,7 +204,7 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
     }
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        if edge == .trailing {
+        if edge == .leading {
             return [] }
 
         let deleteAction = NSTableViewRowAction(style: .destructive, title: "Delete") { _,_ in
@@ -200,15 +217,12 @@ extension RecentTransactionsView: NSTableViewDelegate, NSTableViewDataSource   {
             let response = logoutAlert.runModal()
             if response == .alertFirstButtonReturn {
                 self.homeViewController?.afterTransactionDeletion(transactions: self.transactions, index: row)
-                print("\(self.transactions[row].amount    )")
                 tableView.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
                 self.deleteTransactionView = Assembler.deleteTransaction(transactionId: self.transactions[row].transactionId)
                 self.transactions.remove(at: row)
-//                print("\(self.transactions[row].amount    )")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     tableView.reloadData()
                     if self.transactions.isEmpty {
-                        self.scrollView.removeFromSuperview()
                         self.failure(error: "no transactions left")
                     }
                 }
@@ -229,6 +243,7 @@ class TransactionCellView: NSTableCellView {
     
     static var identifier = "transactions"
     var image = NSImageView()
+    var transactionStack: NSStackView?
     var amount = CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .white, fontStyle: "Trap-Medium")
     var date = CustomText.customStringLabel(label: "", fontSize: 15, fontColor: .white, fontStyle: "Trap-Medium")
     var mode = CustomText.customStringLabel(label: "", fontSize: 13, fontColor: .white, fontStyle: "Trap-Medium")
@@ -244,36 +259,39 @@ class TransactionCellView: NSTableCellView {
     }
     
     func customiseCellView() {
-        
         let leftStack = NSStackView(views: [amount, type])
         let rightStack = NSStackView(views: [date, mode])
-        let transactionStack = NSStackView(views: [leftStack, rightStack])
+        transactionStack = NSStackView(views: [leftStack, rightStack])
         
         leftStack.orientation = .vertical
         rightStack.orientation = .vertical
         leftStack.spacing = 10
         rightStack.spacing = 10
-        transactionStack.orientation = .horizontal
-        transactionStack.distribution = .fillEqually
+        transactionStack?.orientation = .horizontal
+        transactionStack?.distribution = .fillEqually
         image.imageScaling = .scaleProportionallyUpOrDown
         image.translatesAutoresizingMaskIntoConstraints = false
         image.wantsLayer = true
-//        image.layer?.backgroundColor = .white
-        transactionStack.translatesAutoresizingMaskIntoConstraints = false
-        transactionStack.wantsLayer = true
+        transactionStack?.translatesAutoresizingMaskIntoConstraints = false
+        transactionStack?.wantsLayer = true
         
-        addSubview(image)
-        addSubview(transactionStack)
+        if let transactionStack = transactionStack {
+            addSubview(image)
+            addSubview(transactionStack)
+            
+            NSLayoutConstraint.activate([
+                transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+                transactionStack.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+                transactionStack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.80),
+                transactionStack.heightAnchor.constraint(equalTo: heightAnchor),
+                image.rightAnchor.constraint(equalTo: transactionStack.leftAnchor, constant: 7),
+                image.centerYAnchor.constraint(equalTo: centerYAnchor),
+                image.heightAnchor.constraint(equalTo: heightAnchor, constant: -38),
+                image.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)
+            ])
+        }
         
-        NSLayoutConstraint.activate([
-            transactionStack.centerYAnchor.constraint(equalTo: centerYAnchor),
-            transactionStack.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            transactionStack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.80),
-            transactionStack.heightAnchor.constraint(equalTo: heightAnchor),
-            image.rightAnchor.constraint(equalTo: transactionStack.leftAnchor, constant: 7),
-            image.centerYAnchor.constraint(equalTo: centerYAnchor),
-            image.heightAnchor.constraint(equalTo: heightAnchor, constant: -38),
-            image.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)
-        ])
+        
+        
     }
 }
