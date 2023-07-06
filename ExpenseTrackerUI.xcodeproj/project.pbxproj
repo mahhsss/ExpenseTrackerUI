@@ -16,6 +16,7 @@
 		2A16149E29BB4560005E999E /* GetAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16149D29BB4560005E999E /* GetAnalysisView.swift */; };
 		2A3EE3382A2DFED400276E95 /* ToolBar .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EE3372A2DFED400276E95 /* ToolBar .swift */; };
 		2A4731622A43782000BBF682 /* RouterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4731612A43782000BBF682 /* RouterContract.swift */; };
+		2A4731832A5456F600BBF682 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4731822A5456F600BBF682 /* PopOverViewController.swift */; };
 		2A5DCDDF2A1CE000007586CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDDE2A1CE000007586CF /* main.swift */; };
 		2A5DCDE62A1D3FF4007586CF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */; };
 		2A5DCDF72A1F26FC007586CF /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCDF62A1F26FC007586CF /* CustomText.swift */; };
@@ -88,6 +89,7 @@
 		2A16149D29BB4560005E999E /* GetAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnalysisView.swift; sourceTree = "<group>"; };
 		2A3EE3372A2DFED400276E95 /* ToolBar .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolBar .swift"; sourceTree = "<group>"; };
 		2A4731612A43782000BBF682 /* RouterContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterContract.swift; sourceTree = "<group>"; };
+		2A4731822A5456F600BBF682 /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		2A5DCDDE2A1CE000007586CF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		2A5DCDF62A1F26FC007586CF /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				2A5DCDE52A1D3FF4007586CF /* AuthenticationViewController.swift */,
 				2A5DCE062A209740007586CF /* HomePageViewController.swift */,
 				2A5E3B592A3247FC0044C8F8 /* AddViewController.swift */,
+				2A4731822A5456F600BBF682 /* PopOverViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				2A5DCE092A209796007586CF /* MainHomePageView.swift in Sources */,
 				2A6458212A27C42F00DC2AB3 /* LeftMenuBarView.swift in Sources */,
 				2A16149929BB20DC005E999E /* GetMonthlyTransactionAnalysisView.swift in Sources */,
+				2A4731832A5456F600BBF682 /* PopOverViewController.swift in Sources */,
 				2A5DCDDF2A1CE000007586CF /* main.swift in Sources */,
 				2A7B9F4729BEF85800A9BFAE /* GetWeeklyTransactionAnalysisView.swift in Sources */,
 				2A5DCE072A209740007586CF /* HomePageViewController.swift in Sources */,

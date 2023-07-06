@@ -39,3 +39,10 @@ extension Router: LoginRouterContract {
         self.window.contentViewController = Assembler.HomeView(user: user, router: self)
     }
 }
+
+extension Router {
+    
+    func createAddTransactionFloatingWindow(user: User, router: HomePageViewController) {
+        
+    }
+}

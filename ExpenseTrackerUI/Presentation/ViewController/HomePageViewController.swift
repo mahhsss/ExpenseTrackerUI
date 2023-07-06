@@ -15,7 +15,13 @@ class HomePageViewController: NSViewController {
     var transactionView = AllTransactionView()
     var leftMenuBar = LeftMenuBar()
     var toolBar: ToolBar?
+    var profilePopOver = NSPopover()
+    var floatingWindow: AddFloatingWindow?
+    var addBudgetView: AddBudgetView?
     var currentPage = CurrentPage.homePage
+    var user: User?
+    var router: Router?
+    static var windowExist = false
     
     init(user: User, router: Router) {
         
@@ -27,8 +33,6 @@ class HomePageViewController: NSViewController {
         let allTransactions = Assembler.getAllTransactionView(user: user)
         mainView = MainHomeView()
         toolBar = ToolBar()
-        toolBar?.user = user
-        toolBar?.router = router
         mainView.spent = spentView
         mainView.income = incomeView
         mainView.balance = balanceView
@@ -37,8 +41,9 @@ class HomePageViewController: NSViewController {
         transactionView.transactionTableView = allTransactions
         transactionView.transactionTableView.transactionView = transactionView
         super.init(nibName: nil, bundle: nil)
-        toolBar?.homePageReloader = self
         recentTransaction.homeViewController = self
+        self.user = user
+        self.router = router
     }
     
     required init?(coder: NSCoder) {
@@ -55,10 +60,9 @@ class HomePageViewController: NSViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = .black
         view.window?.toolbar = toolBar
-        toolBar?.items[0].target = self
-        toolBar?.items[1].target = self
-        toolBar?.items[2].target = self
-//        toolBar?.items[0].action = 
+        toolBar?.items[0].action = #selector(addTransactionButtonClicked(_:))
+        toolBar?.items[1].action = #selector(setBudgetTransactionButtonClicked(_:))
+        toolBar?.items[3].action = #selector(profileButtonClicked(_:))
         if let window = view.window {
             window.titleVisibility = .hidden
             window.titlebarAppearsTransparent = true
@@ -236,6 +240,62 @@ class HomePageViewController: NSViewController {
         }
         
         mainView.balance.currentBalanceUpdateAfterNewTransaction(thisMonthIncome: mainView.income.currentIncome, thisMonthSpent: mainView.spent.currentSpent)
+    }
+    
+    
+    @objc func addTransactionButtonClicked(_ sender: NSButton) {
+        if floatingWindow != nil {
+            closeAddTransactionWindow()
+        }
+        HomePageViewController.windowExist = true
+        floatingWindow = AddFloatingWindow(user: user!, reloader: self)
+        floatingWindow?.showWindow(self)
+        floatingWindow?.window?.hidesOnDeactivate = true
+    }
+    
+    @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
+        
+        addBudgetView = Assembler.addBudget(user: user!, budgetViewReloader: self)
+    }
+    
+    func configurePopOver() {
+        
+        profilePopOver = NSPopover()
+        profilePopOver.behavior = .transient
+        profilePopOver.contentSize = NSSize(width: 200, height: 200)
+        if let router = router {
+            profilePopOver.contentViewController = PopoverContentViewController(user: user!, router: router, homePageViewController: self)
+        }
+    }
+    
+    @objc func profileButtonClicked(_ sender: NSButton) {
+        print("profile button clicked")
+        configurePopOver()
+        if profilePopOver.isShown {
+            profilePopOver.close()
+        } else {
+            profilePopOver.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+        }
+    }
+    
+}
+
+
+extension HomePageViewController {
+    
+    func closeAddTransactionWindow() {
+        floatingWindow?.close()
+    }
+}
+
+extension HomePageViewController {
+    
+    func logOut() {
+        
+        if HomePageViewController.windowExist == true {
+            closeAddTransactionWindow()
+        }
+        self.router?.logout()
     }
 }
 

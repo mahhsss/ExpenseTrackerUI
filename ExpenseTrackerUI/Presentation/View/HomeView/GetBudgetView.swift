@@ -428,20 +428,55 @@ extension GetBudgetView: GetBudgetViewContract {
             restToSpent = 0
         }
         
-        budgetString = "\(success.spent) spent already. \(restToSpent) is left to reach the budget"
-        innerWidth = Float((success.spent)) / Float((success.budget))
         
-        if Float((success.spent)) == (Float(success.budget)) {
-            innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
-            innerWidth = 1
+        var targetColor: NSColor = .init(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+        let widthvalue = self.frame.width
+        
+        innerWidth = Float((thisMonthSpent)) / Float((thisMonthBudget))
+        var targetWidth = Float(widthvalue) * 0.80 * innerWidth
+        
+        budgetString = "\(thisMonthSpent) spent already. \(restToSpent) is left to reach the budget"
+        innerWidth = Float((thisMonthSpent)) / Float((thisMonthBudget))
+        
+        if Float((thisMonthSpent)) == (Float(thisMonthBudget)) {
+            targetColor = NSColor.systemRed
+            targetWidth = Float(self.frame.width * 0.80)
         }
-        else if Float((success.spent)) > (Float(success.budget)) {
-            innerBar.layer?.backgroundColor = NSColor.systemRed.cgColor
-            innerWidth = 1
-            budgetString = "\(success.spent) spent already. \(success.spent - success.budget) spent beyond the budget"
+        else if Float((thisMonthSpent)) > (Float(thisMonthBudget)) {
+            targetColor = NSColor.systemRed
+            targetWidth = Float(self.frame.width * 0.80)
+            budgetString = "\(thisMonthSpent) spent already. \(thisMonthSpent - thisMonthBudget) spent beyond the budget"
         }
-        else if  Float((success.spent)) > (Float(success.budget) / 2) {
+        else if  Float((thisMonthSpent)) > (Float(thisMonthBudget) / 2) {
             innerBar.layer?.backgroundColor = #colorLiteral(red: 1, green: 0.4136213064, blue: 0.2176061869, alpha: 1)
+        }
+        thisMonthBudgetText.stringValue = "This month budget is \(thisMonthBudget)"
+        balanceBudgetText.stringValue =  budgetString
+        
+        let widthAnimation = CABasicAnimation(keyPath: "bounds.size.width")
+        widthAnimation.fromValue = currentWidth
+        widthAnimation.toValue = targetWidth
+        widthAnimation.duration = 1.0
+        widthAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        
+        let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        colorAnimation.fromValue = currentColor
+        colorAnimation.toValue = targetColor.cgColor
+        colorAnimation.duration = 1.0
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.animations = [widthAnimation, colorAnimation]
+        animationGroup.duration = 1.0
+        
+        innerBar.layer?.add(animationGroup, forKey: "widthAndColorAnimation")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationGroup.duration - 0.25) {
+            self.innerBar.frame.size.width = CGFloat(targetWidth)
+            self.innerBar.layer?.backgroundColor = targetColor.cgColor
+            self.currentWidth = targetWidth
+            self.currentColor = targetColor
         }
     }
     
