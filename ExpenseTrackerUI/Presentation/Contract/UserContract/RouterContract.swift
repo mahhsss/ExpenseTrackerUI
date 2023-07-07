@@ -16,6 +16,7 @@ protocol AddBudgetRouterContract: AnyObject {
 protocol LogOutRouterContract: AnyObject {
     
     func logout()
+    func closeAddTransactionWindow()
 }
 
 
@@ -25,4 +26,20 @@ protocol LoginRouterContract: AnyObject {
     func loginPage()
 }
 
-//protocol 
+protocol NewTransactionRouterContract: AnyObject {
+    
+    func reloadAfterNewTransaction(transaction: Transaction)
+    func closeAddTransactionWindow()
+}
+
+protocol UpdateBudgetRouterContract: AnyObject {
+    
+    func loadBudgetAfterUpdating(budget: Int)
+}
+
+protocol HomePageRouterProtocol: AnyObject, NewTransactionRouterContract, UpdateBudgetRouterContract, LogOutRouterContract {
+    
+    var homePageViewController: HomePageViewController? { get set }
+    func createAddTransactionFloatingWindow(user: User) -> AddFloatingWindow
+    func updateBudget(user: User) -> AddBudgetView
+}

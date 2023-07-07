@@ -13,10 +13,10 @@ class AddViewController: NSViewController {
     
     var addTransactionView: AddTransactionView!
     var user: User
-    weak var reloader: HomePageViewController?
-    init(user: User, reloader: HomePageViewController) {
+    weak var router: NewTransactionRouterContract?
+    init(user: User, router: NewTransactionRouterContract) {
         self.user = user
-        self.reloader = reloader
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,7 +26,7 @@ class AddViewController: NSViewController {
     
     override func loadView() {
         view = NSView(frame: NSRect(x: 0, y: 0, width: 700, height: NSScreen.main!.frame.height - 280))
-        addTransactionView = Assembler.addTransactionView(user: user, reloader: reloader!)
+        addTransactionView = Assembler.addTransactionView(user: user, router: router!)
     }
     
     override func viewDidLoad() {

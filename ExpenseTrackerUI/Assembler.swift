@@ -78,14 +78,14 @@ extension Assembler {
 //------------------------- Transaction Assembler --------------------------
 extension Assembler {
     
-    static func addTransactionView(user: User, reloader: HomePageViewController) -> AddTransactionView {
+    static func addTransactionView(user: User, router: NewTransactionRouterContract) -> AddTransactionView {
         let database = AddTransactionDataDatabaseService()
         let dataManager = AddNewTransactionDataManager(database: database)
         let usecase = AddNewTransaction(dataManager: dataManager)
         let presenter = AddTransactionPresenter(AddNewTransaction: usecase)
         let view = AddTransactionView(user: user, presenter: presenter)
         presenter.view = view
-        presenter.reloader = reloader
+        presenter.router = router
         return view
         
     }
@@ -167,14 +167,14 @@ extension Assembler {
 //------------------------- Budget Assembler --------------------------
 extension Assembler {
     
-    static func addBudget(user: User, budgetViewReloader: HomePageViewController) -> AddBudgetView {
+    static func addBudget(user: User, router: UpdateBudgetRouterContract) -> AddBudgetView {
         let database = AddBudgetDatabaseService()
         let dataManager = AddBudgetDataManager(database: database)
         let usecase = AddBudget(dataManager: dataManager)
         let presenter = AddBudgetPresenter(addBudget: usecase)
         let view = AddBudgetView(user: user, presenter: presenter)
         presenter.view = view
-        presenter.budgetViewReloader = budgetViewReloader
+        presenter.router = router
         return view
     }
     

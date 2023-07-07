@@ -20,7 +20,7 @@ class HomePageViewController: NSViewController {
     var addBudgetView: AddBudgetView?
     var currentPage = CurrentPage.homePage
     var user: User?
-    var router: Router?
+    var router: HomePageRouterProtocol?
     static var windowExist = false
     
     init(user: User, router: Router) {
@@ -44,6 +44,7 @@ class HomePageViewController: NSViewController {
         recentTransaction.homeViewController = self
         self.user = user
         self.router = router
+        self.router?.homePageViewController = self
     }
     
     required init?(coder: NSCoder) {
@@ -245,17 +246,21 @@ class HomePageViewController: NSViewController {
     
     @objc func addTransactionButtonClicked(_ sender: NSButton) {
         if floatingWindow != nil {
-            closeAddTransactionWindow()
+            router?.closeAddTransactionWindow()
         }
         HomePageViewController.windowExist = true
-        floatingWindow = AddFloatingWindow(user: user!, reloader: self)
-        floatingWindow?.showWindow(self)
-        floatingWindow?.window?.hidesOnDeactivate = true
+        if let user = user {
+            floatingWindow = router?.createAddTransactionFloatingWindow(user: user)
+            floatingWindow?.showWindow(self)
+            floatingWindow?.window?.hidesOnDeactivate = true
+        }
     }
     
     @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
         
-        addBudgetView = Assembler.addBudget(user: user!, budgetViewReloader: self)
+        if let user = user {
+            addBudgetView = router?.updateBudget(user: user)
+        }
     }
     
     func configurePopOver() {
@@ -264,7 +269,7 @@ class HomePageViewController: NSViewController {
         profilePopOver.behavior = .transient
         profilePopOver.contentSize = NSSize(width: 200, height: 200)
         if let router = router {
-            profilePopOver.contentViewController = PopoverContentViewController(user: user!, router: router, homePageViewController: self)
+            profilePopOver.contentViewController = PopoverContentViewController(user: user!, router: router)
         }
     }
     
@@ -279,26 +284,6 @@ class HomePageViewController: NSViewController {
     }
     
 }
-
-
-extension HomePageViewController {
-    
-    func closeAddTransactionWindow() {
-        floatingWindow?.close()
-    }
-}
-
-extension HomePageViewController {
-    
-    func logOut() {
-        
-        if HomePageViewController.windowExist == true {
-            closeAddTransactionWindow()
-        }
-        self.router?.logout()
-    }
-}
-
 
 enum CurrentPage: CaseIterable {
     

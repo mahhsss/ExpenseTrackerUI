@@ -11,7 +11,7 @@ import ExpenseTrackerBackend
 class AddTransactionPresenter {
    
     weak var view: AddNewTransactionContract?
-    weak var reloader: HomePageViewController?
+    weak var router: NewTransactionRouterContract?
     var newTransaction: AddNewTransaction
     
     init(AddNewTransaction: AddNewTransaction) {
@@ -27,12 +27,12 @@ extension AddTransactionPresenter: AddTransactionContract {
             self?.view?.load(success: "transaction added successfully")
             var transaction2 = transaction
             transaction2.transactionId = response.transactionId
-            self?.reloader?.reloadAfterNewtransaction(transaction: transaction2)
-            self?.reloader?.closeAddTransactionWindow()
+            self?.router?.reloadAfterNewTransaction(transaction: transaction2)
+            self?.router?.closeAddTransactionWindow()
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error.error.localizedDescription)
-            self?.reloader?.reloadAfterNewtransaction(transaction: transaction)
-            self?.reloader?.closeAddTransactionWindow()
+            self?.router?.reloadAfterNewTransaction(transaction: transaction)
+            self?.router?.closeAddTransactionWindow()
         }
     }
     

@@ -14,12 +14,10 @@ class PopoverContentViewController: NSViewController {
     
     var user: User
     weak var router: LogOutRouterContract?
-    weak var homePageViewController: HomePageViewController?
     
-    init(user: User, router: LogOutRouterContract, homePageViewController: HomePageViewController) {
+    init(user: User, router: LogOutRouterContract) {
         self.user = user
         self.router = router
-        self.homePageViewController = homePageViewController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -85,7 +83,10 @@ class PopoverContentViewController: NSViewController {
         logoutAlert.icon = NSImage(named: "profile")
         let response = logoutAlert.runModal()
         if response == .alertFirstButtonReturn {
-            
+            if HomePageViewController.windowExist == true {
+                router?.closeAddTransactionWindow()
+            }
+            self.router?.logout()
         }
         else if response == .alertSecondButtonReturn {
             return
