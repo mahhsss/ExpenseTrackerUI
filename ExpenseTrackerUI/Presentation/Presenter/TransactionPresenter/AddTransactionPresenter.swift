@@ -28,11 +28,9 @@ extension AddTransactionPresenter: AddTransactionContract {
             var transaction2 = transaction
             transaction2.transactionId = response.transactionId
             self?.router?.reloadAfterNewTransaction(transaction: transaction2)
-            self?.router?.closeAddTransactionWindow()
         } onFailure: { [weak self] error in
             self?.view?.failure(error: error.error.localizedDescription)
             self?.router?.reloadAfterNewTransaction(transaction: transaction)
-            self?.router?.closeAddTransactionWindow()
         }
     }
     

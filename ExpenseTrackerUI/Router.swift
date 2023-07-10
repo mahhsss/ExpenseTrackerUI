@@ -9,11 +9,11 @@ import Foundation
 import ExpenseTrackerBackend
 import AppKit
 
-class Router: HomePageRouterProtocol {
+class Router: HomePageRouterContract {
     
     
     var window: NSWindow
-    var addFloatingWindow: AddFloatingWindow?
+//    var addFloatingWindow: AddFloatingWindow?
     var homePageViewController: HomePageViewController?
     init(window: NSWindow) {
         self.window = window
@@ -27,8 +27,7 @@ class Router: HomePageRouterProtocol {
 extension Router: LogOutRouterContract {
     
     func logout() {
-        window.toolbar = nil
-        self.window.contentViewController = Assembler.AuthenticationView(router: self)
+        homePageViewController?.logout()
     }
 }
 
@@ -45,30 +44,15 @@ extension Router: LoginRouterContract {
 
 extension Router: NewTransactionRouterContract {
     
-    func createAddTransactionFloatingWindow(user: User) -> AddFloatingWindow {
-        addFloatingWindow = AddFloatingWindow(user: user, router: self)
-        return addFloatingWindow!
-    }
-    
     func reloadAfterNewTransaction(transaction: Transaction) {
         homePageViewController?.reloadAfterNewtransaction(transaction: transaction)
     }
 }
 
-
-extension Router {
-    
-    func closeAddTransactionWindow() {
-        
-        addFloatingWindow?.close()
-    }
-}
-
-
 extension Router: UpdateBudgetRouterContract {
     
-    func updateBudget(user: User) -> AddBudgetView {
-        return Assembler.addBudget(user: user, router: self)
+    func updateBudget(user: User, router: UpdateBudgetRouterContract) -> AddBudgetView {
+        return Assembler.addBudget(user: user, router: router)
     }
     
     func loadBudgetAfterUpdating(budget: Int) {

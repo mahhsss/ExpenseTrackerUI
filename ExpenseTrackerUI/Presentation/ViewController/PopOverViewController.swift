@@ -83,9 +83,6 @@ class PopoverContentViewController: NSViewController {
         logoutAlert.icon = NSImage(named: "profile")
         let response = logoutAlert.runModal()
         if response == .alertFirstButtonReturn {
-            if HomePageViewController.windowExist == true {
-                router?.closeAddTransactionWindow()
-            }
             self.router?.logout()
         }
         else if response == .alertSecondButtonReturn {

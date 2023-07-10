@@ -13,7 +13,7 @@ class AddViewController: NSViewController {
     
     var addTransactionView: AddTransactionView!
     var user: User
-    weak var router: NewTransactionRouterContract?
+    var router: NewTransactionRouterContract?
     init(user: User, router: NewTransactionRouterContract) {
         self.user = user
         self.router = router

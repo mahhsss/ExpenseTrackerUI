@@ -20,7 +20,7 @@ class HomePageViewController: NSViewController {
     var addBudgetView: AddBudgetView?
     var currentPage = CurrentPage.homePage
     var user: User?
-    var router: HomePageRouterProtocol?
+    weak var router: HomePageRouterContract?
     static var windowExist = false
     
     init(user: User, router: Router) {
@@ -227,6 +227,7 @@ class HomePageViewController: NSViewController {
     
     func reloadAfterNewtransaction(transaction: Transaction) {
         
+        floatingWindow?.close()
         //transactionView
         transactionView.transactionTableView.insertNewTransaction(transaction: transaction)
         
@@ -246,11 +247,11 @@ class HomePageViewController: NSViewController {
     
     @objc func addTransactionButtonClicked(_ sender: NSButton) {
         if floatingWindow != nil {
-            router?.closeAddTransactionWindow()
+            floatingWindow?.close()
         }
         HomePageViewController.windowExist = true
-        if let user = user {
-            floatingWindow = router?.createAddTransactionFloatingWindow(user: user)
+        if user != nil && router != nil {
+            floatingWindow = AddFloatingWindow(user: user!, router: router!)
             floatingWindow?.showWindow(self)
             floatingWindow?.window?.hidesOnDeactivate = true
         }
@@ -258,8 +259,8 @@ class HomePageViewController: NSViewController {
     
     @objc func setBudgetTransactionButtonClicked(_ sender: NSButton) {
         
-        if let user = user {
-            addBudgetView = router?.updateBudget(user: user)
+        if user != nil && router != nil {
+            addBudgetView = router?.updateBudget(user: user!, router: router!)
         }
     }
     
@@ -281,6 +282,12 @@ class HomePageViewController: NSViewController {
         } else {
             profilePopOver.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
         }
+    }
+    
+    func logout() {
+        floatingWindow?.close()
+        toolBar = nil
+        router?.launch()
     }
     
 }
