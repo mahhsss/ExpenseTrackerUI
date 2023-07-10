@@ -95,15 +95,13 @@ class HomePageViewController: NSViewController {
         mainView.translatesAutoresizingMaskIntoConstraints = false
         transactionView.translatesAutoresizingMaskIntoConstraints = false
         leftMenuBar.translatesAutoresizingMaskIntoConstraints = false
-//        toolBar.translatesAutoresizingMaskIntoConstraints = false
         toolBarLine.translatesAutoresizingMaskIntoConstraints = false
         toolBarLine.wantsLayer = true
-//        toolBar.wantsLayer = true
         mainView.wantsLayer = true
         view.wantsLayer = true
         view.layer?.backgroundColor = .black
         leftMenuBar.wantsLayer = true
-        toolBarLine.layer?.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        toolBarLine.layer?.backgroundColor = #colorLiteral(red: 0.5901135802, green: 0.5901135802, blue: 0.5901135802, alpha: 1)
         leftMenuBar.layer?.borderColor = #colorLiteral(red: 0.187238276, green: 0.187238276, blue: 0.187238276, alpha: 1)
         leftMenuBar.layer?.borderWidth = 1
         leftMenuBar.layer?.cornerRadius = 30
